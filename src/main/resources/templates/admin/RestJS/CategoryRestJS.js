@@ -69,7 +69,7 @@ async function getDataItems() {
   const dataItems = await response.json();
   console.log(dataItems);
   
-  let options = '<option value="" selected disabled >Please choose an item</option>';
+  let options = '<option value="" selected disabled >Vui Lòng Chọn Danh Mục</option>';
   
   dataItems.forEach((item) => {
     options += `<option value="${item.id}" >${item.name}</option>`; 
@@ -97,8 +97,8 @@ async function getDataCategories() {
                   <td>${category.name}</td>
                   <td>${category.name}</td>
                   <td>
-                      <button class="btn btn-primary" onclick="editCategory(${category.id})">Edit</button>
-                      <button class="btn btn-danger" onclick="deleteCategory(${category.id})">Delete</button>
+                      <button class="btn btn-primary" onclick="editCategory(${category.id})">Chỉnh Sửa</button>
+                      <button class="btn btn-danger" onclick="deleteCategory(${category.id})">Xoá</button>
                   </td>
               </tr>`;
   });
@@ -113,8 +113,8 @@ async function getDataCategories() {
           { 
               "data" : "id",
               "render" : function(data, type, row, meta) {
-                  return `<button class="btn btn-primary" onclick="editCategory(${row.id})">Edit</button>
-                          <button class="btn btn-danger" onclick="deleteCategory(${row.id})">Delete</button>`
+                  return `<button class="btn btn-primary" onclick="editCategory(${row.id})">Chỉnh Sửa</button>
+                          <button class="btn btn-danger" onclick="deleteCategory(${row.id})">Xoá</button>`
               }
           }
       ],

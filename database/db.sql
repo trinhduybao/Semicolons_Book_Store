@@ -135,27 +135,24 @@ go
 --dữ liệu mẫu bảng item
 INSERT INTO items ([name]) VALUES (N'Văn Phòng Phẩm');
 INSERT INTO items ([name]) VALUES (N'Sách Trong Nước');
-INSERT INTO items ([name]) VALUES (N'Sách Nước Ngoài');
+INSERT INTO items ([name]) VALUES (N'Foreign Books');
 
 --dữ liệu mẫu categories
 INSERT INTO categories ([name], item_id) VALUES (N'Văn Học Cổ Điển', 2);
 INSERT INTO categories ([name], item_id) VALUES (N'Kinh Tế', 2);
 INSERT INTO categories ([name], item_id) VALUES (N'Bìa Còng', 1);
-INSERT INTO categories ([name], item_id) VALUES (N'Khoa Học Viễn Tưởng', 3);
+INSERT INTO categories ([name], item_id) VALUES (N'Science Fiction', 3);
 INSERT INTO categories ([name], item_id) VALUES (N'Tâm Lý - Kỹ Năng Sống', 2);
 INSERT INTO categories ([name], item_id) VALUES (N'Văn Học Hiện Đại', 2);
 INSERT INTO categories ([name], item_id) VALUES (N'Bút Bi', 1);
 INSERT INTO categories ([name], item_id) VALUES (N'Băng Dính', 1);
 INSERT INTO categories ([name], item_id) VALUES (N'Lịch Sử', 2);
-INSERT INTO categories ([name], item_id) VALUES (N'Phiêu Lưu', 3);
+INSERT INTO categories ([name], item_id) VALUES (N'Adventure', 3);
 INSERT INTO categories ([name], item_id) VALUES (N'Giáo Dục', 2);
 INSERT INTO categories ([name], item_id) VALUES (N'Kẹp Giấy', 1);
-INSERT INTO categories ([name], item_id) VALUES (N'Y Học', 3);
+INSERT INTO categories ([name], item_id) VALUES (N'Medicine', 3);
 INSERT INTO categories ([name], item_id) VALUES (N'Thần Thoại', 2);
 INSERT INTO categories ([name], item_id) VALUES (N'Sổ Tay', 1);
-
-
-
 
 
 select * from accounts
@@ -170,3 +167,5 @@ select * from order_details
 select * from vouchers
 select * from feedbacks
 select * from items
+
+--DROP DATABASE Semicolons_Book_Store;
