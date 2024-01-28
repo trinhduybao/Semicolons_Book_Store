@@ -13,7 +13,7 @@ create table items(
 
 create table categories(
 	id int identity(1,1),
-	[name] nvarchar(50) unique,	
+	[name] nvarchar(50) not null unique,
 	item_id int not null,
 	primary key (id),
 	foreign key (item_id) references items(id)
