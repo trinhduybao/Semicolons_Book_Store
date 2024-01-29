@@ -209,29 +209,36 @@ async function createCategory() {
     if (!validateForm()) {
         return;
     }
-  try {
-      const response = await fetch(`http://localhost:8080/rest/category`, {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-              name: document.getElementById("nameCategory").value,
-              item: {
-                  id: document.getElementById("idCategory").value
-              }
-          })
-      });
-      if (response.ok) {
-          console.log("Category created successfully");
-          window.location.reload();
-          // Refresh or update your data after successful creation
-      } else {
-          console.error("Failed to create category");
-      }
-  } catch (error) {
-      console.error('Error during create request:', error);
-  }
+    
+    if (exists) {
+        alert("Item with this name already exists!");
+    } else {
+        try {
+            const response = await fetch(`http://localhost:8080/rest/category`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: document.getElementById("nameCategory").value,
+                    item: {
+                        id: document.getElementById("idCategory").value
+                    }
+                })
+            });
+            if (response.ok) {
+                console.log("Category created successfully");
+                window.location.reload();
+                // Refresh or update your data after successful creation
+            } else {
+                console.error("Failed to create category");
+                alert("Đã có item này!");
+            }
+        } catch (error) {
+            console.error('Error during create request:', error);
+        }
+    }
+  
 }
 
 // async function updateCategory() {
@@ -288,6 +295,12 @@ function validateForm() {
 
 
     return isValid;
+}
+
+function checkIfItemExists(name) {
+    return fetch(`http://localhost:8080/exists?name=${encodeURIComponent(name)}`)
+        .then(response => response.json())
+        .catch(error => console.error('Error checking item existence:', error));
 }
 
 

@@ -11,7 +11,6 @@ import java.util.List;
 
 @RestController
 @CrossOrigin("*")
-
 public class CategoryRestController {
     @Autowired
     CategoryRepository categoryRepository;
@@ -55,5 +54,12 @@ public class CategoryRestController {
         }
         categoryRepository.deleteById(id);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/exists")
+    public ResponseEntity<Boolean> checkIfCategoryExists(@RequestParam("name") String name) {
+        boolean exists = categoryRepository.existsByName(name);
+        System.out.println(exists);
+        return ResponseEntity.ok(exists);
     }
 }
