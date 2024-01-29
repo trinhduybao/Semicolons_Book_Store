@@ -30,6 +30,14 @@ app.controller("ctrl", function ($scope, $http, $timeout) {
 
 $scope.updateCategory = function (event) {
     event.preventDefault();
+    var id = document.getElementById("id").value;
+
+    if (!id) {
+      document.getElementById("errorMessageName").innerText = "Vui lòng chọn một mục để sửa.";
+      return false; 
+  } else {
+      document.getElementById("errorMessageName").innerText = "";
+  }
 
     if (!validateForm()) {
         return;
