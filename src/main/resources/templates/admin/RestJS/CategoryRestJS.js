@@ -149,7 +149,7 @@ async function deleteCategoryFromForm(id) {
   var id = document.getElementById("id").value;
 
   if (!id) {
-    document.getElementById("errorMessageName").innerText = "Vui lòng chọn một mục.";
+    document.getElementById("errorMessageName").innerText = "Vui lòng chọn một mục để xoá.";
     return false; 
 } else {
     document.getElementById("errorMessageName").innerText = "";
