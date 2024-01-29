@@ -1,6 +1,7 @@
 package com.semicolons_book_store.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 
 @Data
@@ -14,6 +15,7 @@ public class Category {
     @Column(name = "id")
     private int id;
 
+	@NotEmpty
     @Column(name = "name", unique = true, nullable = false)
     private String name;
 

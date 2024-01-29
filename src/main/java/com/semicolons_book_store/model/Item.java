@@ -19,12 +19,14 @@ public class Item {
     @Column(name = "id")
     private int id;
 
-//	@NotEmpty(message = "{items.name.notempty}")
+	@NotEmpty(message = "Không được để trống trương này")
 	@Column(name = "name" , unique = true, nullable = false)
     private String name;
 
+
     @JsonIgnore
     @OneToMany(mappedBy = "item")
+	@NotEmpty
     private List<Category> categories;
 
 	public int getId() {

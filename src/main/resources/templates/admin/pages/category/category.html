@@ -550,21 +550,27 @@
                       <select class="form-control" name="idCategory" id="idCategory" required>
                         <!-- Your options here -->
                       </select>
+                    <span id="errorMessageItem" style="color: red;"></span>
+
                     </div>
                     <div class="form-group">
                       <label for="nameCategory">Tên</label>
                       <input type="text" class="form-control" id="nameCategory" name="nameCategory"
                              placeholder="Tên" required minlength="3" maxlength="50">
-                      <!-- minlength và maxlength là ví dụ -->
+                    </div>
+                    <div>
+                    <span id="errorMessageName" style="color: red;"></span>
+
                     </div>
                     <button class="btn btn-success mr-2" onclick="createCategory()" id="btnCreate">Thêm</button>
                     <button class="btn btn-warning mr-2" ng-click="updateCategory($event)" id="btnUpdate">Sửa</button>
                     <button class="btn btn-danger mr-2" onclick="deleteCategoryFromForm()" id="btnDelete">Xóa</button>
                     <button class="btn btn-info mr-2" onclick="reset()" id="btnAll">Làm mới</button>
+
                   </form>
 
                 </div>
-              </div>
+              </div>  
             </div>
             <!--end form category-->
             <!--begin table category-->

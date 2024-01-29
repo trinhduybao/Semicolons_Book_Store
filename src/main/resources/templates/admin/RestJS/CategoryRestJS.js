@@ -11,6 +11,9 @@ app.controller("ctrl", function ($scope, $http, $timeout) {
     $scope.key = null;  
   };
 
+
+
+
 //   $scope.loadData = function () {
 //     $http.get(host + "category").then(function (response) {
 //       $scope.categories = response.data;
@@ -23,16 +26,18 @@ app.controller("ctrl", function ($scope, $http, $timeout) {
 //     });
 //   };
 
-
+  
 
 $scope.updateCategory = function (event) {
     event.preventDefault();
-    // Lấy giá trị từ các trường input
+
+    if (!validateForm()) {
+        return;
+    }
     var id = document.getElementById("id").value;
     var name = document.getElementById("nameCategory").value;
     var item = document.getElementById("idCategory").value;
 
-    // Tạo đối tượng dữ liệu để gửi đi
     var data = {
         id: id,
         name: name,
@@ -40,9 +45,8 @@ $scope.updateCategory = function (event) {
             id: item
         }
     };
-    // Chuyển đối tượng thành chuỗi JSON
     var jsonData = JSON.stringify(data);
-    // Gửi request PUT
+    
     var url = `${host}category/${id}`;
     $http.put(url, jsonData, {
         headers: {
@@ -57,7 +61,6 @@ $scope.updateCategory = function (event) {
         console.error('Update failed:', error);
     });
 };
-
 
 
 //   // Load initial data
@@ -118,9 +121,10 @@ async function getDataCategories() {
 }
 }
 
-
-
 async function deleteCategory(id) {
+    if (!validateForm()) {
+        return;
+    }
   try {
       const response = await fetch(`http://localhost:8080/rest/delete/${id}`, {
           method: 'DELETE'
@@ -141,6 +145,9 @@ async function deleteCategory(id) {
   }
 }
 async function deleteCategoryFromForm(id) {
+    if (!validateForm()) {
+        return;
+    }
   var id = document.getElementById("id").value;
   if (id) {
     // Gọi hàm deleteCategory để xóa dữ liệu
@@ -154,6 +161,7 @@ async function deleteCategoryFromForm(id) {
 };
 
 async function editCategory(id) {
+    
   try {
       const response = await fetch(`http://localhost:8080/rest/category/${id}`, {
           method: 'GET'
@@ -184,6 +192,9 @@ document.getElementById("btnUpdate").addEventListener("click", function(event) {
 // });
 
 async function createCategory() {
+    if (!validateForm()) {
+        return;
+    }
   try {
       const response = await fetch(`http://localhost:8080/rest/category`, {
           method: 'POST',
@@ -239,6 +250,28 @@ async function createCategory() {
 //   }
 // }
 
+function validateForm() {
+    var name = document.getElementById("nameCategory").value;
+    var item = document.getElementById("idCategory").value;
+
+    var isValid = true; 
+
+    if (!item) {
+        document.getElementById("errorMessageItem").innerText = "Vui lòng chọn một mục.";
+        return false; 
+    } else {
+        document.getElementById("errorMessageItem").innerText = "";
+    }
+
+    if (!name) {
+        document.getElementById("errorMessageName").innerText = "Vui lòng điền tên.";
+        return false; 
+    } else {
+        document.getElementById("errorMessageName").innerText = "";
+    }
+
+    return isValid;
+}
 
 
 
