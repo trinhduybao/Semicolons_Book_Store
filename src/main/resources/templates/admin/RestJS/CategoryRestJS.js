@@ -130,9 +130,7 @@ async function getDataCategories() {
 }
 
 async function deleteCategory(id) {
-    if (!validateForm()) {
-        return;
-    }
+   
   try {
       const response = await fetch(`http://localhost:8080/rest/delete/${id}`, {
           method: 'DELETE'
@@ -209,10 +207,7 @@ async function createCategory() {
     if (!validateForm()) {
         return;
     }
-    
-    if (exists) {
-        alert("Item with this name already exists!");
-    } else {
+    {
         try {
             const response = await fetch(`http://localhost:8080/rest/category`, {
                 method: 'POST',
