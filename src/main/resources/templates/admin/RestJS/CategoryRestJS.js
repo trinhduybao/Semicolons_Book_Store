@@ -145,10 +145,16 @@ async function deleteCategory(id) {
   }
 }
 async function deleteCategoryFromForm(id) {
-    if (!validateForm()) {
-        return;
-    }
+    
   var id = document.getElementById("id").value;
+
+  if (!id) {
+    document.getElementById("errorMessageName").innerText = "Vui lòng chọn một mục.";
+    return false; 
+} else {
+    document.getElementById("errorMessageName").innerText = "";
+}
+
   if (id) {
     // Gọi hàm deleteCategory để xóa dữ liệu
     deleteCategory(id);
@@ -251,6 +257,7 @@ async function createCategory() {
 // }
 
 function validateForm() {
+    var name = document.getElementById("id").value;
     var name = document.getElementById("nameCategory").value;
     var item = document.getElementById("idCategory").value;
 
@@ -269,6 +276,8 @@ function validateForm() {
     } else {
         document.getElementById("errorMessageName").innerText = "";
     }
+    
+
 
     return isValid;
 }
