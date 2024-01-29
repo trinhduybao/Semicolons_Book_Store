@@ -3,6 +3,7 @@ package com.semicolons_book_store.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 
 import java.util.List;
@@ -18,7 +19,8 @@ public class Item {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "name" , unique = true, nullable = false)
+//	@NotEmpty(message = "{items.name.notempty}")
+	@Column(name = "name" , unique = true, nullable = false)
     private String name;
 
     @JsonIgnore

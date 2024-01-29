@@ -77,12 +77,6 @@ async function getDataItems() {
 
   document.getElementById("idCategory").innerHTML = options;
 
-  // Đặt giá trị mặc định cho select
-  // document.getElementById("idCategory").value = "Giá trị mặc định nếu cần";
-
-  // Bạn có thể thêm các đoạn mã khác ở đây nếu cần
-
-  // Không chắc là bạn cần DataTable ở đây, vì DataTable thường được sử dụng cho việc hiển thị dữ liệu tabular
 }
 
 
@@ -244,6 +238,9 @@ async function createCategory() {
 //       console.error('Error during update request:', error);
 //   }
 // }
+
+
+
 
 getDataCategories();
 getDataItems();
