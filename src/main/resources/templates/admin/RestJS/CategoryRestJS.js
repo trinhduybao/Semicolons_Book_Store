@@ -80,7 +80,7 @@ async function getDataItems() {
   const dataItems = await response.json();
   console.log(dataItems);
   
-  let options = '<option value="" selected disabled >Vui Lòng Chọn Danh Mục</option>';
+  let options = '<option value="" selected disabled >Please Select Category</option>';
   
   dataItems.forEach((item) => {
     options += `<option value="${item.id}" >${item.name}</option>`; 
@@ -123,7 +123,7 @@ async function getDataCategories() {
               }
           }
       ],
-      "pageLength": 5 
+      "pageLength": 5
       
   })
 }

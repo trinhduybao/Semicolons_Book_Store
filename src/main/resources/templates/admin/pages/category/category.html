@@ -545,16 +545,18 @@
                   <h4 class="card-title">Category Form</h4>
                   <form class="forms-sample myForm" onsubmit="return validateForm()" >
                     <div class="form-group">
-                      <label for="idCategory">Danh Mục</label>
+                      <label for="idCategory">Name Category</label>
                       <input type="text" id="id" hidden>
                       <select class="form-control" name="idCategory" id="idCategory" required>
                         <!-- Your options here -->
                       </select>
                     <span id="errorMessageItem" style="color: red;"></span>
+                    <!-- <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span> -->
+
 
                     </div>
                     <div class="form-group">
-                      <label for="nameCategory">Tên</label>
+                      <label for="nameCategory">Name</label>
                       <input type="text" class="form-control" id="nameCategory" name="nameCategory"
                              placeholder="Tên" required minlength="3" maxlength="50">
                     </div>
@@ -562,10 +564,10 @@
                     <span id="errorMessageName" style="color: red;"></span>
 
                     </div>
-                    <button class="btn btn-success mr-2" onclick="createCategory()" id="btnCreate">Thêm</button>
-                    <button class="btn btn-warning mr-2" ng-click="updateCategory($event)" id="btnUpdate">Sửa</button>
-                    <button class="btn btn-danger mr-2" onclick="deleteCategoryFromForm()" id="btnDelete">Xóa</button>
-                    <button class="btn btn-info mr-2" onclick="reset()" id="btnAll">Làm mới</button>
+                    <button class="btn btn-success mr-2" onclick="createCategory()" id="btnCreate">Create</button>
+                    <button class="btn btn-warning mr-2" ng-click="updateCategory($event)" id="btnUpdate">Update</button>
+                    <button class="btn btn-danger mr-2" onclick="deleteCategoryFromForm()" id="btnDelete">Delete</button>
+                    <button class="btn btn-info mr-2" onclick="reset()" id="btnAll">Reset</button>
 
                   </form>
 
@@ -581,9 +583,9 @@
                   <div class="table-responsive">
                     <table class="table table-striped" id="categoryTable">
                       <thead>
-                        <th>Danh Mục</th>
-                        <th>Chủng Loại</th>
-                        <th>Hành Động</th>
+                        <th>Category</th>
+                        <th>Species</th>
+                        <th>Action</th>
                       </thead>
                       <tbody id="tbody">
 
