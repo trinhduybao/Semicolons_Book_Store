@@ -18,7 +18,7 @@ create table products(
 	id int identity(1,1),
 	thumbnail_image varchar(max) not null,
 	name nvarchar(255) not null unique,
-	price decimal(15,2) not null,
+	price decimal(10,2) not null,
 	suppllier nvarchar(255) not null,
 	publisher nvarchar(255),
 	author nvarchar(255),
@@ -234,7 +234,7 @@ The illustrators guide you through an easy four-step figure drawing process:
 3. Now it s time to lay down the next layers of features and tweaks that will make your character come to life
 4. Finally the finishing touches, the shading and nuances that add depth, complexity and three-dimensional appeal…Now look whats sprung to life on the page--your very own manga character!','','',8,'','','','','',1);
 insert into products values	('Anime&MangaDigitalColoring Guide.webp',N'Anime & Manga Digital Coloring Guide',469000,'Tuttle Publishing','Tuttle Publishing','堀越 耕平','07-03-2023',192,N'mota','','',8,'','','','','',1);
-insert into products values	('HowToDoodleTheCompleteGuide.webp',N'How To Doodle: The Complete Guide',449000,'Tuttle Publishing','Tuttle Publishing','tacgia','07-03-2023',224,N'Sweet and simple drawings for creative fun!
+insert into products values	('HowToDoodleTheCompleteGuide.webp',N'How To Doodle: The Complete Guide',449000,'Tuttle Publishing','Tuttle Publishing','','07-03-2023',224,N'Sweet and simple drawings for creative fun!
 
 In this whimsical new guide, Japanese illustrator and master doodler KAMO shows you how to draw the cutest sketches you"ve ever seen. And she makes drawing them so easy!
 
@@ -277,7 +277,7 @@ Animals with human features, for example a six-legged tiger with a human face
 Animal-to-animal hybrids including a snake-fox and a griffinesque chimera
 
 These creatures boast mix-and-match fangs, beaks, paws, claws, fur, fins, feathers, scales and plates paired with expressive human attributes. And they come from every branch of the animal kingdom--from mammals to birds, reptiles, fish and insects--and everything in between.','','',8,'','','','','',1);
-insert into products values	('caycamngotcuatoi.webp',N'Cây Cam Ngọt Của Tôi',108000,'Nhã Nam','Nhà Xuất Bản Hội Nhà Văn','José Mauro de Vasconcelos','',244,N'“Vị chua chát của cái nghèo hòa trộn với vị ngọt ngào khi khám phá ra những điều khiến cuộc đời này đáng số một tác phẩm kinh điển của Brazil.”
+insert into products values	('caycamngotcuatoi.webp',N'Cây Cam Ngọt Của Tôi',108000,'Nhã Nam',N'Nhà Xuất Bản Hội Nhà Văn','José Mauro de Vasconcelos','',244,N'“Vị chua chát của cái nghèo hòa trộn với vị ngọt ngào khi khám phá ra những điều khiến cuộc đời này đáng số một tác phẩm kinh điển của Brazil.”
 
 - Booklist
 
@@ -293,8 +293,8 @@ Mở đầu bằng những thanh âm trong sáng và kết thúc lắng lại tr
 Tác giả:
 
 JOSÉ MAURO DE VASCONCELOS (1920-1984) là nhà văn người Brazil. Sinh ra trong một gia đình nghèo ở ngoại ô Rio de Janeiro, lớn lên ông phải làm đủ nghề để kiếm sống. Nhưng với tài kể chuyện thiên bẩm, trí nhớ phi thường, trí tưởng tượng tuyệt vời cùng vốn sống phong phú, José cảm thấy trong mình thôi thúc phải trở thành nhà văn nên đã bắt đầu sáng tác năm 22 tuổi. Tác phẩm nổi tiếng nhất của ông là tiểu thuyết mang màu sắc tự truyện Cây cam ngọt của tôi. Cuốn sách được đưa vào chương trình tiểu học của Brazil, được bán bản quyền cho hai mươi quốc gia và chuyển thể thành phim điện ảnh. Ngoài ra, José còn rất thành công trong vai trò diễn viên điện ảnh và biên kịch.','','',8,'','','','','',2);
-		('nhungngatuvanhungcotden.webp',N'Những Ngã Tư Và Những Cột Đèn',176500,'Nhã Nam','Nhà Xuất Bản Hội Nhà Văn','Trần Dần','20-05-2022',376,N'Tôi qua ngã tư Cửa Nam. Ngã tư Cửa Nam đầy khói. Để không thể đếm bao nhiêu nốt chân trên ngã tư. Ai đếm bao nhiêu nốt chân khôn dại. Bao nhiêu nốt chân vui buồn? Ai đếm những ngã tư đời láo nháo nốt chân. Láo nháo cột đèn láo nháo đèn? Đời tôi đã rẽ rồi. Như đã hạ nước cờ không sao đi lại được. Nhưng tại sao tôi cứ ám ảnh: cái ngã tư tại sao ấy. Tôi quên không được. Đi đi không được. Tôi ngồi bệt lề đường. Tôi là đàn ông: tôi không đau khổ. Nhưng tôi muốn khóc. Tôi là đàn ông: Tôi không khóc. Nhưng tôi đau khổ lắm. Tôi ngồi bệt mà nhìn láo nháo cột đèn. Láo nháo khói. Láo nháo hàng cây bên đường lá rụng. Tôi nghe gà gáy te te nội thành. Chỗ tôi ngồi không xa có vườn hoa Canh Nông. Tôi lảo đảo dậy: tôi đi tìm vườn hoa Canh Nông. Tôi vào vườn hoa. Tôi ngồi ghế đá. Ghế đá lạnh. Gà gáy te te. Phố bắt đầu mất khói. Vườn hoa cũng bắt đầu hết khói. Là rạng đông rồi. Tôi không mệt. Buồn ngủ cũng không. Tôi đã nói rồi: tôi đi thấu sáng. Bây giờ tôi ngồi. Cùng với rạng đông. Trong một vườn hoa.','','',8,'','','','','',2),
-		('noinhuc.webp',N'Nỗi nhục (Nobel Prize in Literature 2022)',58800,'Nhã Nam','Nhà Xuất Bản Phụ Nữ','Annie Ernaux','',109,N'Giữa những năm chín mươi, Annie Ernaux đưa độc giả trở lại mùa hè năm 1952, cái mùa hè xảy ra một sự kiện khiến cô thiếu nữ khi ấy bắt đầu cảm thấy một nỗi nhục, về cha mẹ mình, về nghề nghiệp và môi trường sống của họ.
+insert into products values	('nhungngatuvanhungcotden.webp',N'Những Ngã Tư Và Những Cột Đèn',176500,'Nhã Nam',N'Nhà Xuất Bản Hội Nhà Văn',N'Trần Dần','05-20-2022',376,N'Tôi qua ngã tư Cửa Nam. Ngã tư Cửa Nam đầy khói. Để không thể đếm bao nhiêu nốt chân trên ngã tư. Ai đếm bao nhiêu nốt chân khôn dại. Bao nhiêu nốt chân vui buồn? Ai đếm những ngã tư đời láo nháo nốt chân. Láo nháo cột đèn láo nháo đèn? Đời tôi đã rẽ rồi. Như đã hạ nước cờ không sao đi lại được. Nhưng tại sao tôi cứ ám ảnh: cái ngã tư tại sao ấy. Tôi quên không được. Đi đi không được. Tôi ngồi bệt lề đường. Tôi là đàn ông: tôi không đau khổ. Nhưng tôi muốn khóc. Tôi là đàn ông: Tôi không khóc. Nhưng tôi đau khổ lắm. Tôi ngồi bệt mà nhìn láo nháo cột đèn. Láo nháo khói. Láo nháo hàng cây bên đường lá rụng. Tôi nghe gà gáy te te nội thành. Chỗ tôi ngồi không xa có vườn hoa Canh Nông. Tôi lảo đảo dậy: tôi đi tìm vườn hoa Canh Nông. Tôi vào vườn hoa. Tôi ngồi ghế đá. Ghế đá lạnh. Gà gáy te te. Phố bắt đầu mất khói. Vườn hoa cũng bắt đầu hết khói. Là rạng đông rồi. Tôi không mệt. Buồn ngủ cũng không. Tôi đã nói rồi: tôi đi thấu sáng. Bây giờ tôi ngồi. Cùng với rạng đông. Trong một vườn hoa.','','',8,'','','','','',2),
+		('noinhuc.webp',N'Nỗi nhục (Nobel Prize in Literature 2022)',58800,'Nhã Nam',N'Nhà Xuất Bản Phụ Nữ','Annie Ernaux','',109,N'Giữa những năm chín mươi, Annie Ernaux đưa độc giả trở lại mùa hè năm 1952, cái mùa hè xảy ra một sự kiện khiến cô thiếu nữ khi ấy bắt đầu cảm thấy một nỗi nhục, về cha mẹ mình, về nghề nghiệp và môi trường sống của họ.
 
 “Bố tôi đã định giết mẹ tôi vào đầu buổi chiều một Chủ nhật tháng Sáu.”
 
@@ -313,7 +313,7 @@ Năm 1974, bà xuất bản tác phẩm đầu tay Les armoires vides (Những n
 Trong suốt sự nghiệp, Annie Ernaux đã được trao rất nhiều giải thưởng: giải Renaudot (1984), giải thưởng về ngôn ngữ Pháp, giải François Mauriac (2008), giải Marguerite Youcenar (2017)… và đặc biệt, giải Nobel Văn chương (2022) vì “với lòng can đảm cùng sự nhạy bén bên trong, bà đã khám phá ra những cội rễ, những cách biệt và những câu thúc tập thể của hồi ức cá nhân”.
 
 Bà hiện sống ở Cergy, vùng Île-de-France.','','',8,'','','','','',2),
-		('motnguoiphunu.webp',N'Một người phụ nữ (Nobel Prize in Literature 2022)',58800,'Nhã Nam','Nhà Xuất Bản Phụ Nữ','Annie Ernaux','2023-04-01',109,N'“Tôi sẽ không còn nghe thấy giọng nói của bà nữa. […] Tôi đã đánh mất sợi dây nối cuối cùng với thế giới xuất thân của mình.”
+		('motnguoiphunu.webp',N'Một người phụ nữ (Nobel Prize in Literature 2022)',58800,'Nhã Nam',N'Nhà Xuất Bản Phụ Nữ','Annie Ernaux','04-01-2023',109,N'“Tôi sẽ không còn nghe thấy giọng nói của bà nữa. […] Tôi đã đánh mất sợi dây nối cuối cùng với thế giới xuất thân của mình.”
 Ấy là cảm giác của Annie Ernaux khi thực sự nhận ra mẹ mình không còn trên cõi đời. Và bà gắng đi tìm lại những gương mặt khác nhau của người mẹ ấy, một người phụ nữ vốn rất khỏe, xông xáo, cởi mở, qua đời ngày 7 tháng Tư năm 1986, sau một thời gian mắc bệnh Alzeimer. Qua sự tái hiện cuộc đời một nữ công nhân, rồi chủ hàng thực phẩm luôn lo âu về địa vị và học hỏi không ngừng, Annie Ernaux cũng cho ta thấy sự tiến triển cũng như tính hai mặt của những tình cảm mà một người con gái dành cho mẹ: tình yêu, lòng thù ghét, sự âu yếm, cảm giác tội lỗi và cuối cùng là sự gắn bó máu thịt với người đàn bà già cả đã sa sút trí tuệ. Cùng với đó phảng phất những thăng trầm của nước Pháp suốt thế kỷ 20, giống như lời tổng thống Pháp Emmanuel Macron đã phát biểu khi Annie Ernaux trở thành chủ nhân giải Nobel Văn chương 2022:
 
 “Suốt 50 năm qua, Annie Ernaux viết cuốn tiểu thuyết về ký ức tập thể và riêng tư của đất nước chúng ta. Tiếng nói của bà là tiếng nói của tự do của người phụ nữ và của những điều đã bị lãng quên trong thế kỷ qua.”
@@ -323,7 +323,7 @@ Annie Ernaux sinh năm 1940 tại Lillebonne, lớn lên tại Yvetot, đều th
 Năm 1974, bà xuất bản tác phẩm đầu tay Les armoires vides (Những ngăn kéo rỗng) kể về lần phá thai chui của bản thân vào năm 1964. Năm 1983, bà xuất bản Một chỗ trong đời, kể về cuộc đời của cha mình, và cuốn sách đã đoạt giải Renaudot. Năm 2008, bà xuất bản Les années (Những năm tháng), tác phẩm được coi là hoàn chỉnh cả về nội dung lẫn hình thức của thể loại hồi ức tập thể.
 
 Trong suốt sự nghiệp, Annie Ernaux đã được trao rất nhiều giải thưởng: giải Renaudot (1984), giải thưởng về ngôn ngữ Pháp, giải François Mauriac (2008), giải Marguerite Youcenar (2017)… và đặc biệt, giải Nobel Văn chương (2022) vì “với lòng can đảm cùng sự nhạy bén bên trong, bà đã khám phá ra những cội rễ, những cách biệt và những câu thúc tập thể của hồi ức cá nhân”.','','',8,'','','','','',2),
-		('nhagiakim.webp',N'Nhà Giả Kim (Tái Bản 2020)',61100,'Nhã Nam','Nhà Xuất Bản Hà Nội','Paulo Coelho','2020-04-01',228,N'Sơ lược về tác phẩm
+		('nhagiakim.webp',N'Nhà Giả Kim (Tái Bản 2020)',61100,'Nhã Nam',N'Nhà Xuất Bản Hà Nội','Paulo Coelho','04-01-2023',228,N'Sơ lược về tác phẩm
 
 Tất cả những trải nghiệm trong chuyến phiêu du theo đuổi vận mệnh của mình đã giúp Santiago thấu hiểu được ý nghĩa sâu xa nhất của hạnh phúc, hòa hợp với vũ trụ và con người.
 
@@ -342,7 +342,7 @@ Nhận định
 “Santiago có khả năng cảm nhận bằng trái tim như Hoàng tử bé của Saint-Exupéry.”
 
 - Frankfurter Allgemeine Zeitung, Đức','','',8,'','','','','',2),
-		('sukyyfpt35nam.webp',N'SỬ KÝ FPT 35 NĂM - Từ tay trắng đến tập đoàn toàn cầu',350000,'CÔNG TY CỔ PHẦN RIO BOOK VIỆT NAM','Nhà Xuất Bản Dân Trí','FPT','2024-01-01',392,N'rên hành trình 35 năm gây dựng và phát triển, từ không vốn liếng, không kinh nghiệm, bạn có tò mò liệu FPT đã làm những gì để vươn lên trở thành tập đoàn công nghệ tư nhân lớn nhất Việt Nam? Cuốn sách này sẽ cho bạn một phác họa chân thực về con đường gian nan mà FPT đã trải qua.
+		('sukyyfpt35nam.webp',N'SỬ KÝ FPT 35 NĂM - Từ tay trắng đến tập đoàn toàn cầu',350000,N'CÔNG TY CỔ PHẦN RIO BOOK VIỆT NAM',N'Nhà Xuất Bản Dân Trí','FPT','01-01-2024',392,N'rên hành trình 35 năm gây dựng và phát triển, từ không vốn liếng, không kinh nghiệm, bạn có tò mò liệu FPT đã làm những gì để vươn lên trở thành tập đoàn công nghệ tư nhân lớn nhất Việt Nam? Cuốn sách này sẽ cho bạn một phác họa chân thực về con đường gian nan mà FPT đã trải qua.
 
 “SỬ KÝ FPT 35 NĂM - Từ tay trắng đến tập đoàn toàn cầu” không phải là cuốn sách dạy về kinh doanh hay quản trị. Đây là một cuốn sử ký với những câu chuyện, sự kiện lịch sử được chắt lọc từ những gì các nhà sáng lập, nhà lãnh đạo, quản lý và cán bộ nhân viên FPT nhiều thế hệ đã trải qua trong suốt hành trình lập nghiệp và kiến tạo FPT từ tay trắng trở thành tập đoàn toàn cầu.
 
@@ -402,8 +402,8 @@ Phó Chủ tịch kiêm Tổng thư ký Hội Tin học Việt Nam
 "FPT là hình mẫu rất đáng học hỏi và ngưỡng mộ với một tập thể những con người đầy đam mê, khát khao kiến tạo những giá trị mới cho đất nước, dẫn dắt và truyền cảm hứng về khởi nghiệp và vươn ra toàn cầu."
 Ông Trần Trung Hiếu
 Đồng sáng lập kiêm TGĐ TopCV','','',8,'','','','','',1),
-		('trendingfollowing.webp',N'Trend Following – Cách thức để kiếm được VẬN MAY LỚN và GIÀU CÓ trong các thị trường BÒ, GẤU và các sự kiện THIÊN NGA ĐEN',599000,'CÔNG TY TNHH HAPPY LIVE','Nhà Xuất Bản Thế Giới','Michael W. Covel','',639,N'Thị trường chứng khoán qua bao thăng trầm vẫn thủy chung với bản tính bất định khó trị, đã khiến cho không biết bao nhiêu nhà đầu tư lao đao và chìm sâu thua lỗ. Chúng ta bắt buộc phải nhìn nhận rằng: Sẽ không có lối tắt để chiến thắng thị trường, nhưng chúng ta có thể đồng hành và kiếm lợi nhuận bền vững nhờ vào thị trường bằng hệ thống phương pháp đầu tư/giao dịch tối ưu nhất – mà ở đây, tác giả Michael W. Covel muốn đề cập đến chính là phương pháp đầu tư theo xu hướng.','','',8,'','','','','',2),
-		('sachnghigiauvalamgiau.webp',N'Sách Nghĩ Giàu Và Làm Giàu (Bìa Mềm)',75200,'First News - Trí Việt','Nhà Xuất Bản Tổng hợp TP.HCM','Napoleon Hill','15-12-2007',450,N'"Think and Grow Rich –Nghĩ giàu và Làm giàu là một trong những cuốn sách bán chạy nhất mọi thời đại. Đã hơn 60 triệu bản được phát hành với gần trăm ngôn ngữ trên toàn thế giới và được công nhận là cuốn sách tạo ra nhiều triệu phú, một cuốn sách truyền cảm hứng thành công nhiều hơn bất cứ cuốn sách kinh doanh nào trong lịch sử.
+		('trendingfollowing.webp',N'Trend Following – Cách thức để kiếm được VẬN MAY LỚN và GIÀU CÓ trong các thị trường BÒ, GẤU và các sự kiện THIÊN NGA ĐEN',599000,N'CÔNG TY TNHH HAPPY LIVE',N'Nhà Xuất Bản Thế Giới','Michael W. Covel','',639,N'Thị trường chứng khoán qua bao thăng trầm vẫn thủy chung với bản tính bất định khó trị, đã khiến cho không biết bao nhiêu nhà đầu tư lao đao và chìm sâu thua lỗ. Chúng ta bắt buộc phải nhìn nhận rằng: Sẽ không có lối tắt để chiến thắng thị trường, nhưng chúng ta có thể đồng hành và kiếm lợi nhuận bền vững nhờ vào thị trường bằng hệ thống phương pháp đầu tư/giao dịch tối ưu nhất – mà ở đây, tác giả Michael W. Covel muốn đề cập đến chính là phương pháp đầu tư theo xu hướng.','','',8,'','','','','',2),
+		('sachnghigiauvalamgiau.webp',N'Sách Nghĩ Giàu Và Làm Giàu (Bìa Mềm)',75200,N'First News - Trí Việt',N'Nhà Xuất Bản Tổng hợp TP.HCM','Napoleon Hill','12-15-2007',450,N'"Think and Grow Rich –Nghĩ giàu và Làm giàu là một trong những cuốn sách bán chạy nhất mọi thời đại. Đã hơn 60 triệu bản được phát hành với gần trăm ngôn ngữ trên toàn thế giới và được công nhận là cuốn sách tạo ra nhiều triệu phú, một cuốn sách truyền cảm hứng thành công nhiều hơn bất cứ cuốn sách kinh doanh nào trong lịch sử.
 
 Tác phẩm này đã giúp tác giả của nó, Napoleon Hill, được tôn vinh bằng danh hiệu “người tạo ra những nhà triệu phú”. Đây cũng là cuốn sách hiếm hoi được đứng trong top của rất nhiều bình chọn theo nhiều tiêu chí khác nhau - bình chọn của độc giả, của giới chuyên môn, của báo chí. Lý do để Think and Grow Rich - Nghĩ giàu và làm giàu có được vinh quang này thật hiển nhiên và dễ hiểu: Bằng việc đọc và áp dụng những phương pháp đơn giản, cô đọng này vào đời sống của mỗi cá nhân mà đã có hàng ngàn người trên thế giới trở thành triệu phú và thành công bền vững.
 
@@ -437,7 +437,7 @@ Người nổi tiếng nói gì về cuốn sách:
 Về tác giả
 Napoleon Hill (1883 - 1970) là một tác gia người Mỹ, ông được coi là một trong những tác gia tiêu biểu thành công nhất trong lịch sử. Napoleon là một trong những người đầu tiên sáng tạo nên một thể loại văn học mới trong nền văn học hiện đại đó là văn học để phát triển thành công con người. Cuốn sách được biết đến nhiều nhất của ông là cuốn Think and Grow Rich (1937), cuốn sách đã bán được trên 20 triệu bản in trên toàn thế giới (tính tới thời điểm ông mất năm 1970). Cho tới nay cuốn sách này vẫn đang được dịch ra nhiều thứ tiếng trên thế giới và trở thành cuốn sách gối đầu giường của rất nhiều độc giả.
 Ông từng được mời làm cố vấn cho Tổng thống Mỹ Franklin D.Roosevelt từ năm 1933 đến năm 1936. Napoleon Hill rất nổi tiếng với câu nói ""Những gì tâm trí có thể nhận thức được và tin tưởng thì nhất định tâm trí sẽ làm được"". Những thành tựu mà ông đã đạt được cũng như các công thức thành công mà ông đề cập tới đều có ảnh hưởng rất lớn tới nhiều thế hệ độc giả.','','',8,'','','','','',2),
-		('demenphieuluuky.webp',N'Dế Mèn Phiêu Lưu Ký',108000,'Nhà Xuất Bản Kim Đồng','Nhà Xuất Bản Kim Đồng','Tô Hoài','06-02-2023',144,N'Trong hơn nửa thế kỉ kể từ ngày ra mắt bạn đọc lần đầu tiên năm 1941, "Dế Mèn phiêu lưu kí" là một trong những sáng tác tâm đắc nhất của nhà văn Tô Hoài. 
+		('demenphieuluuky.webp',N'Dế Mèn Phiêu Lưu Ký',108000,N'Nhà Xuất Bản Kim Đồng',N'Nhà Xuất Bản Kim Đồng','Tô Hoài','02-06-2023',144,N'Trong hơn nửa thế kỉ kể từ ngày ra mắt bạn đọc lần đầu tiên năm 1941, "Dế Mèn phiêu lưu kí" là một trong những sáng tác tâm đắc nhất của nhà văn Tô Hoài. 
 
 Tác phẩm đã được tái bản nhiều lần và được dịch ra hơn 20 thứ tiếng trên thế giới và luôn được các thế hệ độc giả nhỏ tuổi đón nhận. 
 
@@ -448,7 +448,7 @@ Trong đó cuốn "Dế Mèn phiêu lưu kí" gồm 148 trang, trên khổ giấ
 Bằng cách sử dụng màu nước điêu luyện, hoạ sĩ Tạ Huy Long đã làm sống động thêm tác phẩm bất hủ của nhà văn Tô Hoài. 
 
 Cuốn sách là món quà đẹp cả về hình thức lẫn nội dung, là món quà ý nghĩa và bổ ích mà các bậc phụ huynh tặng cho con em của mình.','','',8,'','','','','',2),
-		('hoangtube.webp',N'Hoàng Tử Bé (Tái Bản 2019)',58000,'Nhã Nam','Nhà Xuất Bản Hội Nhà Văn','Antoine De Saint-Exupéry','',102,N'Hoàng tử bé được viết ở New York trong những ngày tác giả sống lưu vong và được xuất bản lần đầu tiên tại New York vào năm 1943, rồi đến năm 1946 mới được xuất bản tại Pháp. Không nghi ngờ gì, đây là tác phẩm nổi tiếng nhất, được đọc nhiều nhất và cũng được yêu mến nhất của Saint-Exupéry. Cuốn sách được bình chọn là tác phẩm hay nhất thế kỉ 20 ở Pháp, đồng thời cũng là cuốn sách Pháp được dịch và được đọc nhiều nhất trên thế giới. Với 250 ngôn ngữ dịch khác nhau kể cả phương ngữ cùng hơn 200 triệu bản in trên toàn thế giới, Hoàng tử bé được coi là một trong những tác phẩm bán chạy nhất của nhân loại.
+		('hoangtube.webp',N'Hoàng Tử Bé (Tái Bản 2019)',58000,'Nhã Nam',N'Nhà Xuất Bản Hội Nhà Văn','Antoine De Saint-Exupéry','',102,N'Hoàng tử bé được viết ở New York trong những ngày tác giả sống lưu vong và được xuất bản lần đầu tiên tại New York vào năm 1943, rồi đến năm 1946 mới được xuất bản tại Pháp. Không nghi ngờ gì, đây là tác phẩm nổi tiếng nhất, được đọc nhiều nhất và cũng được yêu mến nhất của Saint-Exupéry. Cuốn sách được bình chọn là tác phẩm hay nhất thế kỉ 20 ở Pháp, đồng thời cũng là cuốn sách Pháp được dịch và được đọc nhiều nhất trên thế giới. Với 250 ngôn ngữ dịch khác nhau kể cả phương ngữ cùng hơn 200 triệu bản in trên toàn thế giới, Hoàng tử bé được coi là một trong những tác phẩm bán chạy nhất của nhân loại.
 
 Ở Việt Nam, Hoàng tử bé được dịch và xuất bản khá sớm. Từ năm 1966 đã có đồng thời hai bản dịch: Hoàng tử bé của Bùi Giáng do An Tiêm xuất bản và Cậu hoàng con của Trần Thiện Đạo do Khai Trí xuất bản. Từ đó đến nay đã có thêm nhiều bản dịch Hoàng tử bé mới của các dịch giả khác nhau. Bản dịch Hoàng tử bé lần này, xuất bản nhân dịp kỷ niệm 70 năm Hoàng tử bé ra đời, cũng là ấn bản đầu tiên được Gallimard chính thức chuyển nhượng bản quyền tại Việt Nam, hy vọng sẽ góp phần làm phong phú thêm việc dịch và tiếp nhận tác phẩm quan trọng này với các thế hệ độc giả.
 
@@ -457,7 +457,7 @@ Tôi cứ sống cô độc như vậy, chẳng có một ai để chuyện trò
 Thế là đêm đầu tiên tôi ngủ trên cát, cách mọi chốn có người ở cả nghìn dặm xa. Tôi cô đơn hơn cả một kẻ đắm tàu sống sót trên bè giữa đại dương. Thế nên các bạn cứ tưởng tượng tôi đã ngạc nhiên làm sao, khi ánh ngày vừa rạng, thì một giọng nói nhỏ nhẹ lạ lùng đã đánh thức tôi. Giọng ấy nói:
 “Ông làm ơn… vẽ cho tôi một con cừu!”
 - Trích "Hoàng tử bé"','','',8,'','','','','',2),
-		('tuidungtailieugiaya412ngan.webp',N'Túi Đựng Tài Liệu Giấy A4 12 Ngăn - Hàng Chính Hãng ',3,'','','','',639,N'','','',8,'PaKaSa',N'Trung Quốc',N'Việt Nam','','',3),
+		('tuidungtailieugiaya412ngan.webp',N'Túi Đựng Tài Liệu Giấy A4 12 Ngăn - Hàng Chính Hãng ',35000,'','','','',639,N'','','',8,'PaKaSa',N'Trung Quốc',N'Việt Nam','','',3),
 		('combo20butbithienlongflexofficef0023.webp',N'Combo 20 Bút Bi Thiên Long Flexoffice FO-023',25000,N'Thiên Long','',N'Thiên Long','','',N'','','',8,N'Việt Nam',N'Việt Nam','','','',3),
 		('dapghim.webp',N'Dập ghim #10 Deli, 15 trang Đen, Xám, Xanh - 1 cái E0229',37000,'','','Deli','','',N'TÍNH NĂNG SẢN PHẨM:
 
@@ -539,8 +539,6 @@ Thú Bông Lạc Đà A Đán Bá Đạo Alpaca 28cm được thiết kế với
 
 - Gấu bông Thú Bông Lạc Đà A Đán Bá Đạo cực cute, độc và lạ.','','',8,N'Chine','Chine','','','',4)
 
-
-		
 		
 	
 
