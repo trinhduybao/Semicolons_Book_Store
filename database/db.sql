@@ -345,3 +345,15 @@ USE [master]
 GO
 ALTER DATABASE [Semicolons_Book_Store] SET  READ_WRITE 
 GO
+
+INSERT INTO accounts VALUES
+('mary_johnson', '123456', 'mary.johnson@example.com', 'Mary', 'Johnson', '987 Cedar Street, City F'),
+('peter_williams', '123456', 'peter.williams@example.com', 'Peter', 'Williams', '654 Birch Street, City G'),
+('susan_anderson','123456', 'susan.anderson@example.com', 'Susan', 'Anderson', '321 Oakwood Street, City H'),
+('michael_thomas', '123456','michael.thomas@example.com', 'Michael', 'Thomas', '852 Pineview Drive, City I'),
+('laura_miller','123456', 'laura.miller@example.com', 'Laura', 'Miller', '147 Willow Lane, City J'),
+('david_taylor','123456', 'david.taylor@example.com', 'David', 'Taylor', '369 Elm Avenue, City K'),
+('linda_wilson','123456', 'linda.wilson@example.com', 'Linda', 'Wilson', '753 Maple Road, City L'),
+('james_martin','123456', 'james.martin@example.com', 'James', 'Martin', '258 Cedar Avenue, City M'),
+('sarah_andrews','123456', 'sarah.andrews@example.com', 'Sarah', 'Andrews', '741 Pine Street, City N'),
+('steven_clark','123456', 'steven.clark@example.com', 'Steven', 'Clark', '963 Elm Street, City O');

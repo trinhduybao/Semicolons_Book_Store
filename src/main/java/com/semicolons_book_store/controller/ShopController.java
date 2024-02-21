@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ShopController {
 	@RequestMapping("")
 	public String shop(Model model) {
-		return "customer/category";
+		return "customer/index";
 	}
 }
