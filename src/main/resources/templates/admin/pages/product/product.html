@@ -542,10 +542,126 @@
             <div class="col-md-5 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Category Form</h4>
+                  <h4 class="card-title">Product Form</h4>
                   <form class="forms-sample myForm" onsubmit="return validateForm()" >
                     <div class="form-group">
-                      <label for="idCategory">Danh Mục</label>
+                      <label for="nameCategory">Tên Sản Phẩm</label>
+                      <input type="text" class="form-control" id="nameCategory" name="nameCategory"
+                             placeholder="Tên" required minlength="3" maxlength="50">
+                    <span id="errorMessageItem" style="color: red;"></span>
+                    </div>
+                    <div class="form-group">
+                      <label for="nameCategory">Giá</label>
+                      <input type="text" class="form-control" id="nameCategory" name="nameCategory"
+                             placeholder="giá" required minlength="3" maxlength="50">
+                    </div>
+                    <div>
+                    <span id="errorMessageName" style="color: red;"></span>
+
+                    <div class="form-group">
+                      <label for="nameCategory">Nhà Cung Cấp</label>
+                      <input type="text" class="form-control" id="nameCategory" name="nameCategory"
+                             placeholder="nhà cung cấp" required minlength="3" maxlength="50">
+                    <span id="errorMessageItem" style="color: red;"></span>
+
+                    </div>
+
+                    <div class="form-group">
+                      <label for="nameCategory">Nhà Xuất Bản</label>
+                      <input type="text" class="form-control" id="nameCategory" name="nameCategory"
+                             placeholder="nhà xuất bản" required minlength="3" maxlength="50">
+                    <span id="errorMessageItem" style="color: red;"></span>
+
+                    </div>
+
+                    <div class="form-group">
+                      <label for="nameCategory">Tác Giả</label>
+                      <input type="text" class="form-control" id="nameCategory" name="nameCategory"
+                             placeholder="tác giả" required minlength="3" maxlength="50">
+                    <span id="errorMessageItem" style="color: red;"></span>
+
+                    </div>
+
+                    <div class="form-group">
+                      <label for="nameCategory">Ngày Cung Cấp</label>
+                      <input type="date" class="form-control" id="nameCategory" name="nameCategory"
+                             placeholder="ngày cung cấp" required minlength="3" maxlength="50">
+                    <span id="errorMessageItem" style="color: red;"></span>
+
+                    </div>
+
+                    <div class="form-group">
+                      <label for="nameCategory">Số Trang</label>
+                      <input type="text" class="form-control" id="nameCategory" name="nameCategory"
+                             placeholder="số trang" required minlength="3" maxlength="50">
+                    <span id="errorMessageItem" style="color: red;"></span>
+
+                    </div>
+
+                    <div class="form-group">
+                      <label for="nameCategory">Miêu tả</label>
+                      <input type="text" class="form-control" id="nameCategory" name="nameCategory"
+                             placeholder="miêu tả" required minlength="3" maxlength="50">
+                    <span id="errorMessageItem" style="color: red;"></span>
+
+                    </div>
+
+                    <div class="form-group">
+                      <label for="nameCategory">Số Lượng</label>
+                      <input type="number" step="any" class="form-control" id="nameCategory" name="nameCategory"
+                             placeholder="số lượng" required minlength="3" maxlength="50">
+                    <span id="errorMessageItem" style="color: red;"></span>
+
+                    </div>
+
+                    <div class="form-group">
+                      <label for="nameCategory">Thương Hiệu</label>
+                      <input type="text" class="form-control" id="nameCategory" name="nameCategory"
+                             placeholder="thương hiệu" required minlength="3" maxlength="50">
+                    <span id="errorMessageItem" style="color: red;"></span>
+
+                    </div>
+
+                    <div class="form-group">
+                      <label for="nameCategory">Sản Xuất Tại</label>
+                      <input type="text" class="form-control" id="nameCategory" name="nameCategory"
+                             placeholder="sản xuất tại" required minlength="3" maxlength="50">
+                    <span id="errorMessageItem" style="color: red;"></span>
+
+                    </div>
+
+                    <div class="form-group">
+                      <label for="nameCategory">Nguồn Gốc</label>
+                      <select class="form-control" name="country" required minlength="3" maxlength="50">
+                        <option value="vn">Việt Nam</option>
+                        <option value="us">Hoa Kỳ</option>
+                        <option value="uk">Thái Lan</option>
+                        <option value="uk">Trung Quốc</option>
+                        <option value="uk">EU</option>
+                        <!-- Thêm các quốc gia khác tại đây -->
+                      </select>
+                    <span id="errorMessageItem" style="color: red;"></span>
+
+                    </div>
+
+                    <div class="form-group">
+                      <label for="nameCategory">Màu Sắc</label>
+                      <input type="text" class="form-control" id="nameCategory" name="nameCategory"
+                             placeholder="màu sắc" required minlength="3" maxlength="50">
+                    <span id="errorMessageItem" style="color: red;"></span>
+
+                    </div>
+
+                    <div class="form-group">
+                      <label for="nameCategory">Vật Liệu</label>
+                      <input type="text" class="form-control" id="nameCategory" name="nameCategory"
+                             placeholder="vật liệu" required minlength="3" maxlength="50">
+                    <span id="errorMessageItem" style="color: red;"></span>
+
+                    </div>
+
+                    <div class="form-group">
+                      <label for="nameCategory">Loại Sản Phẩm</label>
                       <input type="text" id="id" hidden>
                       <select class="form-control" name="idCategory" id="idCategory" required>
                         <!-- Your options here -->
@@ -553,13 +669,30 @@
                     <span id="errorMessageItem" style="color: red;"></span>
 
                     </div>
+
                     <div class="form-group">
-                      <label for="nameCategory">Tên</label>
+                      <label for="nameCategory">Cân Nặng</label>
                       <input type="text" class="form-control" id="nameCategory" name="nameCategory"
-                             placeholder="Tên" required minlength="3" maxlength="50">
+                             placeholder="cân nặng" required minlength="3" maxlength="50">
+                    <span id="errorMessageItem" style="color: red;"></span>
+
                     </div>
-                    <div>
-                    <span id="errorMessageName" style="color: red;"></span>
+
+                    <div class="form-group">
+                      <label for="nameCategory">Kích Thước</label>
+                      <input type="text" class="form-control" id="nameCategory" name="nameCategory"
+                             placeholder="kích thước" required minlength="3" maxlength="50">
+                    <span id="errorMessageItem" style="color: red;"></span>
+
+                    </div>
+
+                    <div class="form-group">
+                      <label for="nameCategory">Hình Ảnh</label>
+                      <input type="file" accept="image/*" class="form-control" id="nameCategory" name="nameCategory"
+                             placeholder="hình" required minlength="3" maxlength="50">
+                    <span id="errorMessageItem" style="color: red;"></span>
+
+                    </div>
 
                     </div>
                     <button class="btn btn-success mr-2" onclick="createCategory()" id="btnCreate">Thêm</button>
@@ -581,11 +714,15 @@
                   <div class="table-responsive">
                     <table class="table table-striped" id="categoryTable">
                       <thead>
-                        <th>Danh Mục</th>
-                        <th>Chủng Loại</th>
-                        <th>Hành Động</th>
+                        <th>Tên Sản Phẩm</th>
+                        <th>Giá Sản Phẩm</th>
+                        <th>Tác Giả</th>
+                        <th>Ngày Cung Cấp</th>
+                        <th>Số Lượng</th>
+                        <th>Loại Sản Phẩm</th>
+                        <th>Thao Tác</th>
                       </thead>
-                      <tbody id="tbody">
+                      <tbody id="">
 
                       </tbody>
 
