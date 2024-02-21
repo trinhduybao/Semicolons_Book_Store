@@ -1,359 +1,219 @@
-USE [master]
-GO
-/****** Object:  Database [Semicolons_Book_Store]    Script Date: 2/20/2024 9:57:46 PM ******/
-CREATE DATABASE [Semicolons_Book_Store]
- CONTAINMENT = NONE
- ON  PRIMARY 
-( NAME = N'Semicolons_Book_Store', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.BINHLD\MSSQL\DATA\Semicolons_Book_Store.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
- LOG ON 
-( NAME = N'Semicolons_Book_Store_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.BINHLD\MSSQL\DATA\Semicolons_Book_Store_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
- WITH CATALOG_COLLATION = DATABASE_DEFAULT, LEDGER = OFF
-GO
-ALTER DATABASE [Semicolons_Book_Store] SET COMPATIBILITY_LEVEL = 160
-GO
-IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
-begin
-EXEC [Semicolons_Book_Store].[dbo].[sp_fulltext_database] @action = 'enable'
-end
-GO
-ALTER DATABASE [Semicolons_Book_Store] SET ANSI_NULL_DEFAULT OFF 
-GO
-ALTER DATABASE [Semicolons_Book_Store] SET ANSI_NULLS OFF 
-GO
-ALTER DATABASE [Semicolons_Book_Store] SET ANSI_PADDING OFF 
-GO
-ALTER DATABASE [Semicolons_Book_Store] SET ANSI_WARNINGS OFF 
-GO
-ALTER DATABASE [Semicolons_Book_Store] SET ARITHABORT OFF 
-GO
-ALTER DATABASE [Semicolons_Book_Store] SET AUTO_CLOSE ON 
-GO
-ALTER DATABASE [Semicolons_Book_Store] SET AUTO_SHRINK OFF 
-GO
-ALTER DATABASE [Semicolons_Book_Store] SET AUTO_UPDATE_STATISTICS ON 
-GO
-ALTER DATABASE [Semicolons_Book_Store] SET CURSOR_CLOSE_ON_COMMIT OFF 
-GO
-ALTER DATABASE [Semicolons_Book_Store] SET CURSOR_DEFAULT  GLOBAL 
-GO
-ALTER DATABASE [Semicolons_Book_Store] SET CONCAT_NULL_YIELDS_NULL OFF 
-GO
-ALTER DATABASE [Semicolons_Book_Store] SET NUMERIC_ROUNDABORT OFF 
-GO
-ALTER DATABASE [Semicolons_Book_Store] SET QUOTED_IDENTIFIER OFF 
-GO
-ALTER DATABASE [Semicolons_Book_Store] SET RECURSIVE_TRIGGERS OFF 
-GO
-ALTER DATABASE [Semicolons_Book_Store] SET  ENABLE_BROKER 
-GO
-ALTER DATABASE [Semicolons_Book_Store] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
-GO
-ALTER DATABASE [Semicolons_Book_Store] SET DATE_CORRELATION_OPTIMIZATION OFF 
-GO
-ALTER DATABASE [Semicolons_Book_Store] SET TRUSTWORTHY OFF 
-GO
-ALTER DATABASE [Semicolons_Book_Store] SET ALLOW_SNAPSHOT_ISOLATION OFF 
-GO
-ALTER DATABASE [Semicolons_Book_Store] SET PARAMETERIZATION SIMPLE 
-GO
-ALTER DATABASE [Semicolons_Book_Store] SET READ_COMMITTED_SNAPSHOT OFF 
-GO
-ALTER DATABASE [Semicolons_Book_Store] SET HONOR_BROKER_PRIORITY OFF 
-GO
-ALTER DATABASE [Semicolons_Book_Store] SET RECOVERY SIMPLE 
-GO
-ALTER DATABASE [Semicolons_Book_Store] SET  MULTI_USER 
-GO
-ALTER DATABASE [Semicolons_Book_Store] SET PAGE_VERIFY CHECKSUM  
-GO
-ALTER DATABASE [Semicolons_Book_Store] SET DB_CHAINING OFF 
-GO
-ALTER DATABASE [Semicolons_Book_Store] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
-GO
-ALTER DATABASE [Semicolons_Book_Store] SET TARGET_RECOVERY_TIME = 60 SECONDS 
-GO
-ALTER DATABASE [Semicolons_Book_Store] SET DELAYED_DURABILITY = DISABLED 
-GO
-ALTER DATABASE [Semicolons_Book_Store] SET ACCELERATED_DATABASE_RECOVERY = OFF  
-GO
-ALTER DATABASE [Semicolons_Book_Store] SET QUERY_STORE = ON
-GO
-ALTER DATABASE [Semicolons_Book_Store] SET QUERY_STORE (OPERATION_MODE = READ_WRITE, CLEANUP_POLICY = (STALE_QUERY_THRESHOLD_DAYS = 30), DATA_FLUSH_INTERVAL_SECONDS = 900, INTERVAL_LENGTH_MINUTES = 60, MAX_STORAGE_SIZE_MB = 1000, QUERY_CAPTURE_MODE = AUTO, SIZE_BASED_CLEANUP_MODE = AUTO, MAX_PLANS_PER_QUERY = 200, WAIT_STATS_CAPTURE_MODE = ON)
-GO
-USE [Semicolons_Book_Store]
-GO
-/****** Object:  Table [dbo].[accounts]    Script Date: 2/20/2024 9:57:46 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[accounts](
-	[id] [int] IDENTITY(1,1) NOT NULL,
-	[username] [varchar](50) NOT NULL,
-	[password] [varchar](50) NOT NULL,
-	[email] [varchar](100) NOT NULL,
-	[first_name] [nvarchar](100) NULL,
-	[last_name] [nvarchar](100) NULL,
-	[address] [nvarchar](500) NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
-UNIQUE NONCLUSTERED 
-(
-	[username] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[authorities]    Script Date: 2/20/2024 9:57:46 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[authorities](
-	[authority_id] [int] IDENTITY(1,1) NOT NULL,
-	[role_id] [int] NULL,
-	[account_id] [int] NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[authority_id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[categories]    Script Date: 2/20/2024 9:57:46 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[categories](
-	[id] [int] IDENTITY(1,1) NOT NULL,
-	[name] [nvarchar](50) NOT NULL,
-	[item_id] [int] NOT NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
-UNIQUE NONCLUSTERED 
-(
-	[name] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[favorites]    Script Date: 2/20/2024 9:57:46 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[favorites](
-	[id] [int] IDENTITY(1,1) NOT NULL,
-	[account_id] [int] NULL,
-	[product_id] [int] NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[feedbacks]    Script Date: 2/20/2024 9:57:46 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[feedbacks](
-	[id] [int] IDENTITY(1,1) NOT NULL,
-	[rate] [int] NOT NULL,
-	[content] [nvarchar](300) NULL,
-	[create_date] [datetime] NULL,
-	[account_id] [int] NULL,
-	[product_id] [int] NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[items]    Script Date: 2/20/2024 9:57:46 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[items](
-	[id] [int] IDENTITY(1,1) NOT NULL,
-	[name] [nvarchar](50) NOT NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
-UNIQUE NONCLUSTERED 
-(
-	[name] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[order_details]    Script Date: 2/20/2024 9:57:46 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[order_details](
-	[order_detail_id] [int] IDENTITY(1,1) NOT NULL,
-	[quantity] [int] NOT NULL,
-	[price] [decimal](10, 2) NOT NULL,
-	[order_id] [int] NULL,
-	[product_id] [int] NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[order_detail_id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[orders]    Script Date: 2/20/2024 9:57:46 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[orders](
-	[id] [int] IDENTITY(1,1) NOT NULL,
-	[order_date] [datetime] NOT NULL,
-	[total_amount] [decimal](10, 2) NOT NULL,
-	[status] [nvarchar](100) NOT NULL,
-	[address] [nvarchar](500) NOT NULL,
-	[voucher_id] [int] NULL,
-	[account_id] [int] NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[product_images]    Script Date: 2/20/2024 9:57:46 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[product_images](
-	[id] [int] IDENTITY(1,1) NOT NULL,
-	[image_url] [varchar](max) NOT NULL,
-	[product_id] [int] NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[products]    Script Date: 2/20/2024 9:57:46 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[products](
-	[id] [int] IDENTITY(1,1) NOT NULL,
-	[thumbnail_image] [varchar](max) NOT NULL,
-	[name] [nvarchar](255) NOT NULL,
-	[price] [decimal](10, 2) NOT NULL,
-	[suppllier] [nvarchar](255) NULL,
-	[author] [nvarchar](255) NULL,
-	[published_date] [datetime] NULL,
-	[page_count] [int] NULL,
-	[description] [nvarchar](255) NULL,
-	[quantity] [int] NULL,
-	[brand] [nvarchar](255) NULL,
-	[made_in] [nvarchar](255) NULL,
-	[origin] [nvarchar](255) NULL,
-	[color] [nvarchar](255) NULL,
-	[material] [nvarchar](255) NULL,
-	[category_id] [int] NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[roles]    Script Date: 2/20/2024 9:57:46 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[roles](
-	[id] [int] IDENTITY(1,1) NOT NULL,
-	[name] [varchar](20) NOT NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[vouchers]    Script Date: 2/20/2024 9:57:46 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[vouchers](
-	[id] [int] IDENTITY(1,1) NOT NULL,
-	[code] [varchar](10) NOT NULL,
-	[discount_amount] [decimal](10, 2) NOT NULL,
-	[condition] [decimal](10, 2) NOT NULL,
-	[valid_form] [datetime] NOT NULL,
-	[valid_to] [datetime] NOT NULL,
-	[create_date] [datetime] NOT NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-ALTER TABLE [dbo].[authorities]  WITH CHECK ADD FOREIGN KEY([account_id])
-REFERENCES [dbo].[accounts] ([id])
-GO
-ALTER TABLE [dbo].[authorities]  WITH CHECK ADD FOREIGN KEY([role_id])
-REFERENCES [dbo].[roles] ([id])
-GO
-ALTER TABLE [dbo].[categories]  WITH CHECK ADD FOREIGN KEY([item_id])
-REFERENCES [dbo].[items] ([id])
-GO
-ALTER TABLE [dbo].[favorites]  WITH CHECK ADD FOREIGN KEY([account_id])
-REFERENCES [dbo].[accounts] ([id])
-GO
-ALTER TABLE [dbo].[favorites]  WITH CHECK ADD FOREIGN KEY([product_id])
-REFERENCES [dbo].[products] ([id])
-GO
-ALTER TABLE [dbo].[feedbacks]  WITH CHECK ADD FOREIGN KEY([account_id])
-REFERENCES [dbo].[accounts] ([id])
-GO
-ALTER TABLE [dbo].[feedbacks]  WITH CHECK ADD FOREIGN KEY([product_id])
-REFERENCES [dbo].[products] ([id])
-GO
-ALTER TABLE [dbo].[order_details]  WITH CHECK ADD FOREIGN KEY([order_id])
-REFERENCES [dbo].[orders] ([id])
-GO
-ALTER TABLE [dbo].[order_details]  WITH CHECK ADD FOREIGN KEY([product_id])
-REFERENCES [dbo].[products] ([id])
-GO
-ALTER TABLE [dbo].[orders]  WITH CHECK ADD FOREIGN KEY([account_id])
-REFERENCES [dbo].[accounts] ([id])
-GO
-ALTER TABLE [dbo].[orders]  WITH CHECK ADD FOREIGN KEY([voucher_id])
-REFERENCES [dbo].[vouchers] ([id])
-GO
-ALTER TABLE [dbo].[product_images]  WITH CHECK ADD FOREIGN KEY([product_id])
-REFERENCES [dbo].[products] ([id])
-GO
-ALTER TABLE [dbo].[products]  WITH CHECK ADD FOREIGN KEY([category_id])
-REFERENCES [dbo].[categories] ([id])
-GO
-USE [master]
-GO
-ALTER DATABASE [Semicolons_Book_Store] SET  READ_WRITE 
-GO
+﻿create database Semicolons_Book_Store
+go
+use Semicolons_Book_Store
+go
+create table items(
+	id int identity(1,1),
+	[name] nvarchar(50) not null unique,
+	primary key (id)
+)
+create table categories(
+	id int identity(1,1),
+	[name] nvarchar(50) not null unique,
+	item_id int not null,
+	primary key (id),
+	foreign key (item_id) references items(id)
+)
+create table products(
+	id int identity(1,1),
+	thumbnail_image varchar(max) not null,
+	name nvarchar(255) not null unique,
+	price decimal(20,2) not null,
+	suppllier nvarchar(255) not null,
+	publisher nvarchar(255),
+	author nvarchar(255),
+	published_date datetime,
+	page_count int,
+	description nvarchar(max) not null,
+	weight int  not null,
+	[size] nvarchar(255)  not null,
+	quantity int  not null,
+	brand nvarchar(255),
+	made_in nvarchar(255),
+	origin nvarchar(255),
+	color nvarchar(255),
+	material nvarchar(255),
+	category_id int not null,
+	primary key (id),
+	foreign key (category_id) references categories(id)
+)
+create table accounts(
+	id int identity(1,1),
+	username varchar(50) not null unique,
+	[password] varchar(50) not null,
+	email varchar(100) not null,
+	first_name nvarchar(100),
+	last_name nvarchar(100),
+	[address] nvarchar(500),
+	primary key (id)
+)
+create table favorites(
+	id int identity(1,1),
+	account_id int,
+	product_id int,
+	primary key (id),
+	foreign key (account_id) references accounts(id),
+	foreign key (product_id) references products(id)
+)
+create table feedbacks(
+	id int identity(1,1),
+	rate int not null,
+	content nvarchar(300),
+	create_date datetime,
+	account_id int,
+	product_id int,
+	primary key (id),
+	foreign key (account_id) references accounts(id),
+	foreign key (product_id) references products(id)
+)
+create table roles (
+	id int identity(1,1),
+	[name] varchar(20) not null,
+	primary key(id)
+)
+create table authorities(
+	authority_id int identity(1,1),
+	role_id int,
+	account_id int,
+	primary key(authority_id),
+	foreign key (account_id) references accounts(id),
+	foreign key (role_id) references roles(id)
+)
+create table vouchers(
+	id int identity(1,1),
+	code varchar(10) not null,
+	discount_amount decimal(10,2) not null,
+	condition decimal(10,2) not null,
+	valid_form datetime not null,
+	valid_to datetime not null,
+	create_date datetime not null,
+	primary key(id)
+)
+create table orders(
+	id int identity(1,1),
+	order_date datetime not null,
+	total_amount decimal(10,2) not null,
+	[status] nvarchar(100) not null,
+	[address] nvarchar(500) not null,
+	voucher_id int,
+	account_id int,
+	primary key(id),
+	foreign key (account_id) references accounts(id),
+	foreign key (voucher_id) references vouchers(id)
+)
+create table order_details(
+	order_detail_id int identity(1,1),
+	quantity int not null,
+	price decimal(10,2) not null,
+	order_id int,
+	product_id int,
+	primary key (order_detail_id),
+	foreign key (order_id) references orders(id),
+	foreign key (product_id) references products(id)
+)
+create table product_images(
+	id int identity(1,1),
+	image_url varchar(max) not null,
+	product_id int,
+	primary key (id),
+	foreign key (product_id) references products(id)
+)
+go
+--dữ liệu mẫu bảng item
+INSERT INTO items ([name]) VALUES (N'Văn Phòng Phẩm');
+INSERT INTO items ([name]) VALUES (N'Sách Tiếng Việt');
+INSERT INTO items ([name]) VALUES (N'English Books');
+INSERT INTO items ([name]) VALUES (N'Quà Lưu Niệm');
+--dữ liệu mẫu categories
+INSERT INTO categories ([name], item_id) 
+VALUES  (N'Art & Photography', 3),
+		(N'Biographies & Memoirs', 3),
+		(N'Business & Economics', 3),
+		(N'How-to - Self Help', 3),
+		(N'Children Books', 3),
+		(N'Dictionary', 3),
+		(N'Education - Teaching', 3),
+		(N'Fiction - Literature', 3),
+		(N'Magazines', 3),
+		(N'Medical Books', 3),
+		(N'Parenting & Relationships', 3),
+		(N'Refence', 3),
+		(N'Science - Technology', 3),
+		(N'History, Politics & Socail Sciences', 3),
+		(N'Travel & Holiday', 3),
+		(N'Cookbooks, Food & Wine', 3),
+		(N'Sách văn học', 2),
+		(N'Sách kinh tế', 2),
+		(N'Sách thiếu nhi', 2),
+		(N'Sách kỹ năng sống', 2),
+		(N'Sách Bà mẹ - Em bé', 2),
+		(N'Sách Giáo Khoa - Giáo Trình', 2),
+		(N'Sách Học Ngoại Ngữ', 2),
+		(N'Sách Tham Khảo', 2),
+		(N'Từ Điển', 2),
+		(N'Sách Kiến Thức Tổng Hợp', 2),
+		(N'Sách Khoa Học - Kỹ Thuật', 2),
+		(N'Sách Lịch Sử', 2),
+		(N'Điện Ảnh - Nhạc - Hoạ', 2),
+		(N'Truyện Tranh, Manga, Comic', 2),
+		(N'Sách Tôn Giáo - Tâm Linh', 2),
+		(N'Sách Văn Hoá - Địa Lý - Du Lịch', 2),
+		(N'Sách Chính Trị - Pháp Lý', 2),
+		(N'Sách Nông - Lâm - Ngư Nghiệp', 2),
+		(N'Sách Công Nghệ Thông Tin',2),
+		(N'Sách Y Học',2),
+		(N'Tạp Chí - Catalogue',2),
+		(N'Sách Tâm Lý - Giới tính',2),
+		(N'Sách Thường Thức - Gia Đình',2),
+		(N'Thể Dục - Thể Thao',2),
+		(N'1980Books',2),
+		(N'Dụng Cụ Văn Phòng',1),
+		(N'Bút - Viết các loại',1),
+		(N'Bút Chì Màu - Bút Lông Màu - Sáp Màu',1),
+		(N'Dụng Cụ Học Sinh',1),
+		(N'Flashcards',1),
+		(N'Sổ Tay Các Loại',1),
+		(N'Tập Vở Các Loại',1),
+		(N'Văn Hoá Phẩm',1),
+		(N'Thiết Bị Giáo Dục Trường Học',1),
+		(N'Balo Học Sinh - Cặp Học Sinh',1),
+		(N'Máy Tính Điện Tử',1),
+		(N'Lịch',1),
+		(N'Bút Kỹ Thuật',1),
+		(N'Sản Phẩm Về Giấy',1),
+		(N'Thiết Bị Văn Phòng',1),
+		(N'Thú Nhồi Bông',4),
+		(N'Bookmark',4),
+		(N'Thiệp - Bưu Ảnh',4),
+		(N'Quà Tặng Trang Sức',4),
+		(N'Album - Khung Hình',4),
+		(N'Mô Hình Trang Trí',4),
+		(N'Sticker - Decal Trang Trí',4),
+		(N'Ly -	Cốc',4),
+		(N'Kẹp Ảnh Gỗ',4),
+		(N'Hộp Quà - Túi Quà',4),
+		(N'Tượng',4),
+		(N'Móc Khoá - Phụ Kiện Trang Trí',4),
+		(N'Đồng Hồ Cát',4),
+		(N'Quả Cầu Tuyết',4),
+		(N'Hộp Nhạc',4),
+		(N'Phụ Kiện - Vật Liệu Trang Trí',4),
+		(N'Quà Tặng Trang Trí Khác',4),
+		(N'Gương Mini',4)
 
-INSERT INTO accounts VALUES
-('mary_johnson', '123456', 'mary.johnson@example.com', 'Mary', 'Johnson', '987 Cedar Street, City F'),
-('peter_williams', '123456', 'peter.williams@example.com', 'Peter', 'Williams', '654 Birch Street, City G'),
-('susan_anderson','123456', 'susan.anderson@example.com', 'Susan', 'Anderson', '321 Oakwood Street, City H'),
-('michael_thomas', '123456','michael.thomas@example.com', 'Michael', 'Thomas', '852 Pineview Drive, City I'),
-('laura_miller','123456', 'laura.miller@example.com', 'Laura', 'Miller', '147 Willow Lane, City J'),
-('david_taylor','123456', 'david.taylor@example.com', 'David', 'Taylor', '369 Elm Avenue, City K'),
-('linda_wilson','123456', 'linda.wilson@example.com', 'Linda', 'Wilson', '753 Maple Road, City L'),
-('james_martin','123456', 'james.martin@example.com', 'James', 'Martin', '258 Cedar Avenue, City M'),
-('sarah_andrews','123456', 'sarah.andrews@example.com', 'Sarah', 'Andrews', '741 Pine Street, City N'),
-('steven_clark','123456', 'steven.clark@example.com', 'Steven', 'Clark', '963 Elm Street, City O');
+insert into products
+values  ('artbook-sachtienganh-domus1950-1959.jpg.webp',N'Artbook - Sách Tiếng Anh - domus 1950–1959',1040000,'ARTBook','Taschen'
+		,'Charlotte & Peter Fiell','06-02-2023',639,N'domus 1950–1959 is a book about domus magazine in the 1950s, a period marked by 
+		turmoil due to World War II. This book records the trends and developments of design in the context of crisis and reconstruction. 
+		This book also presents the works and designers that were significant, such as modern furniture and prefabricated houses,
+		American academic architecture, Carlo Mollino, Gian Luigi Banfi, Franco Albini and Giuseppe Terragni','','',8,'','','','','',1)
+
+
+		
+		
+	
+
+select * from items
+select * from categories
+select * from products
+
