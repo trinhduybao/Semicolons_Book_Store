@@ -25941,4 +25941,8 @@ div.tagsinput span.tag a {
   }
 }
 
+.hidden {
+  display: none;
+}
+
 /*# sourceMappingURL=../maps/vertical-layout-light/style.css.map */
