@@ -10,4 +10,6 @@ public class ShopController {
 	public String shop(Model model) {
 		return "customer/index";
 	}
+	
+	
 }
