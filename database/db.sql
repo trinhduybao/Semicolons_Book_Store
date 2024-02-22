@@ -201,6 +201,27 @@ VALUES  (N'Art & Photography', 3),
 		(N'Quà Tặng Trang Trí Khác',4),
 		(N'Gương Mini',4)
 
+
+INSERT INTO accounts VALUES
+('mary_johnson', '123', 'mary.johnson@example.com', 'Mary', 'Johnson', '987 Cedar Street, City F'),
+('peter_williams', '123', 'peter.williams@example.com', 'Peter', 'Williams', '654 Birch Street, City G'),
+('susan_anderson', '123', 'susan.anderson@example.com', 'Susan', 'Anderson', '321 Oakwood Street, City H'),
+('michael_thomas', '123', 'michael.thomas@example.com', 'Michael', 'Thomas', '852 Pineview Drive, City I'),
+('laura_miller', '123', 'laura.miller@example.com', 'Laura', 'Miller', '147 Willow Lane, City J'),
+('david_taylor', '123', 'david.taylor@example.com', 'David', 'Taylor', '369 Elm Avenue, City K'),
+('linda_wilson', '123', 'linda.wilson@example.com', 'Linda', 'Wilson', '753 Maple Road, City L'),
+('james_martin', '123', 'james.martin@example.com', 'James', 'Martin', '258 Cedar Avenue, City M'),
+('sarah_andrews', '123', 'sarah.andrews@example.com', 'Sarah', 'Andrews', '741 Pine Street, City N'),
+('steven_clark', '123', 'steven.clark@example.com', 'Steven', 'Clark', '963 Elm Street, City O');
+
+INSERT INTO accounts VALUES
+('john_doe', '123', 'john.doe@example.com', 'John', 'Doe', '123 Main Street, City A'),
+('jane_smith', '123', 'jane.smith@example.com', 'Jane', 'Smith', '456 Elm Street, City B'),
+('mike_wilson', '123', 'mike.wilson@example.com', 'Mike', 'Wilson', '789 Oak Street, City C'),
+('emily_brown', '123', 'emily.brown@example.com', 'Emily', 'Brown', '321 Pine Street, City D'),
+('alexander_jones', '123', 'alexander.jones@example.com', 'Alexander', 'Jones', '654 Maple Street, City E');
+
+
 insert into products values ('artbook-sachtienganh-domus1950-1959.jpg.webp',N'Artbook - Sách Tiếng Anh - domus 1950–1959',1040000,'ARTBook','Taschen','Charlotte & Peter Fiell','06-02-2023',639,N'domus 1950–1959 is a book about domus magazine in the 1950s, a period marked by turmoil due to World War II. This book records the trends and developments of design in the context of crisis and reconstruction. This book also presents the works and designers that were significant, such as modern furniture and prefabricated houses,American academic architecture, Carlo Mollino, Gian Luigi Banfi, Franco Albini and Giuseppe Terragni','','',8,'','','','','',1);
 insert into products values	('artbook-sachtienganh-domus1970-1979.jpg.webp',N'Artbook - Sách Tiếng Anh - domus 1970–1979',1040000,'ARTBook','Taschen','Charlotte & Peter Fiell','06-02-2023',639,N'domus 1970–1979 is a book about domus magazine, a famous Italian architecture and design magazine, in the 1970s. This book collects the most important articles on the themes and styles in industrial, interior, product, and architectural design. This book also introduces the projects and designers that stood out, such as Shiro Kuramata, Verner Panton, Joe Colombo, Richard Meier, Foster Associates and Renzo Piano','','',8,'','','','','',1);
 insert into products values	('artbook-sachtienganh-domus1940-1949.jpg.webp',N'Artbook - Sách Tiếng Anh - domus 1940–1949',1040000,'ARTBook','Taschen','Charlotte & Peter Fiell','06-02-2023',639,N'domus 1940–1949 is a book about domus magazine in the 1940s, a period marked by turmoil due to World War II. This book records the trends and developments of design in the context of crisis and reconstruction. This book also presents the works and designers that were significant, such as modern furniture and prefabricated houses, American academic architecture, Carlo Mollino, Gian Luigi Banfi, Franco Albini and Giuseppe Terragni','','',8,'','','','','',1);
@@ -263,7 +284,7 @@ Transitions from prone and sitting poses to a standing pose
 Bending, reaching and leaning poses
 Pushing, throwing and dancing poses
 Folds, gathers and drape of clothing
-
++
 This book contains hundreds of detailed studies and helpful examples. Your sketches will improve rapidly as you learn all about how human anatomy--the skeleton, muscles and posture--all come together to express the uniquely male form. When you hone your line and tonal drawing skills with this book, all of your artwork will improve as a result, no matter the application: storyboarding, cartooning and graphic novels, illustration, formal drawings, painting and more!','','',8,'','','','','',1);
 insert into products values	('AGuideToDrawingMangaFantasyFurries.webp',N'A Guide To Drawing Manga Fantasy Furries',469000,'Tuttle Publishing','Tuttle Publishing','堀越 耕平','04-25-2023',144,N'Part human, part animal -- all fantastic!
 
