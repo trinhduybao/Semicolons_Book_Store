@@ -28,7 +28,7 @@
   <!-- end page -->
 </head>
 
-<body ng-app="app" ng-controller="ctrl-product">
+<body ng-app="app" ng-controller="ctrl-managerProduct">
   <div class="container-scroller">
     <!-- partial:../../partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
@@ -539,22 +539,22 @@
         <div class="content-wrapper">
           <div class="row">
             <!--begin form category-->
-            <div class="col-md-5 grid-margin stretch-card">
+            <div class="col-md-4 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Product Form</h4>
+                  <h4 class="card-title">Thêm sản phẩm</h4>
                   <form class="forms-sample myForm">
                     <div class="form-group">
                       <label>Danh Mục Sản Phẩm</label>
                       <input type="text" id="id" hidden>
-                      <select class="form-control" name="idItem" id="idItem" required onchange="showHideInputs()">
+                      <select class="form-control" name="idItems" id="idItems" required>
                         <!-- Your options here -->
                       </select>
                     </div>
                     <div class="form-group">
                       <label>Loại Sản Phẩm</label>
                       <input type="text" hidden>
-                      <select class="form-control" required>
+                      <select class="form-control" name="idCategories" id="idCategories" required>
                         <!-- Your options here -->
                       </select>
                     </div>
@@ -649,32 +649,32 @@
                     </div>
 
                     </div>
-                    <button class="btn btn-success mr-2">Thêm</button>
-                    <button class="btn btn-warning mr-2">Sửa</button>
-                    <button class="btn btn-danger mr-2">Xóa</button>
-                    <button class="btn btn-info mr-2">Làm mới</button>
+                    <button class="btn btn-success btn-sm mr-2">Thêm</button>
+                    <button class="btn btn-warning btn-sm mr-2">Sửa</button>
+                    <button class="btn btn-danger btn-sm mr-2">Xóa</button>
+                    <button class="btn btn-info btn-sm mr-2">Làm mới</button>
                   </form>
                 </div>
               </div>  
             </div>
             <!--end form category-->
             <!--begin table category-->
-            <div class="col-lg-7 grid-margin stretch-card">
+            <div class="col-lg-8 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Data Category</h4>
+                  <h4 class="card-title">Quản lý sản phẩm </h4>
                   <div class="table-responsive">
-                    <table class="table table-striped" id="categoryTable">
+                    <table class="table table-striped" id="managerproductTable">
                       <thead>
                         <th>Tên Sản Phẩm</th>
                         <th>Giá Sản Phẩm</th>
                         <th>Tác Giả</th>
-                        <th>Ngày Cung Cấp</th>
+                        <th>Ngày Xuất Bản</th>
                         <th>Số Lượng</th>
                         <th>Loại Sản Phẩm</th>
                         <th>Thao Tác</th>
                       </thead>
-                      <tbody id="">
+                      <tbody id="tbody">
 
                       </tbody>
 
@@ -754,7 +754,9 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-resource/1.8.2/angular-resource.min.js"></script>
-  <script src="../../RestJS/ProductRestJS.js"></script>
+  <script src="../../RestJS/ManagerProductRestJS.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
   <!-- page -->
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
