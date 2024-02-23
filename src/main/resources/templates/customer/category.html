@@ -23,7 +23,7 @@
 			<nav class="navbar navbar-expand-lg navbar-light">
 				<div class="container">
 					<a class="navbar-brand logo_h" href="index.html"><img
-						src="@{customer/img/logo.png}" alt=""></a>
+						src="/customer/img/logo.png" alt=""></a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse"
 						data-target="#navbarSupportedContent"
 						aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -116,30 +116,12 @@
 					<div class="sidebar-categories">
 						<div class="head">Browse Categories</div>
 						<ul class="main-categories">
-							<li class="common-filter">
+							<li class="common-filter" >
 								<form action="#">
+									<a th:href="@{/}" class="mb-1 text-dark"><span>All</span></a>
 									<ul>
-										<li class="filter-list"><input class="pixel-radio"
-											type="radio" id="men" name="brand"><label for="men">Men<span>
-													(3600)</span></label></li>
-										<li class="filter-list"><input class="pixel-radio"
-											type="radio" id="women" name="brand"><label
-											for="women">Women<span> (3600)</span></label></li>
-										<li class="filter-list"><input class="pixel-radio"
-											type="radio" id="accessories" name="brand"><label
-											for="accessories">Accessories<span> (3600)</span></label></li>
-										<li class="filter-list"><input class="pixel-radio"
-											type="radio" id="footwear" name="brand"><label
-											for="footwear">Footwear<span> (3600)</span></label></li>
-										<li class="filter-list"><input class="pixel-radio"
-											type="radio" id="bayItem" name="brand"><label
-											for="bayItem">Bay item<span> (3600)</span></label></li>
-										<li class="filter-list"><input class="pixel-radio"
-											type="radio" id="electronics" name="brand"><label
-											for="electronics">Electronics<span> (3600)</span></label></li>
-										<li class="filter-list"><input class="pixel-radio"
-											type="radio" id="food" name="brand"><label for="food">Food<span>
-													(3600)</span></label></li>
+										<li class="mb-1" th:each="c:${cates}"><a
+									th:href="@{|/product/list?cid=${c.id}|}" class="d-flex"><span>[[${c.name}]]</span></a></li>
 									</ul>
 								</form>
 							</li>

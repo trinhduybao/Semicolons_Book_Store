@@ -1,6 +1,7 @@
 package com.semicolons_book_store.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,12 +19,28 @@ public class ProductController {
 	@Autowired
 	ProductService productService;
 	
+//	@RequestMapping("")
+//	public String listProduct(Model model, @RequestParam(name = "pageNo", defaultValue = "1") Integer pageNo) {
+//		Page<Product> list = productService.findAll(pageNo);
+//		model.addAttribute("totalPage", list.getTotalPages());
+//		model.addAttribute("currentPage", pageNo);
+//		model.addAttribute("items", list);
+//		return "customer/category";
+//	}
+	
 	@RequestMapping("")
-	public String listProduct(Model model, @RequestParam(name = "pageNo", defaultValue = "1") Integer pageNo) {
-		Page<Product> list = productService.findAll(pageNo);
-		model.addAttribute("totalPage", list.getTotalPages());
-		model.addAttribute("currentPage", pageNo);
-		model.addAttribute("items", list);
+	public String listProduct(Model model, @RequestParam(name = "pageNo", defaultValue = "1") Integer pageNo, @RequestParam("cid") Optional<Integer> cid) {
+		if (cid.isPresent()) {
+			Page<Product> list = productService.findByCategoryId(cid.get(), pageNo);
+			model.addAttribute("totalPage", list.getTotalPages());
+			model.addAttribute("currentPage", pageNo);
+			model.addAttribute("items", list);
+		} else {
+			Page<Product> list = productService.findAll(pageNo);
+			model.addAttribute("totalPage", list.getTotalPages());
+			model.addAttribute("currentPage", pageNo);
+			model.addAttribute("items", list);
+		}
 		return "customer/category";
 	}
 	

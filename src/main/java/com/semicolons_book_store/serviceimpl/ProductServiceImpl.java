@@ -32,5 +32,11 @@ public class ProductServiceImpl implements ProductService{
 	public Product findById(Integer id) {
 		return pRepository.findById(id).get();
 	}
+
+	@Override
+	public Page<Product> findByCategoryId(Integer cid, Integer pageNo) {
+		Pageable pageable = PageRequest.of(pageNo - 1, 9);
+		return this.pRepository.findByCategoryId(cid, pageable);
+	}
 	
 }
