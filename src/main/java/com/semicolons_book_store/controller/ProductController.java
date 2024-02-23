@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -26,8 +27,10 @@ public class ProductController {
 		return "customer/category";
 	}
 	
-	@RequestMapping("/product/detail")
-	public String detailProduct(Model model) {
-		return "customer/index";
+	@RequestMapping("/product/detail/{id}")
+	public String detail(Model model, @PathVariable("id") Integer id) {
+		Product item = productService.findById(id);
+		model.addAttribute("item", item);
+		return"customer/single-product";
 	}
 }

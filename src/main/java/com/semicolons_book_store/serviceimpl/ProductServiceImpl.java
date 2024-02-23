@@ -27,5 +27,10 @@ public class ProductServiceImpl implements ProductService{
 		Pageable pageable = PageRequest.of(pageNo - 1, 9);
 		return this.pRepository.findAll(pageable);		
 	}
+
+	@Override
+	public Product findById(Integer id) {
+		return pRepository.findById(id).get();
+	}
 	
 }

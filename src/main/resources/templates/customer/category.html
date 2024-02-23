@@ -1,27 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>Aroma Shop - Category</title>
-<link rel="icon" th:href="@{customer/img/Fevicon.png}" type="image/png">
-<link rel="stylesheet"
-	th:href="@{customer/vendors/bootstrap/bootstrap.min.css}">
-<link rel="stylesheet"
-	th:href="@{customer/vendors/fontawesome/css/all.min.css}">
-<link rel="stylesheet"
-	th:href="@{customer/vendors/themify-icons/themify-icons.css}">
-<link rel="stylesheet" th:href="@{customer/vendors/linericon/style.css}">
-<link rel="stylesheet"
-	th:href="@{customer/vendors/owl-carousel/owl.theme.default.min.css}">
-<link rel="stylesheet"
-	th:href="@{customer/vendors/owl-carousel/owl.carousel.min.css}">
-<link rel="stylesheet"
-	th:href="@{customer/vendors/nice-select/nice-select.css}">
-<link rel="stylesheet"
-	th:href="@{customer/vendors/nouislider/nouislider.min.css}">
-<link rel="stylesheet" th:href="@{customer/css/style.css}">
+<link rel="icon" href="/customer/img/Fevicon.png" type="image/png">
+  <link rel="stylesheet" href="/customer/vendors/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="/customer/vendors/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="/customer/vendors/themify-icons/themify-icons.css">
+  <link rel="stylesheet" href="/customer/vendors/linericon/style.css">
+  <link rel="stylesheet" href="/customer/vendors/owl-carousel/owl.theme.default.min.css">
+  <link rel="stylesheet" href="/customer/vendors/owl-carousel/owl.carousel.min.css">
+  <link rel="stylesheet" href="/customer/vendors/nice-select/nice-select.css">
+  <link rel="stylesheet" href="/customer/vendors/nouislider/nouislider.min.css">
+  <link rel="stylesheet" href="/customer/css/style.css">
 </head>
 <body>
 	<!--================ Start Header Menu Area =================-->
@@ -30,7 +23,7 @@
 			<nav class="navbar navbar-expand-lg navbar-light">
 				<div class="container">
 					<a class="navbar-brand logo_h" href="index.html"><img
-						th:src="@{customer/img/logo.png}" alt=""></a>
+						src="@{customer/img/logo.png}" alt=""></a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse"
 						data-target="#navbarSupportedContent"
 						aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -247,7 +240,7 @@
 							<div class="col-md-6 col-lg-4" th:each="p:${items}">
 								<div class="card text-center card-product">
 									<div class="card-product__img">
-										<img class="card-img"
+									<img class="card-img"
 											th:src="@{|/customer/img/product/book/${p.thumbnailImage}|}"
 											alt="">
 										<ul class="card-product__imgOverlay">
@@ -265,7 +258,7 @@
 									<div class="card-body">
 										<p></p>
 										<h4 class="card-product__title">
-											<a th:href="@{/product/detail}" th:utext="${p.name}"></a>
+											<a th:href="@{|/product/detail/${p.id}|}" th:utext="${p.name}"></a>
 										</h4>
 										<p class="card-product__price">[[${p.price}]]VNĐ</p>
 									</div>
@@ -532,17 +525,15 @@
 	</footer>
 	<!--================ End footer Area  =================-->
 
-
-
-	<script th:src="@{customer/vendors/jquery/jquery-3.2.1.min.js}"></script>
-	<script th:src="@{customer/vendors/bootstrap/bootstrap.bundle.min.js}"></script>
-	<script th:src="@{customer/vendors/skrollr.min.js}"></script>
-	<script th:src="@{customer/vendors/owl-carousel/owl.carousel.min.js}"></script>
+	<script src="/customer/vendors/jquery/jquery-3.2.1.min.js"></script>
+	<script src="/customer/vendors/bootstrap/bootstrap.bundle.min.js"></script>
+	<script src="/customer/vendors/skrollr.min.js"></script>
+	<script src="/customer/vendors/owl-carousel/owl.carousel.min.js"></script>
 	<script
-		th:src="@{customer/vendors/nice-select/jquery.nice-select.min.js}"></script>
-	<script th:src="@{customer/vendors/nouislider/nouislider.min.js}"></script>
-	<script th:src="@{customer/vendors/jquery.ajaxchimp.min.js}"></script>
-	<script th:src="@{customer/vendors/mail-script.js}"></script>
-	<script th:src="@{customer/js/main.js}"></script>
+		src="/customer/vendors/nice-select/jquery.nice-select.min.js"></script>
+	<script src="/customer/vendors/nouislider/nouislider.min.js"></script>
+	<script src="/customer/vendors/jquery.ajaxchimp.min.js"></script>
+	<script src="/customer/vendors/mail-script.js"></script>
+	<script src="/customer/js/main.js"></script>
 </body>
 </html>
