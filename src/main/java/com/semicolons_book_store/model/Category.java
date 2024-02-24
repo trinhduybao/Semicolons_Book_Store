@@ -28,6 +28,8 @@ public class Category {
     @JsonIgnore
     @OneToMany(mappedBy = "category")
     private List<Product> products;
+    
+    
 
 	public int getId() {
 		return id;

@@ -11,4 +11,8 @@ public interface ProductService {
 	List<Product> findAll();
 	
 	Page<Product> findAll(Integer pageNo);
+
+	Product findById(Integer id);
+
+	Page<Product> findByCategoryId(Integer integer, Integer pageNo);
 }
