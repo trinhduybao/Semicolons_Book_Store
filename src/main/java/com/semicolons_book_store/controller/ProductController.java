@@ -28,7 +28,7 @@ public class ProductController {
 //		return "customer/category";
 //	}
 	
-	@RequestMapping("")
+	@RequestMapping("/product/list")
 	public String listProduct(Model model, @RequestParam(name = "pageNo", defaultValue = "1") Integer pageNo, @RequestParam("cid") Optional<Integer> cid) {
 		if (cid.isPresent()) {
 			Page<Product> list = productService.findByCategoryId(cid.get(), pageNo);

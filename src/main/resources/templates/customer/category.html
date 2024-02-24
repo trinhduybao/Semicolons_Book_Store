@@ -118,7 +118,7 @@
 						<ul class="main-categories">
 							<li class="common-filter" >
 								<form action="#">
-									<a th:href="@{/}" class="mb-1 text-dark"><span>All</span></a>
+									<a th:href="@{/product/list}" class="mb-1 text-dark"><span>All</span></a>
 									<ul>
 										<li class="mb-1" th:each="c:${cates}"><a
 									th:href="@{|/product/list?cid=${c.id}|}" class="d-flex"><span>[[${c.name}]]</span></a></li>

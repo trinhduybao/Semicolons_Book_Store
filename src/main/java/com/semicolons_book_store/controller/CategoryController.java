@@ -12,13 +12,13 @@ import com.semicolons_book_store.service.CategoryService;
 
 @Controller
 public class CategoryController {
-	@Autowired
-	CategoryService categoryService;
-	
-	@RequestMapping("/category/list")
-	public String list(Model model) {
-			List<Category> list = categoryService.findAll();
-			model.addAttribute("cates", list);
-		return"customer/shop";
-	}
+//	@Autowired
+//	CategoryService categoryService;
+//	
+//	@RequestMapping("/category/list")
+//	public String list(Model model) {
+//			List<Category> list = categoryService.findAll();
+//			model.addAttribute("cates", list);
+//		return"customer/shop";
+//	}
 }
