@@ -1,4 +1,4 @@
-package com.semicolons_book_store.serviceimpl;
+/*package com.semicolons_book_store.serviceimpl;
 
 import java.util.List;
 
@@ -15,8 +15,28 @@ public class CategoryServiceImpl implements CategoryService{
 	CategoryRepository cRepository;
 	
 	@Override
-	public List<Category> findAll() {
+	public List<Category> getAll() {
 		return cRepository.findAll();
 	}
-	
-}
+
+	@Override
+	public Category getOne(Integer id) {
+		return null;
+	}
+
+	@Override
+	public Category save(Category category) {
+		return null;
+	}
+
+	@Override
+	public Category update(Category category) {
+		return null;
+	}
+
+	@Override
+	public void delete(Integer id) {
+
+	}
+
+}*/
