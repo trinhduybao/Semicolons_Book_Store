@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -117,11 +117,11 @@
 						<div class="head">Browse Categories</div>
 						<ul class="main-categories">
 							<li class="common-filter" >
-								<form action="#">
+								<form>
 									<a th:href="@{/product/list}" class="mb-1 text-dark"><span>All</span></a>
-									<ul>
-										<li class="mb-1" th:each="c:${cates}"><a
-									th:href="@{|/product/list?cid=${c.id}|}" class="d-flex"><span>[[${c.name}]]</span></a></li>
+									<ul th:each="c:${cates}">
+										<li class="mb-1"><a
+									th:href="@{|/product/list?cid=${c.id}|}" class="d-flex text-dark"><span>[[${c.name}]]</span></a></li>
 									</ul>
 								</form>
 							</li>

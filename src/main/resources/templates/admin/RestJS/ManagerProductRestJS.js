@@ -30,7 +30,7 @@ app.controller("ctrl-managerProduct", function ($scope, $http, $timeout) {
                     }
                 },                
                 {"data": "quantity"},
-                {"data": "category.name"},
+                {"data": "category.item.name"},
                 {"render" : function(data, type, row, meta) {
                     return `<button class="btn btn-primary" onclick="editProduct(${row.id})">Chỉnh Sửa</button>
                             <button class="btn btn-danger" onclick="deleteProduct(${row.id})">Xoá</button>`
@@ -41,7 +41,9 @@ app.controller("ctrl-managerProduct", function ($scope, $http, $timeout) {
             "pageLength": 10,
             "language": {
                 "info": "Hiển thị _START_ đến _END_ trong _TOTAL_ mục",
-                "lengthMenu": "Hiện _MENU_ Sản Phẩm" ,
+                "infoEmpty": "Không có sản phẩm nào",
+                "infoFiltered": "(được lọc từ tổng số _MAX_ sản phẩm )",
+                "lengthMenu": "Hiện _MENU_ sản phẩm" ,
                 "search": "Tìm kiếm:", 
                 "paginate": {
                     "previous": "Trước",
@@ -86,9 +88,78 @@ async function getDataItems() {
   
   }
 
+  async function createOfUpdateProduct() {
+    if (!validateForm()) {
+        return;
+    }
+    {
+        try {
+            const response = await fetch(`http://localhost:8080/rest/productManager`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: document.getElementById("nameCategory").value,
+                    item: {
+                        id: document.getElementById("idCategory").value
+                    }
+                })
+            });
+            if (response.ok) {
+                console.log("Category created successfully");
+                window.location.reload();
+                // Refresh or update your data after successful creation
+            } else {
+                console.error("Failed to create category");
+                alert("Đã có item này!");
+            }
+        } catch (error) {
+            console.error('Error during create request:', error);
+        }
+    }
+  
+}
+
+
+
 getDataManagerProduct();
 getDataItems();
 getDataCategories();
 
 });
 
+
+$(document).ready(function() {
+    // Khởi tạo DataTables
+    var table = $('#productTable').DataTable({
+        // Cấu hình DataTables
+    });
+
+    // Xử lý sự kiện click trên nút button "Thêm sản phẩm"
+    $('#addProductButton').click(function() {
+        $('#addProductModal').modal('show');
+    });
+
+    // Xử lý khi submit form thêm sản phẩm
+    $('#addProductForm').submit(function(e) {
+        e.preventDefault(); // Ngăn chặn gửi form mặc định
+
+        // Lấy thông tin sản phẩm từ form
+        var productName = $('#productName').val();
+        // Lấy thông tin các trường khác
+
+        // Thêm sản phẩm vào DataTables
+        table.row.add([
+            productName,
+            // Thêm các thông tin sản phẩm khác vào đây
+        ]).draw(false); // Vẽ lại bảng
+
+        // Đóng modal sau khi thêm sản phẩm thành công
+        $('#addProductModal').modal('hide');
+
+        // Đặt lại các trường trong form
+        $('#productName').val('');
+        // Đặt lại các trường khác
+    });
+});

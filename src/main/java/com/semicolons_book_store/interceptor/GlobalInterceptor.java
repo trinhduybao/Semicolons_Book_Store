@@ -13,12 +13,12 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @Component
 public class GlobalInterceptor implements HandlerInterceptor{
-	@Autowired
-	CategoryService categoryService;
-	
-	@Override
-	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-			ModelAndView modelAndView) throws Exception {
-		request.setAttribute("cates", categoryService.findAll());
-	}
+//	@Autowired
+//	CategoryService categoryService;
+//	
+//	@Override
+//	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
+//			ModelAndView modelAndView) throws Exception {
+//		request.setAttribute("cates", categoryService.getAll());
+//	}
 }
