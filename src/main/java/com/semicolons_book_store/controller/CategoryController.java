@@ -12,6 +12,7 @@ import com.semicolons_book_store.service.CategoryService;
 
 @Controller
 public class CategoryController {
+
 	@Autowired
 	CategoryService categoryService;
 	
@@ -19,6 +20,6 @@ public class CategoryController {
 	public String list(Model model) {
 			List<Category> list = categoryService.getAll();
 			model.addAttribute("cates", list);
-		return"customer/shop";
+		return"customer/category";
 	}
 }

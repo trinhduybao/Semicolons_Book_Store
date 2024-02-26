@@ -22,7 +22,7 @@
     <div class="main_menu">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-          <a class="navbar-brand logo_h" href="index.html"><img src="img/logo.png" alt=""></a>
+          <a class="navbar-brand logo_h" th:href="@{/}"><img src="/customer/img/logo.png" alt=""></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="icon-bar"></span>
@@ -33,11 +33,9 @@
             <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
               <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
               <li class="nav-item submenu dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                <a th:href="@{/product/list}" class="nav-link dropdown-toggle" data-toggle="" role="button" aria-haspopup="true"
                   aria-expanded="false">Shop</a>
                 <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="category.html">Shop Category</a></li>
-                  <li class="nav-item"><a class="nav-link" href="single-product.html">Product Details</a></li>
                   <li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li>
                   <li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li>
                   <li class="nav-item"><a class="nav-link" href="cart.html">Shopping Cart</a></li>
@@ -83,15 +81,15 @@
         <div class="row no-gutters align-items-center pt-60px">
           <div class="col-5 d-none d-sm-block">
             <div class="hero-banner__img">
-              <img class="img-fluid" src="img/home/hero-banner.png" alt="">
+              <img class="img-fluid" src="/customer/img/home/hero-banner.png" alt="">
             </div>
           </div>
           <div class="col-sm-7 col-lg-6 offset-lg-1 pl-4 pl-md-5 pl-lg-0">
             <div class="hero-banner__content">
               <h4>Shop is fun</h4>
-              <h1>Browse Our Premium Product</h1>
-              <p>Us which over of signs divide dominion deep fill bring they're meat beho upon own earth without morning over third. Their male dry. They are great appear whose land fly grass.</p>
-              <a class="button button-hero" href="#">Browse Now</a>
+              <h1>Browse Our Books and Stationery Product</h1>
+              <p>If you come across a good book, you should buy it immediately, whether you can read it or not, because sooner or later you will need it.</p>
+              <a class="button button-hero" th:href="@{/product/list}">Browse Now</a>
             </div>
           </div>
         </div>
@@ -103,21 +101,21 @@
     <section class="section-margin mt-0">
       <div class="owl-carousel owl-theme hero-carousel">
         <div class="hero-carousel__slide">
-          <img src="img/home/hero-slide1.png" alt="" class="img-fluid">
+          <img src="/customer/img/home/hero-slide1.png" alt="" class="img-fluid">
           <a href="#" class="hero-carousel__slideOverlay">
             <h3>Wireless Headphone</h3>
             <p>Accessories Item</p>
           </a>
         </div>
         <div class="hero-carousel__slide">
-          <img src="img/home/hero-slide2.png" alt="" class="img-fluid">
+          <img src="/customer/img/home/hero-slide2.png" alt="" class="img-fluid">
           <a href="#" class="hero-carousel__slideOverlay">
             <h3>Wireless Headphone</h3>
             <p>Accessories Item</p>
           </a>
         </div>
         <div class="hero-carousel__slide">
-          <img src="img/home/hero-slide3.png" alt="" class="img-fluid">
+          <img src="/customer/img/home/hero-slide3.png" alt="" class="img-fluid">
           <a href="#" class="hero-carousel__slideOverlay">
             <h3>Wireless Headphone</h3>
             <p>Accessories Item</p>
@@ -620,14 +618,15 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 
 
-  <script src="customer/vendors/jquery/jquery-3.2.1.min.js"></script>
-  <script src="@{customer/vendors/bootstrap/bootstrap.bundle.min.js"></script>
-  <script src="@{customer/vendors/skrollr.min.js"></script>
-  <script src="@{customer/vendors/owl-carousel/owl.carousel.min.js"></script>
-  <script src="@{customer/vendors/nice-select/jquery.nice-select.min.js"></script>
-  <script src="@{customer/vendors/nouislider/nouislider.min.js"></script>
-  <script src="@{customer/vendors/jquery.ajaxchimp.min.js"></script>
-  <script src="@{customer/vendors/mail-script.js"></script>
-  <script src="@{customer/js/main.js"></script>
+  <script src="/customer/vendors/jquery/jquery-3.2.1.min.js"></script>
+	<script src="/customer/vendors/bootstrap/bootstrap.bundle.min.js"></script>
+	<script src="/customer/vendors/skrollr.min.js"></script>
+	<script src="/customer/vendors/owl-carousel/owl.carousel.min.js"></script>
+	<script
+		src="/customer/vendors/nice-select/jquery.nice-select.min.js"></script>
+	<script src="/customer/vendors/nouislider/nouislider.min.js"></script>
+	<script src="/customer/vendors/jquery.ajaxchimp.min.js"></script>
+	<script src="/customer/vendors/mail-script.js"></script>
+	<script src="/customer/js/main.js"></script>
 </body>
 </html>
