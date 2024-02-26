@@ -32,8 +32,8 @@ app.controller("ctrl-managerProduct", function ($scope, $http, $timeout) {
                 {"data": "quantity"},
                 {"data": "category.item.name"},
                 {"render" : function(data, type, row, meta) {
-                    return `<button class="btn btn-primary" onclick="editProduct(${row.id})">Chỉnh Sửa</button>
-                            <button class="btn btn-danger" onclick="deleteProduct(${row.id})">Xoá</button>`
+                    return `<div id="editButton" type="submit" th:value="${row.id}" class="btn btn-primary" >Chỉnh Sửa</div>
+                            <div id="deleteButton" type="submit" type="submit" th:value="${row.id}" onclick="deleteProductManager(${row.id})" class="btn btn-primary"">Xoá</div>`
                 }}
             ],
             "scrollX": true, 
@@ -81,45 +81,12 @@ async function getDataItems() {
     let options = '<option value="" selected disabled >Vui lòng chọn loại sản phẩm</option>';
     
     getDataCategories.forEach((category) => {
-      options += `<option value="${category.id}" >${category.name}</option>`; 
+      options += `<option value="${category.id}">${category.name}</option>`; 
     });
   
     document.getElementById("idCategories").innerHTML = options;
-  
-  }
-
-  async function createOfUpdateProduct() {
-    if (!validateForm()) {
-        return;
-    }
-    {
-        try {
-            const response = await fetch(`http://localhost:8080/rest/productManager`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    name: document.getElementById("nameCategory").value,
-                    item: {
-                        id: document.getElementById("idCategory").value
-                    }
-                })
-            });
-            if (response.ok) {
-                console.log("Category created successfully");
-                window.location.reload();
-                // Refresh or update your data after successful creation
-            } else {
-                console.error("Failed to create category");
-                alert("Đã có item này!");
-            }
-        } catch (error) {
-            console.error('Error during create request:', error);
-        }
-    }
-  
 }
+
 
 
 
@@ -130,36 +97,273 @@ getDataCategories();
 });
 
 
+function validateForm() {
+    var name = document.getElementById("id").value;
+    var name = document.getElementById("nameCategory").value;
+    var item = document.getElementById("idCategory").value;
+
+    var isValid = true; 
+
+    if (!item) {
+        document.getElementById("errorMessageItem").innerText = "Vui lòng chọn một mục.";
+        return false; 
+    } else {
+        document.getElementById("errorMessageItem").innerText = "";
+    }
+
+    if (!name) {
+        document.getElementById("errorMessageName").innerText = "Vui lòng điền tên.";
+        return false; 
+    } else {
+        document.getElementById("errorMessageName").innerText = "";
+    }
+    
+
+
+    return isValid;
+}
+// lọc theo danh mục
+
 $(document).ready(function() {
-    // Khởi tạo DataTables
-    var table = $('#productTable').DataTable({
-        // Cấu hình DataTables
-    });
+    $('#idItems').change(function() {
+        var itemId = $(this).val(); 
 
-    // Xử lý sự kiện click trên nút button "Thêm sản phẩm"
-    $('#addProductButton').click(function() {
-        $('#addProductModal').modal('show');
-    });
+        $.ajax({
+            url: 'http://localhost:8080/byItemId/' + itemId, 
+            method: 'GET',
+            data: { itemId: itemId },
+            success: function(response) {
+                console.log(response);
+                $('#idCategories').empty();
 
-    // Xử lý khi submit form thêm sản phẩm
-    $('#addProductForm').submit(function(e) {
-        e.preventDefault(); // Ngăn chặn gửi form mặc định
-
-        // Lấy thông tin sản phẩm từ form
-        var productName = $('#productName').val();
-        // Lấy thông tin các trường khác
-
-        // Thêm sản phẩm vào DataTables
-        table.row.add([
-            productName,
-            // Thêm các thông tin sản phẩm khác vào đây
-        ]).draw(false); // Vẽ lại bảng
-
-        // Đóng modal sau khi thêm sản phẩm thành công
-        $('#addProductModal').modal('hide');
-
-        // Đặt lại các trường trong form
-        $('#productName').val('');
-        // Đặt lại các trường khác
+                response.forEach(function(category) {
+                    $('#idCategories').append('<option value="' + category.id + '">' + category.name + '</option>');
+                });
+            },
+            error: function(xhr, status, xerror) {
+                console.error('Error:', error);
+            }
+        });
     });
 });
+
+// edit
+$(document).ready(function() {
+    $('body').on('click', '#editButton', function() {
+        var productId = $(this).attr('th:value'); 
+        $.ajax({
+            url: 'http://localhost:8080/rest/productManager/' + productId,
+            method: 'GET',
+
+            success: function(response) {
+                $('#id').val(response.id);
+                $('#idItems').val(response.category.item.id);
+                $('#idCategories').val(response.category.id);
+                $('#nameProduct').val(response.name);
+                $('#priceProduct').val(response.price);
+                $('#supplier').val(response.supplier);
+                $('#inputPublisher').val(response.publisher);
+                $('#inputPublishedDate').val(response.publishedDate);
+                $('#author').val(response.author);
+                $('#page-count').val(response.pageCount);
+                $('#description').val(response.description);
+                $('#weight').val(response.weight);
+                $('#size').val(response.size);
+                $('#quantity').val(response.quantity);
+                $('#brand').val(response.brand);
+                $('#madeIn').val(response.madeIn);
+                $('#Origin').val(response.origin);
+                $('#color').val(response.color);  
+                $('#material').val(response.material);  
+
+            
+                $('#exampleModal').modal('show');
+
+        console.log(response);
+
+            },
+            error: function(xhr, status, error) {
+                console.error('Lỗi khi lấy thông tin sản phẩm:', error);
+
+            }
+        });
+    });
+});
+
+
+async function createOrUpdateProduct() {
+    try {
+        const categoryId = document.getElementById("idCategories").value;
+        const imageFile = document.getElementById("imageProduct").files[0];
+        const imageName = imageFile.name;
+
+        if (!imageFile) {
+            alert("Vui lòng chọn hình ảnh");
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append("file", imageFile);
+
+        const responseUpload = await fetch(`http://localhost:8080/api/upload`, {
+            method: 'POST',
+            body: formData,
+        });
+
+        if (!responseUpload.ok) {
+            console.error("Failed to upload image", responseUpload);
+            alert("Đã xảy ra lỗi khi tải lên hình ảnh");
+            return;
+        }
+
+        const responseProduct = await fetch(`http://localhost:8080/rest/productManager`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: document.getElementById("nameProduct").value,
+                price: document.getElementById("priceProduct").value,
+                supplier: document.getElementById("supplier").value,
+                publisher: document.getElementById("inputPublisher").value,
+                author: document.getElementById("author").value,
+                publishedDate: document.getElementById("inputPublishedDate").value,
+                pageCount: document.getElementById("page-count").value,
+                description: document.getElementById("description").value,
+                weight: document.getElementById("weight").value,
+                size: document.getElementById("size").value,
+                quantity: document.getElementById("quantity").value,
+                brand: document.getElementById("brand").value,
+                madeIn: document.getElementById("madeIn").value,
+                origin: document.getElementById("Origin").value,
+                color: document.getElementById("color").value,
+                material: document.getElementById("material").value,
+                category: {
+                    id : categoryId
+                },
+                thumbnailImage: imageName
+              
+            })
+        });
+
+        if (responseProduct.ok) {
+            console.log("Product created or updated successfully");
+            window.location.reload();
+        } else {
+            console.error("Failed to create or update product", responseProduct);
+            alert("Đã xảy ra lỗi khi tạo hoặc cập nhật sản phẩm");
+        }
+    } catch (error) {
+        console.error('Error during create or update request:', error);
+    }
+}
+async function updateProduct(id) {
+    try {
+        const categoryId = document.getElementById("idCategories").value;
+        const imageFile = document.getElementById("imageProduct").files[0];
+        const imageName = imageFile.name;
+        var id = document.getElementById("id").value;
+
+        const formData = new FormData();
+        formData.append("file", imageFile);
+
+
+        const responseProduct = await fetch(`http://localhost:8080/rest/productManager/` + id , {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: id,
+                name: document.getElementById("nameProduct").value,
+                price: document.getElementById("priceProduct").value,
+                supplier: document.getElementById("supplier").value,
+                publisher: document.getElementById("inputPublisher").value,
+                author: document.getElementById("author").value,
+                publishedDate: document.getElementById("inputPublishedDate").value,
+                pageCount: document.getElementById("page-count").value,
+                description: document.getElementById("description").value,
+                weight: document.getElementById("weight").value,
+                size: document.getElementById("size").value,
+                quantity: document.getElementById("quantity").value,
+                brand: document.getElementById("brand").value,
+                madeIn: document.getElementById("madeIn").value,
+                origin: document.getElementById("Origin").value,
+                color: document.getElementById("color").value,
+                material: document.getElementById("material").value,
+                category: {
+                    id : categoryId
+                },
+                thumbnailImage: imageName
+              
+            })
+        });
+
+        if (responseProduct.ok) {   
+            console.log("Product updated successfully");
+            const responseUpload = await fetch(`http://localhost:8080/api/upload`, {
+                method: 'POST',
+                body: formData,
+            });
+            window.location.reload();
+        } else {
+            console.error("Failed to update product", responseProduct);
+            alert("Đã xảy ra lỗi khi cập nhật sản phẩm");
+        }
+    } catch (error) {
+        console.error('Error during update request:', error);
+    }
+}
+
+
+
+
+function handleFileSelect(event) {
+    const fileList = event.target.files; 
+    const fileName = fileList[0].name; 
+    console.log("Tên tệp: ", fileName);
+}
+
+async function deleteProductManager(id) {
+   
+    try {
+        const response = await fetch(`http://localhost:8080/rest/deleteProductManager/${id}`, {
+            method: 'DELETE'
+        });
+  
+        if (response.ok) {
+            console.log(`Category with ID ${id} deleted successfully`);
+            // Refresh or update your data after successful deletion
+          //   updateDataCategories();
+      window.location.reload();
+  
+            //   getDataCategories();
+        } else {
+            console.error(`Failed to delete category with ID ${id}`);
+        }
+    } catch (error) {
+        console.error('Error during delete request:', error);
+    }
+  }
+  async function deleteProductManagerFormForm(id) {
+      
+    var id = document.getElementById("id").value;
+  
+    // if (!id) {
+    //   alert("Vui lòng chọn một mục để xoá.");
+    //   return false; 
+//   } else {
+//       document.getElementById("errorMessageName").innerText = "";
+//   }
+  
+    if (id) {
+      // Gọi hàm deleteCategory để xóa dữ liệu
+      deleteProductManager(id);
+      window.location.reload();
+  
+  } else {
+      // Hiển thị thông báo hoặc xử lý khác nếu id không có giá trị
+      console.error('ID is undefined or empty.');
+  }
+  };
+  

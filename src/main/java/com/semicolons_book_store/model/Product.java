@@ -69,9 +69,9 @@ public class Product {
     @Column(name = "material")
     private String material;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id", nullable = false)
-    private Category category;
+	@ManyToOne
+	@JoinColumn(name = "category_id", nullable = false)
+	private Category category;
 
 	public int getId() {
 		return id;

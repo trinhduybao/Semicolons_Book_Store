@@ -112,6 +112,7 @@ async function getDataCategories() {
 
   $(`#categoryTable`).DataTable({
       "data" : data,
+      
       "columns" : [
           { "data" : "item.name" },
           { "data" : "name" },
@@ -123,7 +124,19 @@ async function getDataCategories() {
               }
           }
       ],
-      "pageLength": 5
+      "pageLength": 5,
+      "language": {
+        "info": "Hiển thị _START_ đến _END_ trong _TOTAL_ mục",
+        "infoEmpty": "Không có sản phẩm nào",
+        "infoFiltered": "(được lọc từ tổng số _MAX_ sản phẩm )",
+        "lengthMenu": "Hiện _MENU_ sản phẩm" ,
+        "search": "Tìm kiếm:", 
+        "paginate": {
+            "previous": "Trước",
+            "next": "Sau",
+        }
+        
+    }
       
   })
 }

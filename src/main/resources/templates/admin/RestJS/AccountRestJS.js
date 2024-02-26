@@ -31,7 +31,19 @@ app.controller("ctrl", function ($scope, $http, $timeout) {
                 {"data": "fullname"}, 
                 {"data": "address"}
             ],
-            "pageLength": 10
+            "pageLength": 10,
+            "language": {
+                "info": "Hiển thị _START_ đến _END_ trong _TOTAL_ mục",
+                "infoEmpty": "Không có sản phẩm nào",
+                "infoFiltered": "(được lọc từ tổng số _MAX_ sản phẩm )",
+                "lengthMenu": "Hiện _MENU_ sản phẩm" ,
+                "search": "Tìm kiếm:", 
+                "paginate": {
+                    "previous": "Trước",
+                    "next": "Sau",
+                }
+                
+            }
         });
     } else {
         $('#accountTable').DataTable().clear().rows.add(data).draw();

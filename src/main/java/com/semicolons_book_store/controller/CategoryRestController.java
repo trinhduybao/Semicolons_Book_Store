@@ -62,4 +62,11 @@ public class CategoryRestController {
         System.out.println(exists);
         return ResponseEntity.ok(exists);
     }
+
+
+    @GetMapping("/byItemId/{itemId}")
+    public ResponseEntity<List<Category>> findByItemId(@PathVariable Long itemId) {
+        List<Category> categories = categoryRepository.findByItemId(itemId);
+        return ResponseEntity.ok(categories);
+    }
 }
