@@ -30,7 +30,7 @@ app.controller("ctrl-managerProduct", function ($scope, $http, $timeout) {
                     }
                 },                
                 {"data": "quantity"},
-                {"data": "category.item.name"},
+                {"data": "category.name"},
                 {"render" : function(data, type, row, meta) {
                     return `<div id="editButton" type="submit" th:value="${row.id}" class="btn btn-primary" >Chỉnh Sửa</div>
                             <div id="deleteButton" type="submit" type="submit" th:value="${row.id}" onclick="deleteProductManager(${row.id})" class="btn btn-primary"">Xoá</div>`
@@ -298,6 +298,7 @@ async function updateProduct(id) {
               
             })
         });
+        console.log(responseProduct);
 
         if (responseProduct.ok) {   
             console.log("Product updated successfully");
