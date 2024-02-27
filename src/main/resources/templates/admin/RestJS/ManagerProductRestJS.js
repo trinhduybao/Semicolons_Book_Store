@@ -30,7 +30,7 @@ app.controller("ctrl-managerProduct", function ($scope, $http, $timeout) {
                     }
                 },                
                 {"data": "quantity"},
-                {"data": "category.item.name"},
+                {"data": "category.name"},
                 {"render" : function(data, type, row, meta) {
                     return `<div id="editButton" type="submit" th:value="${row.id}" class="btn btn-primary" >Chỉnh Sửa</div>
                             <div id="deleteButton" type="submit" type="submit" th:value="${row.id}" onclick="deleteProductManager(${row.id})" class="btn btn-primary"">Xoá</div>`
@@ -175,6 +175,7 @@ $(document).ready(function() {
                 $('#Origin').val(response.origin);
                 $('#color').val(response.color);  
                 $('#material').val(response.material);  
+                $('#currentImageName').val(response.thumbnailImage);  
 
             
                 $('#exampleModal').modal('show');
@@ -257,16 +258,20 @@ async function createOrUpdateProduct() {
         console.error('Error during create or update request:', error);
     }
 }
+
+
+
 async function updateProduct(id) {
     try {
         const categoryId = document.getElementById("idCategories").value;
         const imageFile = document.getElementById("imageProduct").files[0];
-        const imageName = imageFile.name;
+        const imageName = imageFile ? imageFile.name : document.getElementById("currentImageName").value;
         var id = document.getElementById("id").value;
 
         const formData = new FormData();
-        formData.append("file", imageFile);
-
+        if (imageFile) {
+            formData.append("file", imageFile);
+        }
 
         const responseProduct = await fetch(`http://localhost:8080/rest/productManager/` + id , {
             method: 'PUT',
@@ -294,17 +299,19 @@ async function updateProduct(id) {
                 category: {
                     id : categoryId
                 },
-                thumbnailImage: imageName
+                thumbnailImage: imageName 
               
             })
         });
 
         if (responseProduct.ok) {   
             console.log("Product updated successfully");
-            const responseUpload = await fetch(`http://localhost:8080/api/upload`, {
-                method: 'POST',
-                body: formData,
-            });
+            if (imageFile) {
+                const responseUpload = await fetch(`http://localhost:8080/api/upload`, {
+                    method: 'POST',
+                    body: formData,
+                });
+            }
             window.location.reload();
         } else {
             console.error("Failed to update product", responseProduct);
