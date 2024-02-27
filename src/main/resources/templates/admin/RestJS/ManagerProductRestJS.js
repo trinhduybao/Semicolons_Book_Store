@@ -303,6 +303,7 @@ async function updateProduct(id) {
               
             })
         });
+        console.log(responseProduct);
 
         if (responseProduct.ok) {   
             console.log("Product updated successfully");
