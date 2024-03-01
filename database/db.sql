@@ -101,16 +101,7 @@ create table orders(
 	foreign key (account_id) references accounts(id),
 	foreign key (voucher_id) references vouchers(id)
 )
-create table order_details(
-	order_detail_id int identity(1,1),
-	quantity int not null,
-	price decimal(10,2) not null,
-	order_id int,
-	product_id int,
-	primary key (order_detail_id),
-	foreign key (order_id) references orders(id),
-	foreign key (product_id) references products(id)
-)
+m
 create table product_images(
 	id int identity(1,1),
 	image_url varchar(max) not null,
@@ -560,10 +551,61 @@ Thú Bông Lạc Đà A Đán Bá Đạo Alpaca 28cm được thiết kế với
 
 - Gấu bông Thú Bông Lạc Đà A Đán Bá Đạo cực cute, độc và lạ.','','',8,N'Chine','Chine','','','',4)
 
+--dữ liệu mẫu bảng feedbacks
+INSERT INTO feedbacks (rate, content, create_date, account_id, product_id)
+VALUES (4, N'Rất tốt, chất lượng ổn định.', '2024-02-29 10:15:00', 1, 1);
+
+INSERT INTO feedbacks (rate, content, create_date, account_id, product_id)
+VALUES (3, N'Sản phẩm không đáp ứng kỳ vọng của tôi.', '2024-02-29 11:30:00', 2, 7);
+
+INSERT INTO feedbacks (rate, content, create_date, account_id, product_id)
+VALUES (5, N'Rất hài lòng với dịch vụ khách hàng.', '2024-02-29 12:45:00', 3, 27);
+
+INSERT INTO feedbacks (rate, content, create_date, account_id, product_id)
+VALUES (4, N'Sản phẩm đáng giá tiền.', '2024-02-29 14:00:00', 4, 20);
+
+INSERT INTO feedbacks (rate, content, create_date, account_id, product_id)
+VALUES (2, N'Giao hàng chậm và sản phẩm bị hỏng.', '2024-02-29 15:30:00', 5, 23);
+
+--dữ liệu bảng voucher
+INSERT INTO vouchers (code, discount_amount, condition, valid_form, valid_to, create_date)
+VALUES
+    ('SUMMER10', 10.00, 500000.00, '2024-03-01 00:00:00', '2024-05-15 23:59:59', '2024-02-15 10:30:00'),
+    ('SALE20', 20.00, 1000000.00, '2024-03-10 00:00:00', '2024-05-31 23:59:59', '2024-02-28 14:45:00'),
+    ('SPRING25', 25.00, 1500000.00, '2024-03-20 00:00:00', '2024-05-10 23:59:59', '2024-03-01 09:00:00'),
+    ('EARLYBIRD', 15.00, 750000.00, '2024-02-28 00:00:00', '2024-05-15 23:59:59', '2024-02-10 18:20:00'),
+    ('FLASHSALE', 30.00, 2000000.00, '2024-03-05 00:00:00', '2024-05-07 23:59:59', '2024-03-04 16:10:00');
+
 		
+--dữ liệu mẫu đơn hàng
+INSERT INTO orders (order_date, total_amount, [status], [address], voucher_id, account_id)
+VALUES ('2024-02-15', 1500000.00, N'Đã giao hàng', N'123 Đường ABC, Quận XYZ, Thành phố HCM', 2, 1);
+INSERT INTO orders (order_date, total_amount, [status], [address], account_id)
+VALUES ('2024-02-16', 200000.50, N'Chờ xử lý', N'456 Đường DEF, Quận UVW, Thành phố HCM' , 2);
+INSERT INTO orders (order_date, total_amount, [status], [address], voucher_id, account_id)
+VALUES ('2024-02-17', 750000.20, N'Đã hủy', N'789 Đường GHI, Quận XYZ, Thành phố HCM',4, 3);
+INSERT INTO orders (order_date, total_amount, [status], [address], account_id)
+VALUES ('2024-02-18', 300000.00, N'Đã giao hàng', N'101 Đường JKL, Quận MNO, Thành phố HCM', 4);
+INSERT INTO orders (order_date, total_amount, [status], [address], voucher_id, account_id)
+VALUES ('2024-02-19', 500000.75, N'Chờ xử lý', N'202 Đường PQR, Quận STU, Thành phố HCM',1, 5);
+INSERT INTO orders (order_date, total_amount, [status], [address], account_id)
+VALUES ('2024-02-20', 180000.90, N'Đã giao hàng', N'303 Đường VWX, Quận YZA, Thành phố HCM',6);
+INSERT INTO orders (order_date, total_amount, [status], [address], account_id)
+VALUES ('2024-02-21', 95000.30, N'Chờ xử lý', N'404 Đường BCD, Quận EFG, Thành phố HCM',7);
+INSERT INTO orders (order_date, total_amount, [status], [address], account_id)
+VALUES ('2024-02-22', 250000.25, N'Đã giao hàng', N'505 Đường HIJ, Quận KLM, Thành phố HCM',8);
+INSERT INTO orders (order_date, total_amount, [status], [address], account_id)
+VALUES ('2024-02-23', 1200000.80, N'Chờ xử lý', N'606 Đường NOP, Quận QRS, Thành phố HCM',9);
+INSERT INTO orders (order_date, total_amount, [status], [address], voucher_id, account_id)
+VALUES ('2024-02-24', 1750000.60, N'Đã giao hàng', N'707 Đường TUV, Quận WXY, Thành phố HCM', 3,10);
 	
 
 select * from items
 select * from categories
 select * from products
+select * from accounts
+select * from feedbacks
+select * from vouchers
+select * from orders
 
+delete from vouchers
