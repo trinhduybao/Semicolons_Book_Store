@@ -68,7 +68,7 @@ create table feedbacks(
 )
 create table roles (
 	id int identity(1,1),
-	[name] varchar(20) not null,
+	[name] varchar(20) unique not null ,
 	primary key(id)
 )
 create table authorities(
@@ -81,7 +81,7 @@ create table authorities(
 )
 create table vouchers(
 	id int identity(1,1),
-	code varchar(10) not null,
+	code varchar(10) unique not null,
 	discount_amount decimal(10,2) not null,
 	condition decimal(10,2) not null,
 	valid_form datetime not null,
@@ -101,7 +101,16 @@ create table orders(
 	foreign key (account_id) references accounts(id),
 	foreign key (voucher_id) references vouchers(id)
 )
-m
+create table order_details(
+    id int identity(1,1),
+    quantity int not null,
+    price decimal(10,2) not null,
+    order_id int,
+    product_id int,
+    primary key(id),
+    foreign key (order_id) references orders(id),
+    foreign key (product_id) references product_images(id)
+)
 create table product_images(
 	id int identity(1,1),
 	image_url varchar(max) not null,
@@ -109,6 +118,8 @@ create table product_images(
 	primary key (id),
 	foreign key (product_id) references products(id)
 )
+
+
 go
 --dữ liệu mẫu bảng item
 INSERT INTO items ([name]) VALUES (N'Văn Phòng Phẩm');
