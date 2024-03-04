@@ -29,11 +29,17 @@ app.controller("ctrl-managerFeedback", function ($scope, $http, $timeout) {
                         return moment(data).format('HH:mm:ss , DD-MM-YYYY');
                     }
                 },                              
-                {"data": "accountId"},
-                {"data": "productId"},  
+                {"data": "account.id"},
+                {"data": "product.id"},  
                 {"render" : function(data, type, row, meta) {
-                    return `<div id="" type="submit" class="btn btn-success"> Hiện</div>
-                            <div id="" type="submit" class="btn btn-danger">Ẩn</div>`
+                    return `
+                    
+                    <a  class="btn btn-success" ">Hiên</a>
+                    <a  class="btn btn-danger" ">Ẩn</a>
+  
+
+                
+                    `
                 }}
             ],
             "scrollX": true, 
@@ -56,6 +62,7 @@ app.controller("ctrl-managerFeedback", function ($scope, $http, $timeout) {
         $('#managerfeedbackTable').DataTable().clear().rows.add(data).draw();
     }
 }
+
 
 
 getDataManagerFeedback();

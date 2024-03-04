@@ -28,10 +28,13 @@ public class Feedback {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
 
-    @Column(name = "account_id", nullable = false)
-    private Long accountId;
+    @ManyToOne
+    @JoinColumn(name = "account_id", nullable = false)
+    private Account account;
 
-    @Column(name = "product_id", nullable = false)
-    private Long productId;
+    @ManyToOne
+    @JoinColumn(name = "product_id", nullable = false)
+    private Product product;
 
 }
+
