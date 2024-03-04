@@ -1,4 +1,4 @@
-package com.semicolons_book_store.serviceimpl;
+package com.semicolons_book_store.service.serviceimpl;
 
 import java.util.List;
 
