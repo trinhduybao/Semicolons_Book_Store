@@ -1,7 +1,11 @@
 package com.semicolons_book_store.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -30,6 +34,22 @@ public class Account {
 
     @Column(name = "address")
     private String address;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "account")
+	private List<Favorite> favorites;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "account")
+	private List<Feedback> feedbacks;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "account")
+	private List<Authority> authorities;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "account")
+	private List<Order> orders;
 
 	public int getId() {
 		return id;
