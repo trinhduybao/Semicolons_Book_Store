@@ -1,11 +1,13 @@
 package com.semicolons_book_store.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -72,6 +74,22 @@ public class Product {
 	@ManyToOne
 	@JoinColumn(name = "category_id", nullable = false)
 	private Category category;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "product")
+	private List<Favorite> favorites;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "product")
+	private List<Feedback> feedbacks;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "product")
+	private List<ProductImage> productImages;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "product")
+	private List<OrderDetail> orderDetails;
 
 	public int getId() {
 		return id;
