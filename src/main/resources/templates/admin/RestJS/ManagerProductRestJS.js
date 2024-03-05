@@ -32,8 +32,8 @@ app.controller("ctrl-managerProduct", function ($scope, $http, $timeout) {
                 {"data": "quantity"},
                 {"data": "category.name"},
                 {"render" : function(data, type, row, meta) {
-                    return `<div id="editButton" type="submit" th:value="${row.id}" class="btn btn-primary" >Chỉnh Sửa</div>
-                            <div id="deleteButton" type="submit" type="submit" th:value="${row.id}" onclick="deleteProductManager(${row.id})" class="btn btn-primary"">Xoá</div>`
+                    return `<div id="editButton" type="submit" th:value="${row.id}" class="btn btn-success" >Chỉnh Sửa</div>
+                            <div id="deleteButton" type="submit" type="submit" th:value="${row.id}" onclick="deleteProductManager(${row.id})" class="btn btn-danger"">Xoá</div>`
                 }}
             ],
             "scrollX": true, 
@@ -45,6 +45,7 @@ app.controller("ctrl-managerProduct", function ($scope, $http, $timeout) {
                 "infoFiltered": "(được lọc từ tổng số _MAX_ sản phẩm )",
                 "lengthMenu": "Hiện _MENU_ sản phẩm" ,
                 "search": "Tìm kiếm:", 
+                "zeroRecords": "Không tìm thấy kết quả",
                 "paginate": {
                     "previous": "Trước",
                     "next": "Sau",
@@ -340,14 +341,12 @@ async function deleteProductManager(id) {
         });
   
         if (response.ok) {
-            console.log(`Category with ID ${id} deleted successfully`);
-            // Refresh or update your data after successful deletion
-          //   updateDataCategories();
+            console.log(`Product with ID ${id} deleted successfully`);
+
       window.location.reload();
   
-            //   getDataCategories();
         } else {
-            console.error(`Failed to delete category with ID ${id}`);
+            console.error(`Failed to delete product with ID ${id}`);
         }
     } catch (error) {
         console.error('Error during delete request:', error);
@@ -357,20 +356,11 @@ async function deleteProductManager(id) {
       
     var id = document.getElementById("id").value;
   
-    // if (!id) {
-    //   alert("Vui lòng chọn một mục để xoá.");
-    //   return false; 
-//   } else {
-//       document.getElementById("errorMessageName").innerText = "";
-//   }
-  
     if (id) {
-      // Gọi hàm deleteCategory để xóa dữ liệu
       deleteProductManager(id);
       window.location.reload();
   
   } else {
-      // Hiển thị thông báo hoặc xử lý khác nếu id không có giá trị
       console.error('ID is undefined or empty.');
   }
   };

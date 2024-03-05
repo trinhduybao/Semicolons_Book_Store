@@ -131,6 +131,7 @@ async function getDataCategories() {
         "infoFiltered": "(được lọc từ tổng số _MAX_ sản phẩm )",
         "lengthMenu": "Hiện _MENU_ sản phẩm" ,
         "search": "Tìm kiếm:", 
+        "zeroRecords": "Không tìm thấy kết quả",
         "paginate": {
             "previous": "Trước",
             "next": "Sau",

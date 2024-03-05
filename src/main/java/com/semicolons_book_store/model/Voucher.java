@@ -28,7 +28,7 @@ public class Voucher {
     @Column(name = "condition", nullable = false)
     private BigDecimal condition;
 
-    @Column(name = "valid_from", nullable = false)
+    @Column(name = "valid_form", nullable = false)
     private LocalDateTime validFrom;
 
     @Column(name = "valid_to", nullable = false)

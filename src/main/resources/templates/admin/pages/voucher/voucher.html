@@ -35,7 +35,7 @@
     <link rel="stylesheet" href="../../css/ManagerProductRestJS.css">
   </head>
 
-  <body ng-app="app" ng-controller="ctrl-managerProduct">
+  <body ng-app="app" ng-controller="ctrl-managerVoucher">
     <div class="container-scroller">
       <!-- partial:../../partials/_navbar.html -->
       <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
@@ -630,7 +630,7 @@
                     <div class="table-responsive">
                       <table
                         class="table table-striped"
-                        id=""
+                        id="managervoucherTable"
                       >
                         <thead>
                           <th>ID</th>
@@ -640,6 +640,7 @@
                           <th>Valid_Form</th>
                           <th>Valid_To</th>
                           <th>Create_Date</th>
+                          <th>Action</th>
                         </thead>
                         <tbody id=""></tbody>
                       </table>
@@ -677,41 +678,42 @@
           </div>
           <div class="row mb-3">
             <div class="col-sm-6">
+              <input type="text" class="form-control" id="id" hidden>
               <label for="nameProduct" class="form-label">Mã Khuyến Mãi</label>
-              <input type="text" class="form-control" id="nameVoucher" placeholder="mã khuyến mãi">
+              <input type="text" class="form-control" id="code" placeholder="mã khuyến mãi" required>
             </div>
             <div class="col-sm-6">
               <label for="priceProduct" class="form-label">Điều Kiến Giảm Giá(theo giá tiền)</label>
-              <input type="text" class="form-control" id="" placeholder="số tiền đủ điều kiện khuyến mãi">
+              <input type="text" class="form-control" id="condition" placeholder="số tiền đủ điều kiện khuyến mãi" required>
             </div>
           </div>
           <div class="row mb-3">
             <div class="col-sm-6">
               <label for="supplier" class="form-label">Phần Trăm Khuyến Mãi</label>
-              <input type="text" class="form-control" id="" placeholder="phần trăm khuyến mãi">
+              <input type="text" class="form-control" id="discountAmount" placeholder="phần trăm khuyến mãi" required>
             </div>
             <div class="col-sm-6">
               <label for="inputPublisher" class="form-label">Từ Ngày</label>
-              <input type="text" class="form-control" id="" placeholder="ngày bắt đầu">
+              <input type="datetime-local" class="form-control" id="validFrom" placeholder="ngày bắt đầu" required>
             </div>
           </div>
           <div class="row mb-3">
             <div class="col-sm-6">
               <label for="author" class="form-label">Đến Ngày</label>
-              <input type="text" class="form-control" id="" placeholder="ngày kết thúc">
+              <input type="datetime-local" class="form-control" id="validTo" placeholder="ngày kết thúc" required>
             </div>
             <div class="col-sm-6">
               <label for="published-date" class="form-label">Ngày Tạo Mã</label>
-              <input type="date" class="form-control" id="" placeholder="ngày nhập mã">
+              <input type="datetime-local" class="form-control" id="createDate" placeholder="ngày nhập mã" required>
             </div>
           </div>
         </div>
           <div class="row mb-3">
             <div class="col-sm-12 text-right">
-              <button id="createButton" class="btn btn-primary" type="submit" onclick="createOrUpdateProduct()" >Thêm Mới</button>
-              <button id="updateButton" class="btn btn-warning" type="submit" onclick="updateProduct()">Cập Nhật</button>
+              <button id="createButton" class="btn btn-primary" type="submit" onclick="createOrUpdateVoucher()" >Thêm Mới</button>
+              <button id="updateButton" class="btn btn-warning" type="submit" onclick="updateVoucher()">Cập Nhật</button>
               <button  class="btn btn-info" type="reset" >Làm Mới</button>
-              <button  class="btn btn-danger" type="submit" onclick="deleteProductManagerFormForm()" >Xoá</button>
+              <button  class="btn btn-danger" type="submit" onclick="deleteVoucherManagerFormForm()" >Xoá</button>
             </div>
           </div>
         </form>
@@ -787,7 +789,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-resource/1.8.2/angular-resource.min.js"></script>
-    <script src="../../RestJS/ManagerProductRestJS.js"></script>
+    <script src="../../RestJS/ManagerVoucherRestJS.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
