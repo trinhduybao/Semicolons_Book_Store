@@ -15,4 +15,12 @@ public interface ProductService {
 	Product findById(Integer id);
 
 	Page<Product> findByCategoryId(Integer integer, Integer pageNo);
+	
+	List<Product> findByCategoryId(Integer integer);
+	
+	List<Product> searchproduct(String keyword);
+	
+	Page<Product> searchproduct(String keyword, Integer pageNo);
+	
+	
 }

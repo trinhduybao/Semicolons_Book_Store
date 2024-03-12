@@ -109,7 +109,7 @@ create table order_details(
     product_id int,
     primary key(id),
     foreign key (order_id) references orders(id),
-    foreign key (product_id) references product_images(id)
+    foreign key (product_id) references products(id)
 )
 create table product_images(
 	id int identity(1,1),
@@ -618,5 +618,8 @@ select * from accounts
 select * from feedbacks
 select * from vouchers
 select * from orders
+select * from authorities
+select * from roles
 
-delete from vouchers
+
+

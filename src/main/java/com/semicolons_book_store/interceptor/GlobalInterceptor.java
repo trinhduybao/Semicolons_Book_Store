@@ -6,6 +6,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.semicolons_book_store.service.CategoryService;
+import com.semicolons_book_store.service.ItemService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -16,9 +17,15 @@ public class GlobalInterceptor implements HandlerInterceptor{
 	@Autowired
 	CategoryService categoryService;
 	
+	@Autowired
+	ItemService itemService;
+	
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		request.setAttribute("cates", categoryService.getAll());
+		request.setAttribute("item", itemService.getAll());
 	}
+	
+	
 }

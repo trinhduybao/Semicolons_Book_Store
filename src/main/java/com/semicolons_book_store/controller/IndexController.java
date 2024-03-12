@@ -11,5 +11,8 @@ public class IndexController {
 		return"customer/index";
 	}
 	
-	
+	@RequestMapping("/cart/view")
+	public String shoppingcart(Model model) {
+		return"customer/cart";
+	}
 }

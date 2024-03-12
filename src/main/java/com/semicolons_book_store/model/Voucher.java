@@ -40,4 +40,70 @@ public class Voucher {
     @JsonIgnore
     @OneToMany(mappedBy = "voucher")
     private List<Order> orders;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public BigDecimal getDiscountAmount() {
+		return discountAmount;
+	}
+
+	public void setDiscountAmount(BigDecimal discountAmount) {
+		this.discountAmount = discountAmount;
+	}
+
+	public BigDecimal getCondition() {
+		return condition;
+	}
+
+	public void setCondition(BigDecimal condition) {
+		this.condition = condition;
+	}
+
+	public LocalDateTime getValidFrom() {
+		return validFrom;
+	}
+
+	public void setValidFrom(LocalDateTime validFrom) {
+		this.validFrom = validFrom;
+	}
+
+	public LocalDateTime getValidTo() {
+		return validTo;
+	}
+
+	public void setValidTo(LocalDateTime validTo) {
+		this.validTo = validTo;
+	}
+
+	public LocalDateTime getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(LocalDateTime createDate) {
+		this.createDate = createDate;
+	}
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
+    
+    
 }
