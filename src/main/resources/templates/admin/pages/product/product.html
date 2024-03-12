@@ -660,123 +660,147 @@
       </div>
       <div class="modal-body">
         <!-- Form -->
-        <form class="forms-sample myForm" method="" enctype="multipart/form-data">
+        <form class="forms-sample myForm" enctype="multipart/form-data"  method="post">
           <div class="row mb-3">
-            <div class="col-sm-6">
-              <label>Danh Mục Sản Phẩm</label>
-              <input type="number" id="id" name="id" hidden/>
-              <select class="form-control" name="idItems" id="idItems" required>
-              </select>
-            </div>
-            <div class="col-sm-6">
-              <label>Loại Sản Phẩm</label>
-              <input type="text" hidden>
-              <select class="form-control" name="idCategories" id="idCategories" required >
-              </select>
-            </div>
+              <div class="col-sm-6">
+                  <label>Danh Mục Sản Phẩm</label>
+                  <input type="number" id="id" name="id" hidden/>
+                  <select class="form-control" name="idItems" id="idItems" required>
+                  </select>
+                  <span id="itemError" class="error"></span>
+              </div>
+              <div class="col-sm-6">
+                  <label>Loại Sản Phẩm</label>
+                  <input type="text" hidden>
+                  <select class="form-control" name="idCategories" id="idCategories" required >
+                  </select>
+                  <span id="categoriesError" class="error"></span>
+              </div>
           </div>
-          <div class="row mb-3">
-            <div class="col-sm-6">
-              <label for="nameProduct" class="form-label">Tên sản phẩm</label>
-              <input type="text" class="form-control" id="nameProduct" placeholder="Nhập tên sản phẩm" required>
-            </div>
-            <div class="col-sm-6">
-              <label for="priceProduct" class="form-label">Giá sản phẩm</label>
-              <input type="text" class="form-control" id="priceProduct" placeholder="Nhập giá sản phẩm" required> 
-            </div>
+          <div class="row mb-3" >
+              <div class="col-sm-6" id="dNameProduct"> 
+                  <label for="nameProduct" class="form-label">Tên sản phẩm</label>
+                  <input type="text" class="form-control" id="nameProduct" placeholder="Nhập tên sản phẩm" required>
+                  <span id="productNameError" class="error"></span>
+              </div>
+              <div class="col-sm-6" id="dPriceProduct">
+                  <label for="priceProduct" class="form-label">Giá sản phẩm</label>
+                  <input type="text" class="form-control" id="priceProduct" placeholder="Nhập giá sản phẩm" required> 
+                  <span id="productPriceError" class="error"></span>
+              </div>
           </div>
-          <div class="row mb-3">
-            <div class="col-sm-6">
-              <label for="supplier" class="form-label">Nhà phát hành</label>
-              <input type="text" class="form-control" id="supplier" placeholder="Nhập tên nhà phát hành" required>
-            </div>
-            <div class="col-sm-6">
-              <label for="inputPublisher" class="form-label">Nhà xuất bản</label>
-              <input type="text" class="form-control" id="inputPublisher" placeholder="Nhập tên nhà xuất bản" required>
-            </div>
-          </div>
-          <div class="row mb-3">
-            <div class="col-sm-6">
-              <label for="author" class="form-label">Tác giả</label>
-              <input type="text" class="form-control" id="author" placeholder="Nhập tên tác giả" required>
-            </div>
-            <div class="col-sm-6">
-              <label for="published-date" class="form-label">Ngày xuất bản</label>
-              <input type="date" class="form-control" id="inputPublishedDate" placeholder="Chọn ngày xuất bản" required>
-            </div>
+          <div class="row mb-3" >
+              <div class="col-sm-6">
+                  <label for="supplier" class="form-label">Nhà phát hành</label>
+                  <input type="text" class="form-control" id="supplier" placeholder="Nhập tên nhà phát hành" required>
+                  <span id="supplierError" class="error"></span>
+              </div>
+              <div class="col-sm-6">
+                  <label for="inputPublisher" class="form-label">Nhà xuất bản</label>
+                  <input type="text" class="form-control" id="inputPublisher" placeholder="Nhập tên nhà xuất bản" required>
+                  <span id="inputPublisherError" class="error"></span>
+              </div>
           </div>
           <div class="row mb-3">
-            <div class="col-sm-6">
-              <label for="page-count" class="form-label">Số trang</label>
-              <input type="number" class="form-control" id="page-count" placeholder="Nhập số trang của sách" required>
-            </div>
-            <div class="col-sm-6">
-              <label for="description" class="form-label">Mô tả</label>
-              <input type="text" class="form-control" id="description" placeholder="Nhập mô tả" required>
-            </div>
+              <div class="col-sm-6">
+                  <label for="author" class="form-label">Tác giả</label>
+                  <input type="text" class="form-control" id="author" placeholder="Nhập tên tác giả" required>
+                  <span id="authorError" class="error"></span>
+              </div>
+              <div class="col-sm-6">
+                  <label for="published-date" class="form-label">Ngày xuất bản</label>
+                  <input type="date" class="form-control" id="inputPublishedDate" placeholder="Chọn ngày xuất bản" required>
+                  <span id="publishedDateError" class="error"></span>
+              </div>
+          </div>
+          <div class="row mb-3">
+              <div class="col-sm-6">
+                  <label for="page-count" class="form-label">Số trang</label>
+                  <input type="number" class="form-control" id="page-count" placeholder="Nhập số trang của sách" required>
+                  <span id="pageCountError" class="error"></span>
+              </div>
+              <div class="col-sm-6">
+                  <label for="description" class="form-label">Mô tả</label>
+                  <input type="text" class="form-control" id="description" placeholder="Nhập mô tả" required>
+                  <span id="descriptionError" class="error"></span>
+              </div>
           </div>
           <div class="row mb-3"> 
-            <div class="col-sm-6">
-              <label for="weight" class="form-label">Cân nặng</label>
-              <input type="number" class="form-control" id="weight" placeholder="Nhập cân nặng" required> 
-            </div>
-            <div class="col-sm-6">
-              <label for="size" class="form-label">Kích cỡ</label>
-              <input type="text" class="form-control" id="size" placeholder="Chọn kích cỡ sản phẩm" required>
-            </div>
+              <div class="col-sm-6">
+                  <label for="weight" class="form-label">Cân nặng (kg)</label>
+                  <input type="number" class="form-control" id="weight" placeholder="Nhập cân nặng" required> 
+                  <span id="weightError" class="error"></span>
+              </div>
+              <div class="col-sm-6">
+                  <label for="size" class="form-label">Kích cỡ</label>
+                  <input type="text" class="form-control" id="size" placeholder="Chọn kích cỡ sản phẩm" required>
+                  <span id="sizeError" class="error"></span>
+              </div>
           </div>
           <div class="row mb-3"> 
-            <div class="col-sm-6">
-              <label for="quantity" class="form-label">Số lượng</label>
-              <input type="number" class="form-control" id="quantity" placeholder="Nhập số lượng" required>
-            </div>
-            <div class="col-sm-6">
-              <label for="brand" class="form-label">Thương hiệu</label>
-              <input type="text" class="form-control" id="brand" placeholder="Chọn thương hiệu" required>
-            </div>
+              <div class="col-sm-6">
+                  <label for="quantity" class="form-label">Số lượng</label>
+                  <input type="number" class="form-control" id="quantity" placeholder="Nhập số lượng" required>
+                  <span id="quantityError" class="error"></span>
+              </div>
+              <div class="col-sm-6">
+                  <label for="brand" class="form-label">Thương hiệu</label>
+                  <input type="text" class="form-control" id="brand" placeholder="Chọn thương hiệu" required>
+                  <span id="brandError" class="error"></span>
+              </div>
           </div>
           <div class="row mb-3"> 
-            <div class="col-sm-6">
-              <label for="madeIn" class="form-label">Nơi sản xuất</label>
-              <input type="text" class="form-control" id="madeIn" placeholder="Chọn nơi sản xuất" required>
-            </div>
-            <div class="col-sm-6">
-              <label for="Origin" class="form-label">Nguồn gốc</label>
-              <input type="text" class="form-control" id="Origin" placeholder="Chọn nguồn gốc" required>
-            </div>
+              <div class="col-sm-6">
+                  <label for="madeIn" class="form-label">Nơi sản xuất</label>
+                  <input type="text" class="form-control" id="madeIn" placeholder="Chọn nơi sản xuất" required>
+                  <span id="madeInError" class="error"></span>
+              </div>
+              <div class="col-sm-6">
+                  <label for="Origin" class="form-label">Nguồn gốc</label>
+                  <input type="text" class="form-control" id="Origin" placeholder="Chọn nguồn gốc" required>
+                  <span id="originError" class="error"></span>
+              </div>
           </div>
           <div class="row mb-3"> 
-            <div class="col-sm-6">
-              <label for="color" class="form-label">Màu sắc</label>
-              <input type="text" class="form-control" id="color" placeholder="Chọn màu sắc" required>
-            </div>
-            <div class="col-sm-6">
-              <label for="material" class="form-label">Chất liệu</label>
-              <input type="text" class="form-control" id="material" placeholder="Chọn nguồn gốc" required>
-            </div>
+              <div class="col-sm-6">
+                  <label for="color" class="form-label">Màu sắc</label>
+                  <input type="text" class="form-control" id="color" placeholder="Chọn màu sắc" required>
+                  <span id="colorError" class="error"></span>
+              </div>
+              <div class="col-sm-6">
+                  <label for="material" class="form-label">Chất liệu</label>
+                  <input type="text" class="form-control" id="material" placeholder="Chọn chất liệu" required>
+                  <span id="materialError" class="error"></span>
+              </div>
           </div>
           <div class="row mb-3"> 
-            <div class="col-sm-6">
-              <label for="color" class="form-label">Hình ảnh</label>
-              <input type="file" class="form-control" id="imageProduct" placeholder="Chọn hình ảnh" onchange="handleFileSelect(event)" required>
-              <input type="hidden" id="currentImageName" value="">
-            </div>
-            <div class="col-sm-6">
-              <label for="" class="form-label">Hihi </label>
-              <input type="text" class="form-control" id="" placeholder="Chọn nguồn gốc">
-            </div>
+              <div class="col-sm-6">
+                  <label for="color" class="form-label">Hình ảnh</label>
+                  <input type="file" class="form-control" id="imageProduct" placeholder="Chọn hình ảnh" onchange="handleFileSelect(event)"  required>
+                  <input type="hidden" id="currentImageName" value="">
+                  <span id="imageProductError" class="error"></span>
+              </div>
+              <div class="col-sm-6">
+                  <label for="" class="form-label">Hihi </label>
+                  <input type="text" class="form-control" id="" placeholder="Hihi">
+              </div>
+          </div>
+      
+          <div class="row mb-3">
+              <div class="col-sm-12 text-right">
+
+                   <!-- <button class="btn btn-primary" type="submit" onclick="validateForm()">Thêm Mới</button>    -->
+
+             <button id="createButton" class="btn btn-primary" type="submit" onclick="createOrUpdateProduct(), validateForm()" >Thêm Mới</button>
+                  <button id="updateButton" class="btn btn-warning" type="submit" onclick="updateProduct()">Cập Nhật</button>
+                  <button class="btn btn-info" type="reset">Làm Mới</button>
+                  <button class="btn btn-danger" type="submit" onclick="deleteProductManagerFormForm()">Xoá</button>
+              </div>
           </div>
 
-        </div>
-          <div class="row mb-3">
-            <div class="col-sm-12 text-right">
-              <button id="createButton" class="btn btn-primary" type="submit" onclick="createOrUpdateProduct()" >Thêm Mới</button>
-              <button id="updateButton" class="btn btn-warning" type="submit" onclick="updateProduct()">Cập Nhật</button>
-              <button  class="btn btn-info" type="reset" >Làm Mới</button>
-              <button  class="btn btn-danger" type="submit" onclick="deleteProductManagerFormForm()" >Xoá</button>
-            </div>
-          </div>
-        </form>
+      </form>
+      
+    
         <!-- End Form -->
       </div>
     </div>
@@ -861,5 +885,12 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+    <style>
+      .error {
+    color: red;
+    font-size: 12px;
+}
+
+    </style>
   </body>
 </html>

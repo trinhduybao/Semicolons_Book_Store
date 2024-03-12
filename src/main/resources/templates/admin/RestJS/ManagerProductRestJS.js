@@ -98,31 +98,7 @@ getDataCategories();
 });
 
 
-function validateForm() {
-    var name = document.getElementById("id").value;
-    var name = document.getElementById("nameCategory").value;
-    var item = document.getElementById("idCategory").value;
 
-    var isValid = true; 
-
-    if (!item) {
-        document.getElementById("errorMessageItem").innerText = "Vui lòng chọn một mục.";
-        return false; 
-    } else {
-        document.getElementById("errorMessageItem").innerText = "";
-    }
-
-    if (!name) {
-        document.getElementById("errorMessageName").innerText = "Vui lòng điền tên.";
-        return false; 
-    } else {
-        document.getElementById("errorMessageName").innerText = "";
-    }
-    
-
-
-    return isValid;
-}
 // lọc theo danh mục
 
 $(document).ready(function() {
@@ -147,6 +123,23 @@ $(document).ready(function() {
         });
     });
 });
+
+/// ẩn bớt không cần thiết
+
+// document.getElementById('idItems').addEventListener('change', function() {
+//     var selectedItem = this.value;
+
+//     // Ẩn hoặc hiển thị các trường nhập liệu dựa trên lựa chọn của danh mục sản phẩm
+//     if (selectedItem === 1) {
+//         document.getElementById('dNameProduct').style.display = 'none';
+
+//     } else {
+//         document.getElementById('dPriceProduct').style.display = 'none';
+
+//     }
+// });
+
+
 
 // edit
 $(document).ready(function() {
@@ -194,6 +187,7 @@ $(document).ready(function() {
 
 
 async function createOrUpdateProduct() {
+    
     try {
         const categoryId = document.getElementById("idCategories").value;
         const imageFile = document.getElementById("imageProduct").files[0];
@@ -206,6 +200,7 @@ async function createOrUpdateProduct() {
 
         const formData = new FormData();
         formData.append("file", imageFile);
+        
 
         const responseUpload = await fetch(`http://localhost:8080/api/upload`, {
             method: 'POST',
@@ -266,6 +261,7 @@ async function updateProduct(id) {
     try {
         const categoryId = document.getElementById("idCategories").value;
         const imageFile = document.getElementById("imageProduct").files[0];
+       
         const imageName = imageFile ? imageFile.name : document.getElementById("currentImageName").value;
         var id = document.getElementById("id").value;
 
@@ -273,6 +269,7 @@ async function updateProduct(id) {
         if (imageFile) {
             formData.append("file", imageFile);
         }
+       
 
         const responseProduct = await fetch(`http://localhost:8080/rest/productManager/` + id , {
             method: 'PUT',
@@ -328,12 +325,25 @@ async function updateProduct(id) {
 
 
 function handleFileSelect(event) {
-    const fileList = event.target.files; 
-    const fileName = fileList[0].name; 
-    console.log("Tên tệp: ", fileName);
+    const files = event.target.files; 
+    for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+
+        const fileSizeInMB = file.size / (1024 * 1024); 
+
+        if (fileSizeInMB > 5) {
+            alert('Tệp vượt quá kích thước cho phép (5MB):', file.name);
+            event.target.value = '';
+        }
+
+        if (!file.type.match('image.*')) {
+            alert('Tệp không phải là hình ảnh:', file.name);
+            event.target.value = '';
+        }
+    }
 }
 
-async function deleteProductManager(id) {
+    async function deleteProductManager(id) {
    
     try {
         const response = await fetch(`http://localhost:8080/rest/deleteProductManager/${id}`, {
@@ -363,5 +373,166 @@ async function deleteProductManager(id) {
   } else {
       console.error('ID is undefined or empty.');
   }
+
   };
-  
+
+
+  async function validateForm() {
+
+    var currentDate = new Date();
+
+
+    var idIitem = document.getElementById('idItems').value;
+    var idCategories = document.getElementById('idCategories').value;
+    var productName = document.getElementById('nameProduct').value;
+    var productPrice = document.getElementById('priceProduct').value;
+    var supplier = document.getElementById('supplier').value;
+    var inputPublisher = document.getElementById('inputPublisher').value;
+    var author = document.getElementById('author').value;
+    
+    var inputPublishedDate = document.getElementById('inputPublishedDate').value;
+    var currentDate = new Date();
+    var publishedDate = new Date(inputPublishedDate);
+
+    var pageCount = document.getElementById('page-count').value;
+    var description = document.getElementById('description').value;
+    var weight = document.getElementById('weight').value;
+    var size = document.getElementById('size').value;
+    var quantity = document.getElementById('quantity').value;
+    var brand = document.getElementById('brand').value;
+    var madeIn = document.getElementById('madeIn').value;
+    var origin = document.getElementById('Origin').value;
+    var color = document.getElementById('color').value;
+    var material = document.getElementById('material').value;
+    var imageProduct = document.getElementById('imageProduct').value;
+
+    var errors = false;
+
+    document.getElementById('itemError').innerHTML = '';
+    document.getElementById('categoriesError').innerHTML = '';
+    document.getElementById('productNameError').innerHTML = '';
+    document.getElementById('productPriceError').innerHTML = '';
+    document.getElementById('supplierError').innerHTML = '';
+    document.getElementById('inputPublisherError').innerHTML = '';
+    document.getElementById('authorError').innerHTML = '';
+    document.getElementById('publishedDateError').innerHTML = '';
+    document.getElementById('pageCountError').innerHTML = '';
+    document.getElementById('descriptionError').innerHTML = '';
+    document.getElementById('weightError').innerHTML = '';
+    document.getElementById('sizeError').innerHTML = '';
+    document.getElementById('quantityError').innerHTML = '';
+    document.getElementById('brandError').innerHTML = '';
+    document.getElementById('madeInError').innerHTML = '';
+    document.getElementById('originError').innerHTML = '';
+    document.getElementById('colorError').innerHTML = '';
+    document.getElementById('materialError').innerHTML = '';
+    document.getElementById('imageProductError').innerHTML = '';
+
+
+        if (idIitem.trim() === '') {
+        document.getElementById('itemError').innerHTML = 'Vui lòng chọn sản phẩm';
+        errors = true;
+    }
+    if (idCategories.trim() === '') {
+        document.getElementById('categoriesError').innerHTML = 'Vui lòng chọn danh mục';
+        errors = true;
+    }
+    if (productName.trim() === '') {
+        document.getElementById('productNameError').innerHTML = 'Vui lòng nhập tên sản phẩm';
+        errors = true;
+    }
+
+    if (productPrice.trim() === '') {
+        document.getElementById('productPriceError').innerHTML = 'Vui lòng nhập giá sản phẩm';
+        errors = true;
+    } else if (isNaN(productPrice)) {
+        document.getElementById('productPriceError').innerHTML = 'Giá sản phẩm phải là một số';
+        errors = true;
+    }
+
+    if (supplier.trim() === '') {
+        document.getElementById('supplierError').innerHTML = 'Vui lòng nhập tên nhà phát hành';
+        errors = true;
+    }
+
+    if (inputPublisher.trim() === '') {
+        document.getElementById('inputPublisherError').innerHTML = 'Vui lòng nhập tên nhà xuất bản';
+        errors = true;
+    }
+
+    if (author.trim() === '') {
+        document.getElementById('authorError').innerHTML = 'Vui lòng nhập tên tác giả';
+        errors = true;
+    }
+
+    if (inputPublishedDate.trim() === '') {
+        document.getElementById('publishedDateError').innerHTML = 'Vui lòng chọn ngày xuất bản';
+        errors = true;
+    }
+   
+    if (publishedDate > currentDate) {
+        document.getElementById('publishedDateError').innerHTML = 'Ngày xuất bản không thể lớn hơn ngày hiện tại';
+        errors = true;
+    }
+
+    if (pageCount.trim() === '') {
+        document.getElementById('pageCountError').innerHTML = 'Vui lòng nhập số trang';
+        errors = true;
+    }
+
+    if (description.trim() === '') {
+        document.getElementById('descriptionError').innerHTML = 'Vui lòng nhập mô tả';
+        errors = true;
+    }
+
+    if (weight.trim() === '') {
+        document.getElementById('weightError').innerHTML = 'Vui lòng nhập cân nặng';
+        errors = true;
+    }
+
+    if (size.trim() === '') {
+        document.getElementById('sizeError').innerHTML = 'Vui lòng nhập kích cỡ sản phẩm';
+        errors = true;
+    }
+
+    if (quantity.trim() === '') {
+        document.getElementById('quantityError').innerHTML = 'Vui lòng nhập số lượng';
+        errors = true;
+    }
+
+    if (brand.trim() === '') {
+        document.getElementById('brandError').innerHTML = 'Vui lòng chọn thương hiệu';
+        errors = true;
+    }
+
+    if (madeIn.trim() === '') {
+        document.getElementById('madeInError').innerHTML = 'Vui lòng chọn nơi sản xuất';
+        errors = true;
+    }
+
+    if (origin.trim() === '') {
+        document.getElementById('originError').innerHTML = 'Vui lòng chọn nguồn gốc';
+        errors = true;
+    }
+
+    if (color.trim() === '') {
+        document.getElementById('colorError').innerHTML = 'Vui lòng chọn màu sắc';
+        errors = true;
+    }
+
+    if (material.trim() === '') {
+        document.getElementById('materialError').innerHTML = 'Vui lòng chọn chất liệu';
+        errors = true;
+    }
+
+    if (imageProduct.trim() === '') {
+        document.getElementById('imageProductError').innerHTML = 'Vui lòng chọn hình ảnh sản phẩm';
+        errors = true;
+    }
+
+    if (errors) {
+        return false;
+    }
+
+    return true;
+}

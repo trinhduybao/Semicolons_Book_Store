@@ -542,10 +542,10 @@
             <div class="col-md-5 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Category Form</h4>
+                  <h4 class="card-title">Thêm dữ liệu danh mục</h4>
                   <form class="forms-sample myForm" onsubmit="return validateForm()" >
                     <div class="form-group">
-                      <label for="idCategory">Name Category</label>
+                      <label for="idCategory">Tên Danh Mục</label>
                       <input type="text" id="id" hidden>
                       <select class="form-control" name="idCategory" id="idCategory" required>
                         <!-- Your options here -->
@@ -556,18 +556,18 @@
 
                     </div>
                     <div class="form-group">
-                      <label for="nameCategory">Name</label>
+                      <label for="nameCategory">Tên Mặt Hàng</label>
                       <input type="text" class="form-control" id="nameCategory" name="nameCategory"
-                             placeholder="Tên" required minlength="3" maxlength="50">
+                             placeholder="Tên mặt hàng" required minlength="3" maxlength="50">
                     </div>
                     <div>
                     <span id="errorMessageName" style="color: red;"></span>
 
                     </div>
-                    <button class="btn btn-success mr-2" onclick="createCategory()" id="btnCreate">Create</button>
-                    <button class="btn btn-warning mr-2" ng-click="updateCategory($event)" id="btnUpdate">Update</button>
-                    <button class="btn btn-danger mr-2" onclick="deleteCategoryFromForm()" id="btnDelete">Delete</button>
-                    <button class="btn btn-info mr-2" onclick="reset()" id="btnAll">Reset</button>
+                    <button class="btn btn-success" onclick="createCategory()" id="btnCreate">Thêm mới</button>
+                    <button class="btn btn-warning" ng-click="updateCategory($event)" id="btnUpdate">Cập nhật</button>
+                    <button class="btn btn-danger" onclick="deleteCategoryFromForm()" id="btnDelete">Xoá</button>
+                    <button class="btn btn-info" onclick="reset()" id="btnAll">Làm mới</button>
 
                   </form>
 
@@ -579,13 +579,13 @@
             <div class="col-lg-7 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Data Category</h4>
+                  <h4 class="card-title">Dữ liệu danh mục</h4>
                   <div class="table-responsive">
                     <table class="table table-striped" id="categoryTable">
                       <thead>
-                        <th>Category</th>
-                        <th>Species</th>
-                        <th>Action</th>
+                        <th>Danh mục</th>
+                        <th>Mặt hàng</th>
+                        <th>Thao tác</th>
                       </thead>
                       <tbody id="tbody">
 
