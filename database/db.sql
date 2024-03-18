@@ -66,6 +66,9 @@ create table feedbacks(
 	foreign key (account_id) references accounts(id),
 	foreign key (product_id) references products(id)
 )
+
+alter table feedbacks add [status] bit DEFAULT 0
+
 create table roles (
 	id int identity(1,1),
 	[name] varchar(20) unique not null ,
@@ -563,20 +566,20 @@ Thú Bông Lạc Đà A Đán Bá Đạo Alpaca 28cm được thiết kế với
 - Gấu bông Thú Bông Lạc Đà A Đán Bá Đạo cực cute, độc và lạ.','','',8,N'Chine','Chine','','','',4)
 
 --dữ liệu mẫu bảng feedbacks
-INSERT INTO feedbacks (rate, content, create_date, account_id, product_id)
-VALUES (4, N'Rất tốt, chất lượng ổn định.', '2024-02-29 10:15:00', 1, 1);
+INSERT INTO feedbacks (rate, content, create_date, account_id, product_id, [status])
+VALUES (4, N'Rất tốt, chất lượng ổn định.', '2024-02-29 10:15:00', 1, 1, 0);
 
-INSERT INTO feedbacks (rate, content, create_date, account_id, product_id)
-VALUES (3, N'Sản phẩm không đáp ứng kỳ vọng của tôi.', '2024-02-29 11:30:00', 2, 7);
+INSERT INTO feedbacks (rate, content, create_date, account_id, product_id, [status])
+VALUES (3, N'Sản phẩm không đáp ứng kỳ vọng của tôi.', '2024-02-29 11:30:00', 2, 7, 0);
 
-INSERT INTO feedbacks (rate, content, create_date, account_id, product_id)
-VALUES (5, N'Rất hài lòng với dịch vụ khách hàng.', '2024-02-29 12:45:00', 3, 27);
+INSERT INTO feedbacks (rate, content, create_date, account_id, product_id, [status])
+VALUES (5, N'Rất hài lòng với dịch vụ khách hàng.', '2024-02-29 12:45:00', 3, 27, 0);
 
-INSERT INTO feedbacks (rate, content, create_date, account_id, product_id)
-VALUES (4, N'Sản phẩm đáng giá tiền.', '2024-02-29 14:00:00', 4, 20);
+INSERT INTO feedbacks (rate, content, create_date, account_id, product_id, [status])
+VALUES (4, N'Sản phẩm đáng giá tiền.', '2024-02-29 14:00:00', 4, 20, 0);
 
-INSERT INTO feedbacks (rate, content, create_date, account_id, product_id)
-VALUES (2, N'Giao hàng chậm và sản phẩm bị hỏng.', '2024-02-29 15:30:00', 5, 23);
+INSERT INTO feedbacks (rate, content, create_date, account_id, product_id, [status])
+VALUES (2, N'Giao hàng chậm và sản phẩm bị hỏng.', '2024-02-29 15:30:00', 5, 23, 0);
 
 --dữ liệu bảng voucher
 INSERT INTO vouchers (code, discount_amount, condition, valid_form, valid_to, create_date)
@@ -609,7 +612,42 @@ INSERT INTO orders (order_date, total_amount, [status], [address], account_id)
 VALUES ('2024-02-23', 1200000.80, N'Chờ xử lý', N'606 Đường NOP, Quận QRS, Thành phố HCM',9);
 INSERT INTO orders (order_date, total_amount, [status], [address], voucher_id, account_id)
 VALUES ('2024-02-24', 1750000.60, N'Đã giao hàng', N'707 Đường TUV, Quận WXY, Thành phố HCM', 3,10);
+
+INSERT INTO accounts VALUES
+('nv1', '1', 'nv123@example.com', 'Mary', 'Johnson', '987 Cedar Street, City F'),
+('nv2', '1', 'mary.johnson@example.com', 'Mary', 'Johnson', '987 Cedar Street, City F'),
+('director', '1', 'baotdps24392@fpt.edu.vn', 'Trịnh', 'Duy Bảo', 'FPT Polytechnic'),
+('mary_johnson', '123', 'mary.johnson@example.com', 'Mary', 'Johnson', '987 Cedar Street, City F'),
+('mary_johnson', '123', 'mary.johnson@example.com', 'Mary', 'Johnson', '987 Cedar Street, City F'),
+('peter_williams', '123', 'peter.williams@example.com', 'Peter', 'Williams', '654 Birch Street, City G'),
+('susan_anderson', '123', 'susan.anderson@example.com', 'Susan', 'Anderson', '321 Oakwood Street, City H'),
+('michael_thomas', '123', 'michael.thomas@example.com', 'Michael', 'Thomas', '852 Pineview Drive, City I'),
+('laura_miller', '123', 'laura.miller@example.com', 'Laura', 'Miller', '147 Willow Lane, City J'),
+('david_taylor', '123', 'david.taylor@example.com', 'David', 'Taylor', '369 Elm Avenue, City K'),
+('linda_wilson', '123', 'linda.wilson@example.com', 'Linda', 'Wilson', '753 Maple Road, City L'),
+('james_martin', '123', 'james.martin@example.com', 'James', 'Martin', '258 Cedar Avenue, City M'),
+('sarah_andrews', '123', 'sarah.andrews@example.com', 'Sarah', 'Andrews', '741 Pine Street, City N'),
+('steven_clark', '123', 'steven.clark@example.com', 'Steven', 'Clark', '963 Elm Street, City O');
+;
 	
+INSERT INTO roles (name)
+VALUES 
+('director'),
+('staff'),
+('user');
+
+INSERT INTO authorities (role_id, account_id) values
+(3,1),
+(3,2),
+(3,3),
+(3,4),
+(3,5),
+(3,6),
+(2,16),
+(2,17),
+(1,18);
+
+
 
 select * from items
 select * from categories
@@ -620,6 +658,8 @@ select * from vouchers
 select * from orders
 select * from authorities
 select * from roles
+
+delete from feedbacks
 
 
 

@@ -1,5 +1,8 @@
 package com.semicolons_book_store.interceptor;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -8,8 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.semicolons_book_store.service.CategoryService;
 import com.semicolons_book_store.service.ItemService;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+
 
 
 @Component

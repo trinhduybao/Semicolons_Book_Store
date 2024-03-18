@@ -1,12 +1,24 @@
 package com.semicolons_book_store.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
-import lombok.*;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
@@ -42,4 +54,70 @@ public class Order {
     @JsonIgnore
     @OneToMany(mappedBy = "order")
     private List<OrderDetail> orderDetails;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public LocalDateTime getOrderDate() {
+		return orderDate;
+	}
+
+	public void setOrderDate(LocalDateTime orderDate) {
+		this.orderDate = orderDate;
+	}
+
+	public BigDecimal getTotalAmount() {
+		return totalAmount;
+	}
+
+	public void setTotalAmount(BigDecimal totalAmount) {
+		this.totalAmount = totalAmount;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public Voucher getVoucher() {
+		return voucher;
+	}
+
+	public void setVoucher(Voucher voucher) {
+		this.voucher = voucher;
+	}
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+
+	public List<OrderDetail> getOrderDetails() {
+		return orderDetails;
+	}
+
+	public void setOrderDetails(List<OrderDetail> orderDetails) {
+		this.orderDetails = orderDetails;
+	}
+    
+    
 }
