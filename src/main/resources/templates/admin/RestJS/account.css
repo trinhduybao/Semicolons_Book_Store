@@ -1,0 +1,100 @@
+.toggleBtn {
+    background-color: #f4f4f4;
+    border: none;
+    border-radius: 10px; /* Điều chỉnh bo góc */
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    height: 20px; /* Điều chỉnh chiều cao */
+    width: 40px; /* Điều chỉnh chiều rộng */
+    padding: 2px;
+}
+
+.toggleBtn .slider {
+    background-color: #ccc;
+    border-radius: 10px; /* Điều chỉnh bo góc */
+    cursor: pointer;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: 0.4s;
+    width: 16px; /* Điều chỉnh chiều dài */
+    height: 16px; /* Điều chỉnh chiều rộng */
+}
+
+.toggleBtn .slider:before {
+    background-color: white;
+    border-radius: 50%;
+    content: '';
+    height: 14px; /* Điều chỉnh chiều cao */
+    left: 2px;
+    position: absolute;
+    top: 2px;
+    transition: 0.4s;
+    width: 14px; /* Điều chỉnh chiều rộng */
+}
+
+.toggleBtn input:checked + .slider {
+    background-color: #2196F3;
+}
+
+.toggleBtn input:checked + .slider:before {
+    transform: translateX(16px); /* Điều chỉnh vị trí của biểu tượng */
+}
+
+.toggleBtn input {
+    display: none;
+}
+
+.toggle-text {
+    color: #fff;
+    font-size: 10px; /* Điều chỉnh kích thước của văn bản */
+    line-height: 16px; /* Điều chỉnh độ cao của dòng */
+    padding-left: 4px;
+}
+
+/* Hiển thị modal khi nó được kích hoạt */
+.modal {
+    display: none; /* Ẩn modal mặc định */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+  }
+  
+  /* Nội dung modal */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 20% auto; /* Hiển thị modal ở giữa màn hình */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%; /* Điều chỉnh kích thước modal tại đây */
+  }
+  
+  /* Nút đóng modal */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .modal-buttons {
+    text-align: center;
+  }
+  
+  .modal-buttons button {
+    margin: 0 10px; 
+  }

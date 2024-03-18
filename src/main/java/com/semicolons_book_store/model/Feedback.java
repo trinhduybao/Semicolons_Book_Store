@@ -36,6 +36,9 @@ public class Feedback {
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
+	@Column(name = "ban")
+	private boolean ban;
+
 	public long getId() {
 		return id;
 	}

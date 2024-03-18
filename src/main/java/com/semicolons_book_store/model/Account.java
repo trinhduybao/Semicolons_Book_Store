@@ -35,6 +35,9 @@ public class Account {
     @Column(name = "address")
     private String address;
 
+	@Column(name = "ban")
+	private boolean ban;
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "account")
 	private List<Favorite> favorites;

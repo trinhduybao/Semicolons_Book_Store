@@ -45,6 +45,7 @@ create table accounts(
 	first_name nvarchar(100),
 	last_name nvarchar(100),
 	[address] nvarchar(500),
+	ban bit NOT NULL DEFAULT 0, 
 	primary key (id)
 )
 create table favorites(
@@ -62,6 +63,7 @@ create table feedbacks(
 	create_date datetime,
 	account_id int,
 	product_id int,
+	ban bit NOT NULL DEFAULT 0,
 	primary key (id),
 	foreign key (account_id) references accounts(id),
 	foreign key (product_id) references products(id)
@@ -204,7 +206,8 @@ VALUES  (N'Art & Photography', 3),
 		(N'Gương Mini',4)
 
 
-INSERT INTO accounts VALUES
+INSERT INTO accounts (username, password, email, first_name, last_name, address )
+VALUES
 ('mary_johnson', '123', 'mary.johnson@example.com', 'Mary', 'Johnson', '987 Cedar Street, City F'),
 ('peter_williams', '123', 'peter.williams@example.com', 'Peter', 'Williams', '654 Birch Street, City G'),
 ('susan_anderson', '123', 'susan.anderson@example.com', 'Susan', 'Anderson', '321 Oakwood Street, City H'),
@@ -214,9 +217,7 @@ INSERT INTO accounts VALUES
 ('linda_wilson', '123', 'linda.wilson@example.com', 'Linda', 'Wilson', '753 Maple Road, City L'),
 ('james_martin', '123', 'james.martin@example.com', 'James', 'Martin', '258 Cedar Avenue, City M'),
 ('sarah_andrews', '123', 'sarah.andrews@example.com', 'Sarah', 'Andrews', '741 Pine Street, City N'),
-('steven_clark', '123', 'steven.clark@example.com', 'Steven', 'Clark', '963 Elm Street, City O');
-
-INSERT INTO accounts VALUES
+('steven_clark', '123', 'steven.clark@example.com', 'Steven', 'Clark', '963 Elm Street, City O'),
 ('john_doe', '123', 'john.doe@example.com', 'John', 'Doe', '123 Main Street, City A'),
 ('jane_smith', '123', 'jane.smith@example.com', 'Jane', 'Smith', '456 Elm Street, City B'),
 ('mike_wilson', '123', 'mike.wilson@example.com', 'Mike', 'Wilson', '789 Oak Street, City C'),
@@ -611,6 +612,15 @@ INSERT INTO orders (order_date, total_amount, [status], [address], voucher_id, a
 VALUES ('2024-02-24', 1750000.60, N'Đã giao hàng', N'707 Đường TUV, Quận WXY, Thành phố HCM', 3,10);
 	
 
+update accounts set ban = 1 where id = 1
+update accounts set ban = 1 where id = 2
+update accounts set ban = 1 where id = 3
+update accounts set ban = 1 where id = 14
+update accounts set ban = 1 where id = 15
+
+update feedbacks set ban = 1 where id = 1
+update feedbacks set ban = 1 where id = 3
+
 select * from items
 select * from categories
 select * from products
@@ -620,6 +630,7 @@ select * from vouchers
 select * from orders
 select * from authorities
 select * from roles
+
 
 
 

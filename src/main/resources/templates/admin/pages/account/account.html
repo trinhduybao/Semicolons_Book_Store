@@ -553,13 +553,14 @@
                         <th>Email</th>
                         <th>FullName</th>
                         <th>Address</th>
-                        <!-- <th>Status</th> -->
+                        <th>Ban</th>
 
                       </thead>
                       <tbody id="tbody">
                       </tbody>
 
                     </table>
+                    
                   </div>
 
                 </div>
@@ -568,6 +569,17 @@
           </div>
           <!--end table category-->
         </div>
+          <!-- Modal -->
+        <div id="confirmationModal" class="modal">
+          <div class="modal-content">
+            <p id="confirmMessage"></p>
+            <div class="modal-buttons">
+              <button id="confirmYes">Yes</button>
+              <button id="confirmNo">No</button>
+            </div>
+          </div>
+        </div>
+        
         <!-- content-wrapper ends -->
         <!-- partial:../../partials/_footer.html -->
         <footer class="footer">
@@ -621,6 +633,9 @@
   <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
 
   <script src="../../RestJS/AccountRestJS.js"></script>
+  <link rel="stylesheet" href="../../RestJS/account.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
 </body>
 
 </html>
