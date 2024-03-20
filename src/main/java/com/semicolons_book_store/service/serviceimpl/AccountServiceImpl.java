@@ -17,10 +17,15 @@ public class AccountServiceImpl implements AccountService{
 		return accountRepository.findById(id).get();
 	}
 
-	@Override
+	/*@Override
 	public Account findByUser(String username) {
 		return accountRepository.findByUser(username);
+	}*/
+
+	@Override
+	public Account findByUsername(String username) {
+		return accountRepository.findByUsername(username);
 	}
 
-	
+
 }

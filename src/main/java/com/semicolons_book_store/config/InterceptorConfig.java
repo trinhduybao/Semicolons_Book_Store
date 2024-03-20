@@ -1,4 +1,4 @@
-package com.semicolons_book_store;
+package com.semicolons_book_store.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
