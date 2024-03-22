@@ -31,16 +31,21 @@ app.controller("ctrl-managerFeedback", function ($scope, $http, $timeout) {
                 },                              
                 {"data": "account.id"},
                 {"data": "product.id"},  
-                {"render" : function(data, type, row, meta) {
-                    return `
-                    
-                    <a  class="btn btn-success" ">Hiên</a>
-                    <a  class="btn btn-danger" ">Ẩn</a>
-  
-
+                {
+                    "data": "ban",
+                    "render": function (data, type, row, meta) {
+                        var id = row.id; // Lấy giá trị ID từ hàng
+                        var checkedAttribute = data ? 'checked' : ''; // Nếu data là true, checkbox sẽ được check
                 
-                    `
-                }}
+                        // Thêm sự kiện onclick và gọi hàm confirmChange
+                        return '<label class="toggleBtn">' +
+                                '<input type="checkbox" id="checkbox_' + id + '" ' + checkedAttribute + ' >' +
+                                '<span class="slider">' +
+                                '<i class="fas fa-power-off toggle-text"></i>' +
+                                '</span>' +
+                                '</label>';
+                    }
+                }
             ],
             "scrollX": true, 
             "scrollCollapse": true, 
@@ -68,4 +73,58 @@ app.controller("ctrl-managerFeedback", function ($scope, $http, $timeout) {
 
 getDataManagerFeedback();
 
+});
+
+$(document).ready(function() {
+    var modalOpen = false; // Biến để theo dõi trạng thái của modal
+
+    $('#managerfeedbackTable').on('click', 'input[type="checkbox"]', function() {
+        var checkbox = $(this);
+        var previousState = checkbox.prop('checked');
+        var id = checkbox.attr('id').replace('checkbox_', ''); // Lấy id của checkbox
+
+        $('#confirmationModal').css('display', 'block');
+        modalOpen = true; // Đặt trạng thái modal là đang mở
+
+        var message = previousState ? "Bạn có chắc chắn muốn ẩn đánh giá này không?" : "Bạn có chắc chắn muốn hiện đánh giá này không?";
+        $('#confirmMessage').text(message);
+
+        $('#confirmYes').click(function() {
+            // Tạm thời vô hiệu hóa checkbox
+            checkbox.prop('disabled', true);
+
+            var isChecked = checkbox.prop('checked');
+            $.ajax({
+                url: 'http://localhost:8080/rest/updateBanFeedback/' + id,
+                method: 'put',
+                data: {id: id, ban: isChecked},
+                success: function(response) {
+                    console.log('Dữ liệu đã được cập nhật thành công!');
+                    checkbox.prop('disabled', false); // Kích hoạt lại checkbox sau khi cập nhật thành công
+                    $('#confirmationModal').css('display', 'none');
+                    modalOpen = false; // Đặt trạng thái modal là đã đóng
+                },
+                error: function(xhr, status, error) {
+                    console.error('Lỗi: ' + error);
+                    checkbox.prop('disabled', false); // Kích hoạt lại checkbox nếu có lỗi
+                    $('#confirmationModal').css('display', 'none');
+                    modalOpen = false; // Đặt trạng thái modal là đã đóng
+                }
+            });
+        });
+
+        $('#confirmNo, .close').click(function() {
+            $('#confirmationModal').css('display', 'none');
+            modalOpen = false; // Đặt trạng thái modal là đã đóng
+        });
+    });
+
+    // Ngăn chặn sự kiện click trên checkbox khi modal đang hiển thị
+    $('#confirmationModal').on('shown.bs.modal', function() {
+        modalOpen = true;
+    });
+
+    $('#confirmationModal').on('hidden.bs.modal', function() {
+        modalOpen = false;
+    });
 });

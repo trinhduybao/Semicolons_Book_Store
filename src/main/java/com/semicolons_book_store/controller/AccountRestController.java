@@ -57,7 +57,7 @@ public class AccountRestController {
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping("/rest/updateBan/{id}")
+    @PutMapping("/rest/updateBanAccount/{id}")
     public ResponseEntity<Account> updateBanStatus(@PathVariable("id") Integer id, @RequestParam("ban") boolean ban) {
         if (!managerAccountRepository.existsById(id)) {
             return ResponseEntity.notFound().build();

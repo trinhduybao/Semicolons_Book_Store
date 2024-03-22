@@ -43,8 +43,8 @@
                 {"render" : function(data, type, row, meta) {
                     return `
                     
-                    <a  class="btn btn-success" ">Hiên</a>
-                    <a  class="btn btn-danger" ">Ẩn</a>
+                    <a  class="btn btn-success" ">Chỉnh sửa</a>
+                    <a  class="btn btn-danger" ">Xoá</a>
   
 
                 

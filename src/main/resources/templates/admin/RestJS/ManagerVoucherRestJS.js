@@ -205,4 +205,99 @@ async function deleteVoucherManager(id) {
       console.error('ID is undefined or empty.');
   }
   };
+
+  function validateForm() {
+    var code = document.getElementById("code").value;
+    var condition = document.getElementById("condition").value;
+    var discountAmount = document.getElementById("discountAmount").value;
+    var validFrom = document.getElementById("validFrom").value;
+    var validTo = document.getElementById("validTo").value;
+    var createDate = document.getElementById("createDate").value;
+
+    
+    var today = new Date().toISOString().split('T')[0]; // Lấy ngày hôm nay
+
+
+    codeError.innerHTML = "";
+    conditionError.innerHTML = "";
+    discountAmountError.innerHTML = "";
+    validFromError.innerHTML = "";
+    validFromError.innerHTML = "";
+    validToError.innerHTML = "";
+    createDateError.innerHTML = "";
+
+    var isValid = true;
+
+    // Kiểm tra mỗi trường và hiển thị thông báo lỗi nếu cần
+    if (code.trim() === "") {
+        codeError.innerHTML = "Vui lòng nhập mã khuyến mãi.";
+        isValid = false;
+    }
+
+    if (condition.trim() === "") {
+        conditionError.innerHTML = "Vui lòng nhập điều kiện giảm giá.";
+        isValid = false;
+    } else if (isNaN(condition)) {
+        conditionError.innerHTML = "Điều kiện giảm giá phải là một số.";
+        isValid = false;
+    } else if(parseFloat(condition) < 0) {
+        conditionError.innerHTML = "Điều kiện giảm giá không được là số âm.";
+        isValid = false;
+    }
+    if (discountAmount.trim() === "") {
+        discountAmountError.innerHTML = "Vui lòng nhập phần trăm khuyến mãi.";
+        isValid = false;
+    } else if (isNaN(discountAmount)) {
+        discountAmountError.innerHTML = "Phần trăm khuyến mãi phải là một số.";
+        isValid = false;
+    } else if (parseFloat(discountAmount) <= 0 || parseFloat(discountAmount) >= 100) {
+        discountAmountError.innerHTML = "Phần trăm khuyến mãi phải nằm trong khoảng từ 1 đến 99.";
+        isValid = false;
+    }
+    
+    if (validFrom.trim() === "") {
+        validFromError.innerHTML = "Vui lòng nhập ngày bắt đầu.";
+        isValid = false;
+    } else if (validFrom < today) {
+        validFromError.innerHTML = "Ngày bắt đầu phải trước hoặc bằng ngày hôm nay.";
+        isValid = false;
+    }
+    if (validTo.trim() === "") {
+        validToError.innerHTML = "Vui lòng chọn ngày kết thúc.";
+        isValid = false;
+    } else if (validTo < today) {
+        validToError.innerHTML = "Ngày kết thúc phải trước hoặc bằng ngày hôm nay.";
+        isValid = false;
+    }
+
+    if (createDate.trim() === "") {
+        createDateError.innerHTML = "Vui lòng chọn ngày tạo mã.";
+        isValid = false;
+    } else {
+        var selectedDate = new Date(createDate);
+        var today = new Date();
+        var todayString = today.toISOString().slice(0, 16); // Lấy ngày hôm nay dưới dạng chuỗi yyyy-mm-dd
+        var selectedDateString = selectedDate.toISOString().slice(0, 16); // Lấy ngày được chọn dưới dạng chuỗi yyyy-mm-dd
+    
+        if (selectedDateString !== todayString) {
+            createDateError.innerHTML = "Ngày tạo mã phải là ngày hôm nay.";
+            isValid = false;
+        }
+    }if (createDate.trim() === "") {
+        createDateError.innerHTML = "Vui lòng chọn ngày tạo mã.";
+        isValid = false;
+    } else {
+        var selectedDate = new Date(createDate);
+        var today = new Date();
+        var todayString = today.toISOString().slice(0, 16); // Lấy ngày hôm nay dưới dạng chuỗi yyyy-mm-dd
+        var selectedDateString = selectedDate.toISOString().slice(0, 16); // Lấy ngày được chọn dưới dạng chuỗi yyyy-mm-dd
+    
+        if (selectedDateString !== todayString) {
+            createDateError.innerHTML = "Ngày tạo mã phải là ngày hôm nay.";
+            isValid = false;
+        }
+    }
+
+    return isValid;
+}
   

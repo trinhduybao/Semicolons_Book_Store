@@ -10,13 +10,7 @@ app.controller("ctrl", function ($scope, $http, $timeout) {
     $scope.form = {};
     $scope.key = null;  
   };
-  function formatBanStatus(data) {
-    if (data === true) { 
-        return '<button type="button" class="btn btn-sm btn-toggle active" data-toggle="button" aria-pressed="true" autocomplete="off"><div class="handle"></div></button>';
-    } else { 
-        return '<button type="button" class="btn btn-sm btn-toggle active" data-toggle="button" aria-pressed="false" autocomplete="on"><div class="handle"></div></button>';
-    }
-}
+  
 
 
 
@@ -105,7 +99,7 @@ $(document).ready(function() {
 
             var isChecked = checkbox.prop('checked');
             $.ajax({
-                url: 'http://localhost:8080/rest/updateBan/' + id,
+                url: 'http://localhost:8080/rest/updateBanAccount/' + id,
                 method: 'put',
                 data: {id: id, ban: isChecked},
                 success: function(response) {

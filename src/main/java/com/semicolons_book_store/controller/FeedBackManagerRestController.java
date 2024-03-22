@@ -56,5 +56,16 @@ public class FeedBackManagerRestController {
         return ResponseEntity.ok().build();
     }
 
+    @PutMapping("/rest/updateBanFeedback/{id}")
+    public ResponseEntity<Feedback> updateBanStatus(@PathVariable("id") Long id, @RequestParam("ban") boolean ban) {
+        if (!managerFeedbackRepository.existsById(id)) {
+            return ResponseEntity.notFound().build();
+        }
+        Feedback feedback = managerFeedbackRepository.findById(id).get();
+        feedback.setBan(ban); // Cập nhật trạng thái ban
+        managerFeedbackRepository.save(feedback); // Lưu thay đổi vào cơ sở dữ liệu
+
+        return ResponseEntity.ok(feedback);
+    }
 
 }
