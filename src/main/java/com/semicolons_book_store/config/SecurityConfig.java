@@ -36,9 +36,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         //Phân quyền sử dụng
         http.authorizeRequests()
-                /*.antMatchers("/home/admin").hasRole("ADMIN")//Phân quyền
-                .antMatchers("/").hasAnyRole("ADMIN", "USER")*/
-                //.antMatchers("/checkout","/profile").authenticated() //Yêu Cầu Phải Đăng Nhập
+                .antMatchers("/home/admin").hasRole("director")//Phân quyền
+//                .antMatchers("/").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/checkout","/profile").authenticated() //Yêu Cầu Phải Đăng Nhập
                 .anyRequest().permitAll(); //truy cập từ mọi nơi
 
         //Điều khiển lỗi truy cập không đúng vai trò
@@ -50,7 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin()
                 .loginPage("/login/form")
                 .loginProcessingUrl("/login")
-                .defaultSuccessUrl("/login/success", false)
+                .defaultSuccessUrl("/")
                 .failureUrl("/login/error")
                 .usernameParameter("username")
                 .passwordParameter("password");

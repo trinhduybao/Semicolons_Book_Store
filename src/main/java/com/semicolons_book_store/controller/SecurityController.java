@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class SecurityController {
     @Autowired
     AccountService accountService;
+    
     @Autowired
     SessionService sessionService;
 

@@ -58,6 +58,8 @@ public class Authority {
 	public void setAccount(Account account) {
 		this.account = account;
 	}
+
+	
     
     
 }

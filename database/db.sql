@@ -636,15 +636,15 @@ VALUES
 
 --dữ liệu mẫu bảng authorities
 INSERT INTO authorities (role_id, account_id) values
-                                                  (3,1),
-                                                  (3,2),
-                                                  (3,3),
+                                                  (2,1),
+                                                  (2,2),
+                                                  (1,3),
                                                   (3,4),
                                                   (3,5),
                                                   (3,6),
-                                                  (2,10),
-                                                  (2,11),
-                                                  (1,12);
+                                                  (3,10),
+                                                  (3,11),
+                                                  (3,12);
 
 
 
