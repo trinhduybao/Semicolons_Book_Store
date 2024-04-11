@@ -1,6 +1,6 @@
-const app = angular.module("shopping-cart-app", []);
+const app = angular.module("checkout-cart-app", []);
 
-app.controller("shopping-cart-ctrl", function($scope, $http) {
+app.controller("checkout-cart-ctrl", function($scope, $http) {
     $scope.cart = {
         items: [],
         add(id) {
@@ -47,7 +47,7 @@ app.controller("shopping-cart-ctrl", function($scope, $http) {
         get count() {
             return this.items.map(item => item.qty).reduce((total, qty) => total += qty, 0);
         },
-        get mount() {
+        get count() {
             return this.items.map(item => item.qty * item.price).reduce((total, qty) => total += qty, 0);
         },
         saveToLocalStorage() {
@@ -60,5 +60,46 @@ app.controller("shopping-cart-ctrl", function($scope, $http) {
         }
     };
 
+    $scope.address = "123 asd"; // Khai báo biến address và gán giá trị mặc định
+    $scope.voucherId = 1; // Khai báo biến voucherId và gán giá trị mặc định
+    $scope.id = 1; // Khai báo biến id và gán giá trị mặc định
+    
+$scope.placeOrder = function() {
+    var orderData = {
+        orderDate: new Date(),
+        totalAmount: $scope.cart.count,
+        status: "Đã đặt hàng",
+        address: $scope.address, // Sử dụng biến address đã được khai báo
+        voucherId: $scope.voucherId,
+        accountId: $scope.id
+    };
+
+    $http.post('http://localhost:8080/rest/place-order', orderData)
+        .then(function(response) {
+            console.log("Đặt hàng thành công:", response.data);
+            alert("Đặt hàng thành công!");
+        })
+        .catch(function(error) {
+            console.error("Đã xảy ra lỗi khi đặt hàng:", error);
+            alert("Đã xảy ra lỗi khi đặt hàng!");
+        });
+};
+
+
+
     $scope.cart.loadFromLocalStorage();
 });
+
+
+fetch('/current')
+    .then(response => response.json())
+    .then(user => {
+        // Xử lý dữ liệu người dùng
+        console.log(user);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+
+
+

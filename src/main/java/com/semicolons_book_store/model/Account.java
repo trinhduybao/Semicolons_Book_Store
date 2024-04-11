@@ -154,7 +154,19 @@ public class Account {
 		this.orders = orders;
 	}
 
-	
-    
-    
+
+	@Override
+	public String toString() {
+		return "Account{" +
+				"id=" + id +
+				", username='" + username + '\'' +
+				", email='" + email + '\'' +
+				", firstName='" + firstName + '\'' +
+				", lastName='" + lastName + '\'' +
+				", address='" + address + '\'' +
+				", ban=" + ban +
+				'}';
+	}
+
+
 }

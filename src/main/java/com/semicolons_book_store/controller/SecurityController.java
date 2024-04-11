@@ -23,13 +23,21 @@ public class SecurityController {
 
     @RequestMapping("/security/login/success")
     public String loginSuccess(Model model){
+
     	model.addAttribute("message", "Đăng nhập thành công");
         return "redirect:/product/list";
     }
 
-    @RequestMapping("/login/error")
+    @RequestMapping("/security/login/error")
     public String loginError(Model model){
         model.addAttribute("message", "Sai thông tin của Tài Khoản !");
+        return "customer/page/login2";
+    }
+
+
+    @RequestMapping("/security/login/ban")
+    public String loginBan(Model model){
+        model.addAttribute("message", "Tài khoản của bạn đã bị khoá !");
         return "customer/page/login2";
     }
 
