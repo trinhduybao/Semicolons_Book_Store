@@ -36,34 +36,34 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         //Phân quyền sử dụng
         http.authorizeRequests()
-                .antMatchers("/home/admin").hasRole("director")//Phân quyền
-//                .antMatchers("/").hasAnyRole("ADMIN", "USER")
-                .antMatchers("/checkout","/profile").authenticated() //Yêu Cầu Phải Đăng Nhập
+                //.antMatchers("/home/admin").hasRole("director")//Phân quyền
+               	.antMatchers("/admin/**").hasAnyRole("staff", "director")
+                .antMatchers("/order/**").authenticated() //Yêu Cầu Phải Đăng Nhập
                 .anyRequest().permitAll(); //truy cập từ mọi nơi
 
         //Điều khiển lỗi truy cập không đúng vai trò
         http.exceptionHandling()
-                        .accessDeniedPage("/unauthoried");
+                        .accessDeniedPage("/security/unauthoried");
 
 
         //Giao diện đăng nhập
         http.formLogin()
-                .loginPage("/login/form")
-                .loginProcessingUrl("/login")
-                .defaultSuccessUrl("/")
-                .failureUrl("/login/error")
+		        .loginPage("/security/login/form")
+				.loginProcessingUrl("/security/login")
+				.defaultSuccessUrl("/security/login/success", false)
+				.failureUrl("/security/login/error")
                 .usernameParameter("username")
                 .passwordParameter("password");
 
         /*http.sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.ALWAYS);*/
 
-        /*http.rememberMe()
-                .tokenValiditySeconds(86400);*/
+        http.rememberMe()
+                .tokenValiditySeconds(86400);
 
         http.logout()
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/logout/success");
+		.logoutUrl("/security/logoff")
+		.logoutSuccessUrl("/security/logoff/success");
 
         /*http.oauth2Login()
                 .loginPage("/auth/login/form")

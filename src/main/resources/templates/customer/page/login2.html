@@ -16,8 +16,8 @@
                     <div class="login_box_img">
                         <div class="hover">
                             <h4>Bạn mới ghé thăm trang web của chúng tôi?</h4>
-                            <p>Dành thời gian để khám phá trang web của chúng tôi! Cập nhật với những sản phẩm máy ảnh
-                                với công nghệ mới nhất và những cải tiến độc đáo.</p>
+                            <p>Dành thời gian để khám phá trang web của chúng tôi! Cập nhật với những cuốn sách mới
+                                với những câu chuyện bổ ích.</p>
                             <a class="button button-account" href="../register.html">Tạo tài khoản</a>
                         </div>
                     </div>
@@ -25,7 +25,7 @@
                 <div class="col-lg-6">
                     <div class="login_form_inner">
                         <h3>Đăng nhập để Mua sắm</h3>
-                        <form class="row login_form" th:action="@{/login}" method="post" >
+                        <form class="row login_form" th:action="@{/security/login}" method="post" >
                             <div class="col-md-12 form-group">
                                 <input type="text" class="form-control" name="username"
                                        placeholder="Tên đăng nhập"
@@ -42,7 +42,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12 form-group">
-                                <span class="text-center message-error" th:text="${message}"></span>
+                                <span class="text-center message-error text-danger" th:text="${message}"></span>
                                 <button type="submit" class="button button-login w-100 m-2">Đăng Nhập
                                 </button>
                                 <a href="forgotpassword.html">Quên mật khẩu ?</a>

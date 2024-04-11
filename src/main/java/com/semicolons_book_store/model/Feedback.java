@@ -98,6 +98,15 @@ public class Feedback {
 		this.product = product;
 	}
 
+	public boolean isBan() {
+		return ban;
+	}
+
+	public void setBan(boolean ban) {
+		this.ban = ban;
+	}
+
+	
     
 }
 

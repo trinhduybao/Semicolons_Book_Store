@@ -21,4 +21,11 @@ public class IndexController {
 		return"customer/confirmation";
 	}
 	
+	@RequestMapping("/login/view")
+	public String login(Model model) {
+		return"customer/page/login2";
+	}
+	
+	
+	
 }

@@ -15,14 +15,16 @@ public class SecurityController {
     @Autowired
     SessionService sessionService;
 
-    @RequestMapping("/login/form")
-    public String loginForm(){
+    @RequestMapping("/security/login/form")
+    public String loginForm(Model model){
+    	model.addAttribute("message", "Vui lòng đăng nhập");
         return "customer/page/login2";
     }
 
-    @RequestMapping("/login/success")
-    public String loginSuccess(){
-        return "redirect:/shop";
+    @RequestMapping("/security/login/success")
+    public String loginSuccess(Model model){
+    	model.addAttribute("message", "Đăng nhập thành công");
+        return "redirect:/product/list";
     }
 
     @RequestMapping("/login/error")
