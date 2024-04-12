@@ -65,14 +65,18 @@ app.controller("checkout-cart-ctrl", function($scope, $http) {
     $scope.id = 1; // Khai báo biến id và gán giá trị mặc định
     
 $scope.placeOrder = function() {
+    var currentDate = new Date(); // Tạo một đối tượng Date mới, đại diện cho thời gian hiện tại
+var currentDateTime = currentDate.toISOString(); // Chuyển đổi đối tượng Date thành chuỗi ISO để lấy cả ngày và giờ
+
     var orderData = {
-        orderDate: new Date(),
+        orderDate: currentDateTime, // Sử dụng thời gian hiện tại đã được chuyển đổi thành chuỗi
         totalAmount: $scope.cart.count,
         status: "Đã đặt hàng",
-        address: $scope.address, // Sử dụng biến address đã được khai báo
+        address: $scope.address,
         voucherId: $scope.voucherId,
         accountId: $scope.id
     };
+    
 
     $http.post('http://localhost:8080/rest/place-order', orderData)
         .then(function(response) {
