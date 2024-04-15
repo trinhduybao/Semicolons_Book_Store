@@ -125,14 +125,14 @@
 
 
 	<!--================Single Product Area =================-->
-	<div class="product_image_area" th:object="${item}">
+	<div class="product_image_area"  th:object="${item}">
 		<div class="container">
 			<div class="row s_product_inner">
 				<div class="col-lg-6">
-					<div class="owl-carousel owl-theme s_Product_carousel">
+					<div class="owl-theme s_Product_carousel mt-5"> <!-- owl-carousel -->
 						<div class="single-prd-item">
-							<img class="img-fluid"
-								th:src="@{|/customer/img/product/book/${item.thumbnailImage}|}"
+							<img class="card-img"
+								th:src="@{|/customer/img/books/${item.thumbnailImage}|}"
 								alt="">
 						</div>
 					</div>

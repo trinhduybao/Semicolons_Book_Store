@@ -31,7 +31,7 @@ public class Product {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "thumbnail_image", nullable = false)
+    @Column(name = "thumbnail_image")
     private String thumbnailImage;
 
     @Column(name = "name", nullable = false)
@@ -253,6 +253,39 @@ public class Product {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
-    
+
+	public List<Favorite> getFavorites() {
+		return favorites;
+	}
+
+	public void setFavorites(List<Favorite> favorites) {
+		this.favorites = favorites;
+	}
+
+	public List<Feedback> getFeedbacks() {
+		return feedbacks;
+	}
+
+	public void setFeedbacks(List<Feedback> feedbacks) {
+		this.feedbacks = feedbacks;
+	}
+
+	public List<ProductImage> getProductImages() {
+		return productImages;
+	}
+
+	public void setProductImages(List<ProductImage> productImages) {
+		this.productImages = productImages;
+	}
+
+	public List<OrderDetail> getOrderDetails() {
+		return orderDetails;
+	}
+
+	public void setOrderDetails(List<OrderDetail> orderDetails) {
+		this.orderDetails = orderDetails;
+	}
+
+	
     
 }
