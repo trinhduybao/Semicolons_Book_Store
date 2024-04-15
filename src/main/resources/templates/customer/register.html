@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Aroma Shop - Login</title>
+  <link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+
+<!-- Latest compiled JavaScript -->
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 	<link rel="icon" href="/customer/img/Fevicon.png" type="image/png">
   <link rel="stylesheet" href="/customer/vendors/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="/customer/vendors/fontawesome/css/all.min.css">
@@ -15,68 +22,83 @@
   <link rel="stylesheet" href="/customer/vendors/nice-select/nice-select.css">
   <link rel="stylesheet" href="/customer/vendors/nouislider/nouislider.min.css">
   <link rel="stylesheet" href="/customer/css/style.css">
+  <script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="/angular-shop/shopping-cart-app.js"></script>
 </head>
-<body>
+<body ng-app="shopping-cart-app" ng-controller="shopping-cart-ctrl">
 	<!--================ Start Header Menu Area =================-->
 	<header class="header_area">
-    <div class="main_menu">
-      <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container">
-          <a class="navbar-brand logo_h" href="index.html"><img src="img/logo.png" alt=""></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-            <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-              <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-              <li class="nav-item submenu dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                  aria-expanded="false">Shop</a>
-                <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="category.html">Shop Category</a></li>
-                  <li class="nav-item"><a class="nav-link" href="single-product.html">Blog Details</a></li>
-                  <li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li>
-                  <li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li>
-                  <li class="nav-item"><a class="nav-link" href="cart.html">Shopping Cart</a></li>
-                </ul>
-							</li>
-              <li class="nav-item submenu dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                  aria-expanded="false">Blog</a>
-                <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                  <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
-                </ul>
-							</li>
-							<li class="nav-item active submenu dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                  aria-expanded="false">Pages</a>
-                <ul class="dropdown-menu">
+		<div class="main_menu">
+			<nav class="navbar navbar-expand-lg navbar-light">
+				<div class="container">
+					<a class="navbar-brand logo_h" th:href="@{/}"><img
+						src="/customer/img/logo.png" alt=""></a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse"
+						data-target="#navbarSupportedContent"
+						aria-controls="navbarSupportedContent" aria-expanded="false"
+						aria-label="Toggle navigation">
+						<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<div class="collapse navbar-collapse offset"
+						id="navbarSupportedContent">
+						<ul class="nav navbar-nav menu_nav ml-auto mr-auto">
+							<li class="nav-item active"><a class="nav-link"
+								href="index.html">Home</a></li>
+							<li class="nav-item submenu dropdown"><a
+								th:href="@{/product/list}" class="nav-link dropdown-toggle"
+								data-toggle="" role="button" aria-haspopup="true"
+								aria-expanded="false">Shop</a>
+								<ul class="dropdown-menu">
+									<li class="nav-item"><a class="nav-link"
+										href="checkout.html">Product Checkout</a></li>
+									<li class="nav-item"><a class="nav-link"
+										th:href="@{/confirmation/view}">Confirmation</a></li>
+									<li class="nav-item"><a class="nav-link" href="cart.html">Shopping
+											Cart</a></li>
+								</ul></li>
+							<!-- <li class="nav-item submenu dropdown"><a href="#"
+								class="nav-link dropdown-toggle" data-toggle="dropdown"
+								role="button" aria-haspopup="true" aria-expanded="false">Blog</a>
+								<ul class="dropdown-menu">
+									<li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+									<li class="nav-item"><a class="nav-link"
+										href="single-blog.html">Blog Details</a></li>
+								</ul></li> -->
+							<!-- <li class="nav-item submenu dropdown"><a href="#"
+								class="nav-link dropdown-toggle" data-toggle="dropdown"
+								role="button" aria-haspopup="true" aria-expanded="false">Pages</a>
+								<ul class="dropdown-menu">
 									<li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
-                  <li class="nav-item"><a class="nav-link" href="register.html">Register</a></li>									
-                  <li class="nav-item"><a class="nav-link" href="tracking-order.html">Tracking</a></li>
-                </ul>
-              </li>
-              <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-            </ul>
+									<li class="nav-item"><a class="nav-link"
+										href="register.html">Register</a></li>
+									<li class="nav-item"><a class="nav-link"
+										href="tracking-order.html">Tracking</a></li>
+								</ul></li> -->
+							<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+						</ul>
 
-            <ul class="nav-shop">
-              <li class="nav-item"><button><i class="ti-search"></i></button></li>
-              <li class="nav-item"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button> </li>
-              <li class="nav-item"><a class="button button-header" href="#">Buy Now</a></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </div>
-  </header>
+						<ul class="nav-shop">
+							<!-- <li class="nav-item"><button>
+									<i class="ti-search"></i>
+								</button></li> -->
+							<li class="nav-item"><button>
+									<a th:href="@{/cart/view}" class="ti-shopping-cart text-dark"></a><span
+										class="nav-shop__circle">{{cart.count}}</span>
+								</button></li>
+							<li class="nav-item"><a class="button button-header"
+								th:href="@{/login/view}">Login</a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</div>
+	</header>
 	<!--================ End Header Menu Area =================-->
   
   <!-- ================ start banner area ================= -->	
-	<section class="blog-banner-area" id="category">
+	<!-- <section class="blog-banner-area" id="category">
 		<div class="container h-100">
 			<div class="blog-banner">
 				<div class="text-center">
@@ -90,7 +112,7 @@
 				</div>
 			</div>
     </div>
-	</section>
+	</section> -->
 	<!-- ================ end banner area ================= -->
   
   <!--================Login Box Area =================-->
@@ -113,9 +135,6 @@
 							<div class="col-md-12 form-group">
 								<input type="text" class="form-control" id="name" name="name" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
 							</div>
-							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="email" name="email" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'">
-              </div>
               <div class="col-md-12 form-group">
 								<input type="text" class="form-control" id="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
               </div>

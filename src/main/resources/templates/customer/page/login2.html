@@ -18,13 +18,13 @@
                             <h4>Bạn mới ghé thăm trang web của chúng tôi?</h4>
                             <p>Dành thời gian để khám phá trang web của chúng tôi! Cập nhật với những cuốn sách mới
                                 với những câu chuyện bổ ích.</p>
-                            <a class="button button-account" href="../register.html">Tạo tài khoản</a>
+                            <a class="button button-account" th:href="@{/register/view}">Sign up</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="login_form_inner">
-                        <h3>Đăng nhập để Mua sắm</h3>
+                        <h3>Login to buy</h3>
                         <form class="row login_form" th:action="@{/security/login}" method="post" >
                             <div class="col-md-12 form-group">
                                 <input type="text" class="form-control" name="username"

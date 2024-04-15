@@ -26,6 +26,9 @@ public class IndexController {
 		return"customer/page/login2";
 	}
 	
-	
+	@RequestMapping("/register/view")
+	public String register(Model model) {
+		return"customer/register";
+	}
 	
 }
