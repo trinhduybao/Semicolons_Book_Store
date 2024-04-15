@@ -56,4 +56,7 @@ public class SecurityService implements UserDetailsService {
         Authentication auth = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(auth);
     }*/
+    public Account findAccountByUsername(String username) {
+        return accountService.findByUsername(username);
+    }
 }

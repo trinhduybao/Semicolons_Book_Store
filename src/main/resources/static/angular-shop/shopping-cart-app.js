@@ -45,5 +45,103 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
 			this.items = json ? JSON.parse(json) : [];
 		}
 	}
+    
+        $scope.placeOrder = function() {
+            // Sử dụng fetch API để lấy thông tin tài khoản và địa chỉ từ máy chủ
+            fetch('/current')
+                .then(response => response.json())
+                .then(user => {
+                    // Lấy thông tin tài khoản và địa chỉ từ dữ liệu user
+                    var accountId = user.id;
+                    var address = user.address.address;
+        
+                    // Tạo dữ liệu đơn hàng
+                    var currentDate = new Date();
+                    var formattedDate = currentDate.toISOString().slice(0, 19).replace('T', ' ');
+
+                    var cartItems = JSON.parse(localStorage.getItem('cart'));
+
+                    var productList = cartItems.map(function(item) {
+                        return { 
+                            count: item.count, 
+                            productId: item.id,
+                            quantity: item.qty,
+                            count: item.price
+                        };
+                    });
+                    
+                
+                    console.log(productList);
+
+                    var orderData = {
+                        orderDate: formattedDate,
+                        totalAmount: $scope.cart.mount,
+                        status: "Đã đặt hàng",
+                        address: address,
+                        voucherId: $scope.voucherId,
+                        accountId: accountId,
+                        items: productList
+                    };
+        
+                    // Gửi yêu cầu đặt hàng lên server
+                    $http.post('http://localhost:8080/rest/place-order', JSON.stringify(orderData), {
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                    .then(function(response) {
+                        console.log("Đặt hàng thành công:", response.data);
+                        alert("Đặt hàng thành công!");
+        
+                        // Xóa dữ liệu trong giỏ hàng
+                        // clearCart();
+        
+                        // Chuyển hướng người dùng về trang mua sắm
+                        // window.location.href = '/product/list';
+                    })
+                    .catch(function(error) {
+                        console.error("Đã xảy ra lỗi khi đặt hàng:", error);
+                        alert("Đã xảy ra lỗi khi đặt hàng!");
+                        console.log("Data to be sent:", JSON.stringify(orderData));
+
+
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        };
+    
+    function clearCart() {
+        localStorage.removeItem('cart');
+
+    };
+    
+
+
 	$scope.cart.loadFromLocalStorage();
 })
+
+
+
+
+
+
+   
+    
+    
+
+
+
+// fetch('/current')
+//     .then(response => response.json())
+//     .then(user => {
+//         // Xử lý dữ liệu người dùng
+//         console.log(user);
+//     })
+//     .catch(error => {
+//         console.error('Error:', error);
+//     });
+
+
+

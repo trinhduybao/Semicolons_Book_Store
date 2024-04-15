@@ -3,14 +3,17 @@ package com.semicolons_book_store.controller;
 import java.util.Comparator;
 import java.util.Optional;
 
+import com.semicolons_book_store.model.Order;
+import com.semicolons_book_store.model.OrderDetail;
+import com.semicolons_book_store.repository.OrderDetailRepository;
+import com.semicolons_book_store.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import com.semicolons_book_store.model.Product;
 import com.semicolons_book_store.service.ProductService;
@@ -50,4 +53,11 @@ public class ProductController {
 		model.addAttribute("item", item);
 		return"customer/single-product";
 	}
+
+	@RequestMapping("/order/checkout")
+	public String checkout(Model model) {
+		return"customer/checkout";
+	}
+
+
 }
