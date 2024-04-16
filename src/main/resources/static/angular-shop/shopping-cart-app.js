@@ -94,10 +94,10 @@ app.controller("shopping-cart-ctrl", function($scope, $http){
                         alert("Đặt hàng thành công!");
         
                         // Xóa dữ liệu trong giỏ hàng
-                        // clearCart();
+                        clearCart();
         
                         // Chuyển hướng người dùng về trang mua sắm
-                        // window.location.href = '/product/list';
+                        window.location.href = '/product/list';
                     })
                     .catch(function(error) {
                         console.error("Đã xảy ra lỗi khi đặt hàng:", error);
