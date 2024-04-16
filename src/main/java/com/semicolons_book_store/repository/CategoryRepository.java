@@ -10,7 +10,7 @@ import java.util.List;
 public interface CategoryRepository extends JpaRepository<Category, Integer> {
     boolean existsByName(String name);
 
-    List<Category> findByItemId(Long itemId);
+    List<Category> findByItemId(Integer itemId);
 
 
 }

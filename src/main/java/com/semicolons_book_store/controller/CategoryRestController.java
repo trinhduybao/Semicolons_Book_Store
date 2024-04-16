@@ -65,7 +65,7 @@ public class CategoryRestController {
 
 
     @GetMapping("/byItemId/{itemId}")
-    public ResponseEntity<List<Category>> findByItemId(@PathVariable Long itemId) {
+    public ResponseEntity<List<Category>> findByItemId(@PathVariable Integer itemId) {
         List<Category> categories = categoryRepository.findByItemId(itemId);
         return ResponseEntity.ok(categories);
     }

@@ -17,7 +17,7 @@ import java.util.Map;
 public class FileUploadRestController {
 
     // Thư mục để lưu trữ ảnh
-    private static String UPLOADED_FOLDER = "src/main/resources/static/customer/img/product/book";
+    private static String UPLOADED_FOLDER = "src/main/resources/static/customer/img/books";
 
     @RequestMapping("/api/upload")
     public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file) {
@@ -37,4 +37,6 @@ public class FileUploadRestController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Lỗi khi tải lên tệp: " + e.getMessage());
         }
     }
+
+
 }

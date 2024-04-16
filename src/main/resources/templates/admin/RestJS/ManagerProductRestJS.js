@@ -245,6 +245,7 @@ async function createOrUpdateProduct() {
 
         if (responseProduct.ok) {
             console.log("Product created or updated successfully");
+            alert("Thêm sản phẩm thành công");
             window.location.reload();
         } else {
             console.error("Failed to create or update product", responseProduct);
