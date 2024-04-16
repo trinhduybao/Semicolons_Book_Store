@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Aroma Shop - Profile</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+
+<!-- Latest compiled JavaScript -->
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="icon" href="/customer/img/Fevicon.png" type="image/png">
+<link rel="stylesheet"
+	href="/customer/vendors/bootstrap/bootstrap.min.css">
+<link rel="stylesheet"
+	href="/customer/vendors/fontawesome/css/all.min.css">
+<link rel="stylesheet"
+	href="/customer/vendors/themify-icons/themify-icons.css">
+<link rel="stylesheet" href="/customer/vendors/linericon/style.css">
+<link rel="stylesheet"
+	href="/customer/vendors/owl-carousel/owl.theme.default.min.css">
+<link rel="stylesheet"
+	href="/customer/vendors/owl-carousel/owl.carousel.min.css">
+<link rel="stylesheet"
+	href="/customer/vendors/nice-select/nice-select.css">
+<link rel="stylesheet"
+	href="/customer/vendors/nouislider/nouislider.min.css">
+<link rel="stylesheet" href="/customer/css/style.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="/angular-shop/shopping-cart-app.js"></script>
+</head>
+<body ng-app="shopping-cart-app" ng-controller="shopping-cart-ctrl">
+	<header class="header_area">
+		<div class="main_menu">
+			<nav class="navbar navbar-expand-lg navbar-light">
+				<div class="container">
+					<a class="navbar-brand logo_h" th:href="@{/}"><img
+						src="/customer/img/logo.png" alt=""></a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse"
+						data-target="#navbarSupportedContent"
+						aria-controls="navbarSupportedContent" aria-expanded="false"
+						aria-label="Toggle navigation">
+						<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<div class="collapse navbar-collapse offset"
+						id="navbarSupportedContent">
+						<ul class="nav navbar-nav menu_nav ml-auto mr-auto">
+							<li class="nav-item active"><a class="nav-link"
+								href="index.html">Home</a></li>
+							<li class="nav-item submenu dropdown"><a
+								th:href="@{/product/list}" class="nav-link dropdown-toggle"
+								data-toggle="" role="button" aria-haspopup="true"
+								aria-expanded="false">Shop</a>
+								<ul class="dropdown-menu">
+									<li class="nav-item"><a class="nav-link"
+										href="checkout.html">Product Checkout</a></li>
+									<li class="nav-item"><a class="nav-link"
+										th:href="@{/confirmation/view}">Confirmation</a></li>
+									<li class="nav-item"><a class="nav-link" href="cart.html">Shopping
+											Cart</a></li>
+								</ul></li>
+							<!-- <li class="nav-item submenu dropdown"><a href="#"
+								class="nav-link dropdown-toggle" data-toggle="dropdown"
+								role="button" aria-haspopup="true" aria-expanded="false">Blog</a>
+								<ul class="dropdown-menu">
+									<li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+									<li class="nav-item"><a class="nav-link"
+										href="single-blog.html">Blog Details</a></li>
+								</ul></li> -->
+							<!-- <li class="nav-item submenu dropdown"><a href="#"
+								class="nav-link dropdown-toggle" data-toggle="dropdown"
+								role="button" aria-haspopup="true" aria-expanded="false">Pages</a>
+								<ul class="dropdown-menu">
+									<li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+									<li class="nav-item"><a class="nav-link"
+										href="register.html">Register</a></li>
+									<li class="nav-item"><a class="nav-link"
+										href="tracking-order.html">Tracking</a></li>
+								</ul></li> -->
+							<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+						</ul>
+
+						<ul class="nav-shop">
+							<!-- <li class="nav-item"><button>
+									<i class="ti-search"></i>
+								</button></li> -->
+							<li class="nav-item"><button>
+									<a th:href="@{/cart/view}" class="ti-shopping-cart text-dark"></a><span
+										class="nav-shop__circle">{{cart.count}}</span>
+								</button></li>
+							<li class="nav-item"><a class="button button-header"
+								th:href="@{/login/view}">Login</a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</div>
+	</header>
+	
+	<main class="site-main">
+    <!--================Profile Area =================-->
+    <section class="checkout_area section-margin--small">
+        <div class="container">
+            <div class="returning_customer">
+                <form method="post">
+                    <button type="submit" class="button" style="background-color: rgb(255, 76, 76); border: none; margin-bottom: 20px;">Đăng Xuất</button>
+                </form>
+                <div class="billing_details">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h3>Thông tin tài khoản</h3>
+                            <form class="row contact_form" action="#" method="post">
+                                <div class="col-md-6 form-group p_star">
+                                    <input type="text" class="form-control" placeholder="Họ">
+                                </div>
+                                <div class="col-md-6 form-group p_star">
+                                    <input type="text" class="form-control" name="lastname" placeholder="Tên">
+                                </div>
+                                <div class="col-md-12 form-group p_star">
+                                    <input type="text" class="form-control" name="phone"
+                                           placeholder="Số điện thoại">
+                                </div>
+                                <div class="col-md-12 form-group p_star">
+                                    <input type="text" class="form-control" name="email"
+                                           placeholder="Email">
+                                </div>
+                                <div class="col-md-12 form-group p_star">
+                                    <input type="text" class="form-control" name="province"
+                                           placeholder="Tỉnh/Thành Phố">
+                                </div>
+                                <div class="col-md-12 form-group p_star">
+                                    <input type="text" class="form-control" name="district"
+                                           placeholder="Huyện/Quận">
+                                </div>
+                                <div class="col-md-12 form-group p_star">
+                                    <input type="text" class="form-control" name="ward"
+                                           placeholder="Xã/Phường">
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <input type="text" class="form-control" name="specificAddress"
+                                           placeholder="Số Nhà/Địa Chỉ Cụ Thể">
+                                </div>
+                                <!--<div class="col-md-12 form-group p_star">
+                                    <select class="country_select">
+                                        <option value="1">Tỉnh/Thành Phố</option>
+                                        <option value="2">Bình Định</option>
+                                        <option value="4">Hồ Chí Minh</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-12 form-group p_star">
+                                    <select class="country_select">
+                                        <option value="1">Quận/Huyện</option>
+                                        <option value="2">Hoài Nhơn</option>
+                                        <option value="4">Quận Bình Tân</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-12 form-group p_star">
+                                    <select class="country_select">
+                                        <option value="1">Xã/Phường</option>
+                                        <option value="2">Hoài Mỹ</option>
+                                        <option value="4">Bình Hưng Hòa B</option>
+                                    </select>
+                                </div>-->
+                                <div class="col-md-12 form-group">
+                                    <button class="btn button" style="width: 100%;">Sửa Thông Tin</button>
+                                </div>
+                            </form>
+                            <div
+                                    style="background-color: rgb(29, 87, 106); width: 100%; height: 3px; border-radius: 10px;">
+                            </div>
+                            <h3 class="mt-3">Đổi Mật Khẩu</h3>
+                            <form class="row contact_form" action="#" method="post">
+                                <div class="col-md-12 form-group p_star">
+                                    <input type="password" class="form-control"
+                                           placeholder="Mật khẩu cũ">
+                                </div>
+                                <div class="col-md-12 form-group p_star">
+                                    <input type="text" class="form-control" name="name"
+                                           placeholder="Mật khẩu mới">
+                                </div>
+                                <div class="col-md-12 form-group p_star">
+                                    <input type="text" class="form-control" name="name"
+                                           placeholder="Mật khẩu xác nhận mật khẩu mới">
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <button class="btn button" style="width: 100%;">Đổi Mật Khẩu</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="w-100">
+                                <h3 class="w-100">Danh Sách Đơn Hàng Đã Đặt</h3>
+                                <table class="w-100 text-center table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th>Mã đơn hàng</th>
+                                        <th>Ngày</th>
+                                        <th>Tổng tiền</th>
+                                        <th>Phương thức thanh toán</th>
+                                        <th>Xem thông tin</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+                                            <button class="btn btn-primary" style=" border-radius: 20px;">Xem Chi
+                                                Tiết
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================End Profile Area =================-->
+</main>
+
+<footer>
+<div class="footer-area footer-only">
+    <div class="container">
+        <div class="row section_gap">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="single-footer-widget tp_widgets">
+                    <h2 class="footer_title" style="font-size: 25px;">Sứ mệnh của chúng tôi</h2>
+                    <p>
+                        Sứ mệnh của chúng tôi là mang đến những sản phẩm và dịch vụ mang lại lợi ích cho khách hàng.
+                    </p>
+                    <p>
+                        Chúng tôi hướng đến việc xây dựng một môi trường sống và làm việc tốt hơn, mang lại giá trị và
+                        cơ hội
+                        phát triển cho cả cộng đồng và khách hàng của chúng tôi.
+                    </p>
+                </div>
+            </div>
+            <div class="offset-lg-1 col-lg-4 col-md-12 col-sm-12">
+                <div class="single-footer-widget tp_widgets" style="text-align: center;">
+                    <h4 class="footer_title">Liên kết nhanh</h4>
+                    <ul class="list">
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="register.html">Register</a></li>
+                        <li><a href="forgotpassword.html">Forgot Password</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="offset-lg-1 col-lg-3 col-md-6 col-sm-6">
+                <div class="single-footer-widget tp_widgets">
+                    <h4 class="footer_title">Liên Hệ Với Chúng Tôi</h4>
+                    <div class="ml-40">
+                        <p class="sm-head">
+                            <span class="fa fa-location-arrow"></span>
+                            Trụ sở chính
+                        </p>
+                        <p>Võ Nguyên Giáp, Hoài Nhơn, Bình Định</p>
+
+                        <p class="sm-head">
+                            <span class="fa fa-phone"></span>
+                            Điện Thoại
+                        </p>
+                        <p>
+                            037 6758 600
+                        </p>
+
+                        <p class="sm-head">
+                            <span class="fa fa-envelope"></span>
+                            Email
+                        </p>
+                        <p>
+                            ads.tranvannhan@gmail.com
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer-bottom">
+    <div class="container">
+        <div class="row d-flex">
+            <p class="col-lg-12 footer-text text-center">
+                Copyright &copy;
+                <script>document.write(new Date().getFullYear());</script>
+                All rights reserved | This website is made with
+                <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://www.facebook.com/tranvannhan.77c1"
+                                                                     target="_blank">Trần Văn Nhân</a>
+            </p>
+        </div>
+    </div>
+</div>
+</footer>
+
+	<script src="/customer/vendors/jquery/jquery-3.2.1.min.js"></script>
+	<script src="/customer/vendors/bootstrap/bootstrap.bundle.min.js"></script>
+	<script src="/customer/vendors/skrollr.min.js"></script>
+	<script src="/customer/vendors/owl-carousel/owl.carousel.min.js"></script>
+	<script src="/customer/vendors/nice-select/jquery.nice-select.min.js"></script>
+	<script src="/customer/vendors/nouislider/nouislider.min.js"></script>
+	<script src="/customer/vendors/jquery.ajaxchimp.min.js"></script>
+	<script src="/customer/vendors/mail-script.js"></script>
+	<script src="/customer/js/main.js"></script>
+</body>
+</html>

@@ -31,4 +31,8 @@ public class IndexController {
 		return"customer/register";
 	}
 	
+	@RequestMapping("/profile/view")
+	public String profile(Model model) {
+		return"customer/profile";
+	}
 }
