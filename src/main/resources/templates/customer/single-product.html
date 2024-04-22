@@ -389,91 +389,53 @@
 								<div class="col-6">
 									<div class="box_total">
 										<h5>Overall</h5>
-										<h4>4.0</h4>
-										<h6>(03 Reviews)</h6>
-									</div>
+										<h4>{{ averageRating.toFixed(1) }}</h4>
+										<h6>({{ feedbacks.length }} Reviews)</h6>
+									</div>									
 								</div>
 								<div class="col-6">
 									<div class="rating_list">
-										<h3>Based on 3 Reviews</h3>
+										<h3>Based on {{ feedbacks.length }} Reviews</h3>
 										<ul class="list">
-											<li><a href="#">5 Star <i class="fa fa-star"></i><i
-													class="fa fa-star"></i><i class="fa fa-star"></i><i
-													class="fa fa-star"></i><i class="fa fa-star"></i> 01
-											</a></li>
-											<li><a href="#">4 Star <i class="fa fa-star"></i><i
-													class="fa fa-star"></i><i class="fa fa-star"></i><i
-													class="fa fa-star"></i><i class="fa fa-star"></i> 01
-											</a></li>
-											<li><a href="#">3 Star <i class="fa fa-star"></i><i
-													class="fa fa-star"></i><i class="fa fa-star"></i><i
-													class="fa fa-star"></i><i class="fa fa-star"></i> 01
-											</a></li>
-											<li><a href="#">2 Star <i class="fa fa-star"></i><i
-													class="fa fa-star"></i><i class="fa fa-star"></i><i
-													class="fa fa-star"></i><i class="fa fa-star"></i> 01
-											</a></li>
-											<li><a href="#">1 Star <i class="fa fa-star"></i><i
-													class="fa fa-star"></i><i class="fa fa-star"></i><i
-													class="fa fa-star"></i><i class="fa fa-star"></i> 01
-											</a></li>
+											<li ng-repeat="rating in ratings">
+												{{ rating.stars }} Star
+												<span ng-repeat="star in [].constructor(rating.stars) track by $index" 
+													ng-class="{ 'star-yellow': $index < rating.stars }">
+													<i class="fa fa-star"></i>
+												</span>
+												{{ rating.count }}
+											</li>
 										</ul>
 									</div>
+									
 								</div>
 							</div>
-							<div class="review_list">
-								<div class="review_item">
-									<div class="media">
-										<div class="d-flex">
-											<!-- <img src="img/product/review-1.png" alt=""> -->
-										</div>
-										<div class="media-body">
-											<h4>Blake Ruiz</h4>
-											<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-												class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-												class="fa fa-star"></i>
-										</div>
-									</div>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-										elit, sed do eiusmod tempor incididunt ut labore et dolore
-										magna aliqua. Ut enim ad minim veniam, quis nostrud
-										exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
-								</div>
-								<div class="review_item">
-									<div class="media">
-										<div class="d-flex">
-											<!-- <img src="img/product/review-2.png" alt=""> -->
-										</div>
-										<div class="media-body">
-											<h4>Blake Ruiz</h4>
-											<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-												class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-												class="fa fa-star"></i>
-										</div>
-									</div>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-										elit, sed do eiusmod tempor incididunt ut labore et dolore
-										magna aliqua. Ut enim ad minim veniam, quis nostrud
-										exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
-								</div>
-								<div class="review_item">
-									<div class="media">
-										<div class="d-flex">
-											<!-- <img src="img/product/review-3.png" alt=""> -->
-										</div>
-										<div class="media-body">
-											<h4>Blake Ruiz</h4>
-											<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-												class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-												class="fa fa-star"></i>
-										</div>
-									</div>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-										elit, sed do eiusmod tempor incididunt ut labore et dolore
-										magna aliqua. Ut enim ad minim veniam, quis nostrud
-										exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
-								</div>
-							</div>
+
+
+							<div class="review_list" >
+        <!-- Lặp qua mảng các phản hồi và hiển thị chúng -->
+        <div class="review_item" ng-repeat="feedback in feedbacks">
+            <div class="media">
+                <div class="d-flex">
+                    <!-- Ảnh của người gửi phản hồi, nếu có -->
+                    <!-- <img src="img/product/review-1.png" alt=""> -->
+                </div>
+                <div class="media-body">
+                    <!-- Điểm đánh giá -->
+                    <h4>{{feedback.account.lastName}}</h4>
+                    <!-- Hiển thị số sao dựa trên điểm đánh giá -->
+                    <span ng-repeat="star in [].constructor(feedback.rate) track by $index">
+                        <i class="fa fa-star"></i>
+                    </span>
+                </div>
+            </div>
+            <!-- Nội dung phản hồi -->
+            <p>{{feedback.content}}</p>
+        </div>
+    </div>
+							
+
+
 						</div>
 						<div class="col-lg-6">
 							<div class="review_box">
@@ -739,5 +701,11 @@
 	<script src="/customer/vendors/jquery.ajaxchimp.min.js"></script>
 	<script src="/customer/vendors/mail-script.js"></script>
 	<script src="/customer/js/main.js"></script>
+
+	<style>
+		.star-yellow {
+			color: yellow;
+		}
+	</style>
 </body>
 </html>

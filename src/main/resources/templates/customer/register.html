@@ -124,21 +124,27 @@
 						<div class="hover">
 							<h4>Already have an account?</h4>
 							<p>There are advances being made in science and technology everyday, and a good example of this is the</p>
-							<a class="button button-account" href="login.html">Login Now</a>
+							<a class="button button-account" href="/login/view">Login Now</a>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-6">
 					<div class="login_form_inner register_form_inner">
 						<h3>Create an account</h3>
-						<form class="row login_form" action="#/" id="register_form" >
-							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="name" name="name" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
+						<form class="row login_form" action="#/" id="register_form">
+							<div class="col-md-6 form-group"> <!-- Chia cột thành 6 phần, tức là nửa của 12 phần -->
+								<input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'firstName'">
 							</div>
-              <div class="col-md-12 form-group">
+							<div class="col-md-6 form-group"> <!-- Chia cột còn lại thành 6 phần -->
+								<input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'lastName'">
+							</div>
+							<div class="col-md-12 form-group">
+								<input type="email" class="form-control" id="email" name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'">
+							</div>
+							<div class="col-md-12 form-group">
 								<input type="text" class="form-control" id="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
-              </div>
-              <div class="col-md-12 form-group">
+							</div>
+							<div class="col-md-12 form-group">
 								<input type="text" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Confirm Password'">
 							</div>
 							<div class="col-md-12 form-group">
@@ -153,6 +159,7 @@
 						</form>
 					</div>
 				</div>
+				
 			</div>
 		</div>
 	</section>
@@ -194,12 +201,12 @@
 						<div class="single-footer-widget instafeed">
 							<h4 class="footer_title">Gallery</h4>
 							<ul class="list instafeed d-flex flex-wrap">
-								<li><img src="img/gallery/r1.jpg" alt=""></li>
+								<!-- <li><img src="img/gallery/r1.jpg" alt=""></li>
 								<li><img src="img/gallery/r2.jpg" alt=""></li>
 								<li><img src="img/gallery/r3.jpg" alt=""></li>
 								<li><img src="img/gallery/r5.jpg" alt=""></li>
 								<li><img src="img/gallery/r7.jpg" alt=""></li>
-								<li><img src="img/gallery/r8.jpg" alt=""></li>
+								<li><img src="img/gallery/r8.jpg" alt=""></li> -->
 							</ul>
 						</div>
 					</div>
