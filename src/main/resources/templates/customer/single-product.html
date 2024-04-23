@@ -385,54 +385,70 @@
 					aria-labelledby="review-tab">
 					<div class="row">
 						<div class="col-lg-6">
+							
+							
 							<div class="row total_rate">
 								<div class="col-6">
 									<div class="box_total">
 										<h5>Overall</h5>
-										<h4>{{ averageRating.toFixed(1) }}</h4>
-										<h6>({{ feedbacks.length }} Reviews)</h6>
+										<!-- <h4 th:text="${#numbers.formatDecimal(averageRating, 1)}"></h4> -->
+										<h4>
+											<script th:inline="javascript">
+												/*<![CDATA[*/
+												var averageRating = parseFloat([[${averageRating}]]);
+												if (!isNaN(averageRating)) {
+													document.write(averageRating.toFixed(1));
+												} else {
+													document.write('N/A'); // hoặc bất kỳ giá trị mặc định khác
+												}
+												/*]]>*/
+											</script>
+										</h4>
+										
+										
+										<h6 th:text="'(' + ${feedbacks.size()} + ' Reviews)'"></h6>
 									</div>									
 								</div>
 								<div class="col-6">
 									<div class="rating_list">
-										<h3>Based on {{ feedbacks.length }} Reviews</h3>
+										<h3 th:text="'Based on ' + ${feedbacks.size()} + ' Reviews'"></h3>
 										<ul class="list">
-											<li ng-repeat="rating in ratings">
-												{{ rating.stars }} Star
-												<span ng-repeat="star in [].constructor(rating.stars) track by $index" 
-													ng-class="{ 'star-yellow': $index < rating.stars }">
+											<li th:each="rating : ${ratings}">
+												<span th:text="${rating.stars + ' Star'}"></span>
+												<span th:each="star : ${#numbers.sequence(1, rating.stars)}" 
+													  th:class="${'star-yellow': star &lt;= rating.stars}">
 													<i class="fa fa-star"></i>
 												</span>
-												{{ rating.count }}
+												<span th:text="${rating.count}"></span>
 											</li>
 										</ul>
 									</div>
-									
 								</div>
 							</div>
+							
 
 
-							<div class="review_list" >
-        <!-- Lặp qua mảng các phản hồi và hiển thị chúng -->
-        <div class="review_item" ng-repeat="feedback in feedbacks">
-            <div class="media">
-                <div class="d-flex">
-                    <!-- Ảnh của người gửi phản hồi, nếu có -->
-                    <!-- <img src="img/product/review-1.png" alt=""> -->
-                </div>
-                <div class="media-body">
-                    <!-- Điểm đánh giá -->
-                    <h4>{{feedback.account.lastName}}</h4>
-                    <!-- Hiển thị số sao dựa trên điểm đánh giá -->
-                    <span ng-repeat="star in [].constructor(feedback.rate) track by $index">
-                        <i class="fa fa-star"></i>
-                    </span>
-                </div>
-            </div>
-            <!-- Nội dung phản hồi -->
-            <p>{{feedback.content}}</p>
-        </div>
-    </div>
+							<div class="review_list">
+								<div class="review_item" th:each="feedback : ${feedbacks}">
+									<div class="media">
+										<div class="d-flex">
+											<!-- Ảnh của người gửi phản hồi, nếu có -->
+											<!-- <img src="img/product/review-1.png" alt=""> -->
+										</div>
+										<div class="media-body">
+											<!-- Tên người gửi phản hồi -->
+											<h4 th:text="${feedback.account.lastName}"></h4>
+											<!-- Hiển thị số sao dựa trên điểm đánh giá -->
+											<span th:each="star : ${#numbers.sequence(1, feedback.rate)}">
+												<i class="fa fa-star"></i>
+											</span>
+										</div>
+									</div>
+									<!-- Nội dung phản hồi -->
+									<p th:text="${feedback.content}"></p>
+								</div>
+							</div>
+							
 							
 
 
