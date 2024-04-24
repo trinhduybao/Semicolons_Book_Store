@@ -73,11 +73,6 @@ public class ProductController {
 		return"customer/single-product";
 	}
 
-	@RequestMapping("/order/checkout")
-	public String checkout(Model model) {
-		return"customer/checkout";
-	}
-
 	private double calculateAverageRating(List<Feedback> feedbacks) {
 		int totalRating = 0;
 		for (Feedback feedback : feedbacks) {

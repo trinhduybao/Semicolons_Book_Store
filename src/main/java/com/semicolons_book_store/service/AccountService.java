@@ -6,6 +6,6 @@ public interface AccountService {
 	Account findById(Integer id);
 	
 	/*Account findByUser(String username);*/
-
+	
 	Account findByUsername(String username);
 }

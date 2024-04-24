@@ -1,11 +1,14 @@
 package com.semicolons_book_store.controller;
 
-import com.semicolons_book_store.service.AccountService;
-import com.semicolons_book_store.service.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.semicolons_book_store.model.Account;
+import com.semicolons_book_store.service.AccountService;
+import com.semicolons_book_store.service.SessionService;
 
 @Controller
 public class SecurityController {
@@ -22,15 +25,14 @@ public class SecurityController {
     }
 
     @RequestMapping("/security/login/success")
-    public String loginSuccess(Model model){
-
+    public String loginSuccess(Model model){    	
     	model.addAttribute("message", "Đăng nhập thành công");
-        return "redirect:/product/list";
+        return "redirect:/home";
     }
 
     @RequestMapping("/security/login/error")
     public String loginError(Model model){
-        model.addAttribute("message", "Sai thông tin của Tài Khoản !");
+        model.addAttribute("message", "Chưa có thông tin tài khoản hoặc mật khẩu !");
         return "customer/page/login2";
     }
 
@@ -48,15 +50,15 @@ public class SecurityController {
         return "customer/page/login2";
     }
 
-    @RequestMapping("/logout/success")
+    @RequestMapping("/security/logoff/success")
     public String logout(Model model) {
         model.addAttribute("message", "Đăng Xuất Thành Công");
         return "customer/page/login2";
     }
 
-    @RequestMapping("/logout")
-    public String logout() {
-        /*sessionService.remove("account");*/
-        return "customer/page/login2";
-    }
+//    @RequestMapping("/logout")
+//    public String logout() {
+//        /*sessionService.remove("account");*/
+//        return "customer/page/login2";
+//    }
 }

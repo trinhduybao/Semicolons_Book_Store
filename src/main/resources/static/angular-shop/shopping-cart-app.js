@@ -55,6 +55,7 @@ app.controller("shopping-cart-ctrl", function ($scope, $http) {
         var accountId = user.id;
         var address = user.address.address;
 
+
         // Tạo dữ liệu đơn hàng
         var currentDate = new Date();
         var formattedDate = currentDate

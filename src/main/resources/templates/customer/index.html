@@ -52,17 +52,18 @@
 						id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav ml-auto mr-auto">
 							<li class="nav-item active"><a class="nav-link"
-								href="/home">Home</a></li>
+								th:href="@{/}">Home</a></li>
+							<th:block th:if="${#request.remoteUser}">
 							<li class="nav-item submenu dropdown"><a
 								th:href="@{/product/list}" class="nav-link dropdown-toggle"
 								data-toggle="" role="button" aria-haspopup="true"
 								aria-expanded="false">Shop</a>
 								<ul class="dropdown-menu">
 									<li class="nav-item"><a class="nav-link"
-										href="checkout">Product Checkout</a></li>
+										href="checkout.html">Product Checkout</a></li>
 									<li class="nav-item"><a class="nav-link"
 										th:href="@{/confirmation/view}">Confirmation</a></li>
-									<li class="nav-item"><a class="nav-link" href="cart/view">Shopping
+									<li class="nav-item"><a class="nav-link" href="cart.html">Shopping
 											Cart</a></li>
 								</ul></li>
 							<!-- <li class="nav-item submenu dropdown"><a href="#"
@@ -84,19 +85,32 @@
 										href="tracking-order.html">Tracking</a></li>
 								</ul></li> -->
 							<li class="nav-item"><a class="nav-link" href="contact">Contact</a></li>
+							<li th:if="${#request.isUserInRole('DIRE') or #request.isUserInRole('STAF')}" class="nav-item"><a class="nav-link" href="contact.html">Administration</a></li>
 						</ul>
 
 						<ul class="nav-shop">
 							<!-- <li class="nav-item"><button>
 									<i class="ti-search"></i>
 								</button></li> -->
+							<li class="nav-item">
+                                <a sec:authorize="isAuthenticated()" th:href="@{/profile/view}">
+                                    <i class="ti-user"></i>
+                                </a>
+                                <a sec:authorize="!isAuthenticated()" th:href="@{/security/login/form}">
+                                    <i class="ti-user"></i>
+                                </a>
+                        </li>
+                        <li><a class="">Welcome [[${#request.remoteUser}]]</a></li>
 							<li class="nav-item"><button>
-									<a th:href="@{/cart/view}" class="ti-shopping-cart text-dark"></a><span
+									<a th:href="@{/cart/view}" class="ti-shopping-cart text-dark ms-3"></a><span
 										class="nav-shop__circle">{{cart.count}}</span>
 								</button></li>
+						</th:block>
+						<th:block th:unless="${#request.remoteUser}">
 							<li class="nav-item"><a class="button button-header"
 								th:href="@{/login/view}">Login</a></li>
-						</ul>
+						</th:block>
+						</ul>			
 					</div>
 				</div>
 			</nav>

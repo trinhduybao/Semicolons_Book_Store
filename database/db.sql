@@ -7,6 +7,7 @@ create table items(
     [name] nvarchar(50) not null unique,
     primary key (id)
     )
+
 create table categories(
                            id int identity(1,1),
     [name] nvarchar(50) not null unique,
@@ -646,6 +647,7 @@ INSERT INTO authorities (role_id, account_id) values
                                                   (3,11),
                                                   (3,12);
 
+go
 
 
 update accounts set ban = 1 where id = 1
@@ -667,7 +669,6 @@ select * from orders
 select * from authorities
 select * from roles
 
-delete from feedbacks
 
 
 

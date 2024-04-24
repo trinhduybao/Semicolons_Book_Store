@@ -51,7 +51,8 @@
 						id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav ml-auto mr-auto">
 							<li class="nav-item active"><a class="nav-link"
-								href="index.html">Home</a></li>
+								th:href="@{/}">Home</a></li>
+							<th:block th:if="${#request.remoteUser}">
 							<li class="nav-item submenu dropdown"><a
 								th:href="@{/product/list}" class="nav-link dropdown-toggle"
 								data-toggle="" role="button" aria-haspopup="true"
@@ -82,20 +83,33 @@
 									<li class="nav-item"><a class="nav-link"
 										href="tracking-order.html">Tracking</a></li>
 								</ul></li> -->
-							<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+							<li class="nav-item"><a class="nav-link" href="contact">Contact</a></li>
+							<li th:if="${#request.isUserInRole('DIRE') or #request.isUserInRole('STAF')}" class="nav-item"><a class="nav-link" href="contact.html">Administration</a></li>
 						</ul>
 
 						<ul class="nav-shop">
 							<!-- <li class="nav-item"><button>
 									<i class="ti-search"></i>
 								</button></li> -->
+							<li class="nav-item">
+                                <a sec:authorize="isAuthenticated()" th:href="@{/profile/view}">
+                                    <i class="ti-user"></i>
+                                </a>
+                                <a sec:authorize="!isAuthenticated()" th:href="@{/security/login/form}">
+                                    <i class="ti-user"></i>
+                                </a>
+                        </li>
+                        <li><a class="">Welcome [[${#request.remoteUser}]]</a></li>
 							<li class="nav-item"><button>
-									<a th:href="@{/cart/view}" class="ti-shopping-cart text-dark"></a><span
+									<a th:href="@{/cart/view}" class="ti-shopping-cart text-dark ms-3"></a><span
 										class="nav-shop__circle">{{cart.count}}</span>
 								</button></li>
+						</th:block>
+						<th:block th:unless="${#request.remoteUser}">
 							<li class="nav-item"><a class="button button-header"
 								th:href="@{/login/view}">Login</a></li>
-						</ul>
+						</th:block>
+						</ul>			
 					</div>
 				</div>
 			</nav>
@@ -107,8 +121,8 @@
     <section class="checkout_area section-margin--small">
         <div class="container">
             <div class="returning_customer">
-                <form method="post">
-                    <button type="submit" class="button" style="background-color: rgb(255, 76, 76); border: none; margin-bottom: 20px;">Đăng Xuất</button>
+                <form>
+                    <a th:href="@{/security/logoff}" type="submit" class="button text-white" style="background-color: rgb(255, 76, 76); border: none; margin-bottom: 20px;">Đăng Xuất</a>
                 </form>
                 <div class="billing_details">
                     <div class="row">
@@ -120,10 +134,6 @@
                                 </div>
                                 <div class="col-md-6 form-group p_star">
                                     <input type="text" class="form-control" name="lastname" placeholder="Tên">
-                                </div>
-                                <div class="col-md-12 form-group p_star">
-                                    <input type="text" class="form-control" name="phone"
-                                           placeholder="Số điện thoại">
                                 </div>
                                 <div class="col-md-12 form-group p_star">
                                     <input type="text" class="form-control" name="email"
@@ -188,7 +198,7 @@
                                            placeholder="Mật khẩu xác nhận mật khẩu mới">
                                 </div>
                                 <div class="col-md-12 form-group">
-                                    <button class="btn button" style="width: 100%;">Đổi Mật Khẩu</button>
+                                    <a class="btn button text-white" style="width: 100%;">Đổi Mật Khẩu</a> 
                                 </div>
                             </form>
                         </div>
