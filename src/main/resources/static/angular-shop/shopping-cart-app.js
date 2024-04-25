@@ -119,69 +119,6 @@ app.controller("shopping-cart-ctrl", function ($scope, $http) {
   };
 
 
-  // var productIdfb = 1;
-
-  // $http
-  //   .get("http://localhost:8080/rest/feedbacks/" + productIdfb)
-  //   .then(function (response) {
-  //     // Gán dữ liệu phản hồi cho $scope.feedbacks
-  //     $scope.feedbacks = response.data;
-  //     console.log("Data received:", $scope.feedbacks);
-  //   })
-  //   .catch(function (error) {
-  //     // Xử lý lỗi nếu có
-  //     console.error("Error fetching feedbacks:", error);
-  //   });
-
-    // $http.get('http://localhost:8080/rest/feedbacks')
-    // .then(function (response) {
-    //     // Gán dữ liệu phản hồi cho $scope.feedbacks
-    //     $scope.feedbacks = response.data;
-    //     console.log("Data received:", $scope.feedbacks);
-
-    //     // Tính toán số lượng đánh giá cho mỗi số sao
-    //     var ratings = {};
-    //     $scope.feedbacks.forEach(function(feedback) {
-    //         if (ratings[feedback.rate]) {
-    //             ratings[feedback.rate]++;
-    //         } else {
-    //             ratings[feedback.rate] = 1;
-    //         }
-    //     }); 
-
-    //     // Hiển thị số lượng đánh giá cho mỗi số sao trên giao diện
-    //     $scope.ratings = [];
-    //     for (var i = 5; i >= 1; i--) {
-    //         var ratingCount = ratings[i] || 0;
-    //         $scope.ratings.push({
-    //             stars: i,
-    //             count: ratingCount
-    //         });
-    //     }
-    // })
-    // .catch(function (error) {
-    //     // Xử lý lỗi nếu có
-    //     console.error('Error fetching feedbacks:', error);
-    // });
-    // $http.get('http://localhost:8080/rest/feedbacks')
-    //     .then(function (response) {
-    //         // Gán dữ liệu phản hồi cho $scope.feedbacks
-    //         $scope.feedbacks = response.data;
-    //         console.log("Data received:", $scope.feedbacks);
-
-    //         // Tính tổng số điểm đánh giá
-    //         var totalRating = $scope.feedbacks.reduce(function(total, feedback) {
-    //             return total + feedback.rate;
-    //         }, 0);
-
-    //         // Tính điểm đánh giá trung bình
-    //         $scope.averageRating = totalRating / $scope.feedbacks.length;
-    //     })
-    //     .catch(function (error) {
-    //         // Xử lý lỗi nếu có
-    //         console.error('Error fetching feedbacks:', error);
-    //     });
-
   function clearCart() {
     localStorage.removeItem("cart");
   }
@@ -189,8 +126,14 @@ app.controller("shopping-cart-ctrl", function ($scope, $http) {
   $scope.cart.loadFromLocalStorage();
 });
 
-// async function getFeedbacks() {
-//     const response = await fetch('http://localhost:8080/rest/feedbacks');
-//     const dataItems = await response.json();
-//     console.log(dataItems);
-// }
+async function getAccountId() {
+  var accountId = 1;
+    const response = await fetch('http://localhost:8080/rest/accounts/' + accountId );
+    const dataItems = await response.json();
+    console.log(dataItems);
+}
+
+getAccountId();
+
+
+

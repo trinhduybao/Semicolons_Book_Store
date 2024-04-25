@@ -8,7 +8,6 @@ import com.semicolons_book_store.model.Order;
 import com.semicolons_book_store.model.OrderDetail;
 import com.semicolons_book_store.model.Product;
 import com.semicolons_book_store.repository.*;
-import com.semicolons_book_store.service.OrderService;
 import com.semicolons_book_store.service.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,8 +27,8 @@ import java.util.List;
 @RestController
 @CrossOrigin("*")
 public class OrderRestController {
-    @Autowired
-    private OrderService orderService;
+//    @Autowired
+//    private OrderService orderService;
 
     @Autowired
     OrderRepository orderRepository;
@@ -127,6 +126,5 @@ public class OrderRestController {
         // Trả về thông báo đặt hàng thành công
         return ResponseEntity.ok().body("{\"message\": \"Đặt hàng thành công!\"}");
     }
-
 
 }
