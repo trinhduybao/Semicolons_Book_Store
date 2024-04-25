@@ -53,39 +53,22 @@
 						<ul class="nav navbar-nav menu_nav ml-auto mr-auto">
 							<li class="nav-item active"><a class="nav-link"
 								th:href="@{/}">Home</a></li>
-							<th:block th:if="${#request.remoteUser}">
-							<li class="nav-item submenu dropdown"><a
+								<li class="nav-item submenu dropdown"><a
 								th:href="@{/product/list}" class="nav-link dropdown-toggle"
 								data-toggle="" role="button" aria-haspopup="true"
 								aria-expanded="false">Shop</a>
-								<ul class="dropdown-menu">
+								<!-- <ul class="dropdown-menu">
 									<li class="nav-item"><a class="nav-link"
 										href="checkout.html">Product Checkout</a></li>
 									<li class="nav-item"><a class="nav-link"
 										th:href="@{/confirmation/view}">Confirmation</a></li>
 									<li class="nav-item"><a class="nav-link" href="cart.html">Shopping
 											Cart</a></li>
-								</ul></li>
-							<!-- <li class="nav-item submenu dropdown"><a href="#"
-								class="nav-link dropdown-toggle" data-toggle="dropdown"
-								role="button" aria-haspopup="true" aria-expanded="false">Blog</a>
-								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-									<li class="nav-item"><a class="nav-link"
-										href="single-blog.html">Blog Details</a></li>
-								</ul></li> -->
-							<!-- <li class="nav-item submenu dropdown"><a href="#"
-								class="nav-link dropdown-toggle" data-toggle="dropdown"
-								role="button" aria-haspopup="true" aria-expanded="false">Pages</a>
-								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
-									<li class="nav-item"><a class="nav-link"
-										href="register.html">Register</a></li>
-									<li class="nav-item"><a class="nav-link"
-										href="tracking-order.html">Tracking</a></li>
-								</ul></li> -->
-							<li class="nav-item"><a class="nav-link" href="contact">Contact</a></li>
-							<li th:if="${#request.isUserInRole('DIRE') or #request.isUserInRole('STAF')}" class="nav-item"><a class="nav-link" href="contact.html">Administration</a></li>
+								</ul> --></li>
+								<li class="nav-item"><a class="nav-link" href="contact">Contact</a></li>
+							<th:block th:if="${#request.remoteUser}">
+							
+							<li th:if="${#request.isUserInRole('director') or #request.isUserInRole('staff')}" class="nav-item"><a class="nav-link" href="contact.html">Administration</a></li>
 						</ul>
 
 						<ul class="nav-shop">
@@ -150,12 +133,12 @@
 
 		<!--================ Hero Carousel start =================-->
 		<section class="section-margin mt-0">
-			<div class="owl-carousel owl-theme hero-carousel">
-				<div class="hero-carousel__slide" th:each="i:${item}">
+			<div class="owl-theme hero-carousel d-flex">
+				<div class="" th:each="i:${item}">
 					<img src="/customer/img/home/banner.png" alt=""
 						class="img-fluid"> <a th:href="@{/product/list}"
-						class="hero-carousel__slideOverlay">
-						<h3>[[${i.name}]]</h3>
+						class="">
+						<h5 class="justify-content-center">[[${i.name}]]</h5>
 						<p></p>
 					</a>
 				</div>
@@ -175,16 +158,16 @@
 					</h2>
 				</div>
 				<div class="row">
-					<div class="col-md-6 col-lg-4 col-xl-3">
+					<div class="col-md-6 col-lg-4 col-xl-3" th:each="p:${items}">
 						<div class="card text-center card-product">
 							<div class="card-product__img">
-								<!-- <img class="card-img" src="img/product/product1.png" alt=""> -->
+								 <img class="card-img" th:src="@{|/customer/img/books/${p.thumbnailImage}|}" alt="">
 								<ul class="card-product__imgOverlay">
 									<li><button>
-											<i class="ti-search"></i>
+											<a th:href="@{|/product/detail/${p.id}|}" class="ti-search text-white"></a>
 										</button></li>
 									<li><button>
-											<i class="ti-shopping-cart"></i>
+											<a th:attr="ng-click=@{|cart.add(${p.id})|}" class="ti-shopping-cart text-white"></a>
 										</button></li>
 									<li><button>
 											<i class="ti-heart"></i>
@@ -194,187 +177,13 @@
 							<div class="card-body">
 								<p>Accessories</p>
 								<h4 class="card-product__title">
-									<a href="single-product.html">Quartz Belt Watch</a>
+									<a th:utext="${p.name}"></a>
 								</h4>
-								<p class="card-product__price">$150.00</p>
+								<p class="card-product__price">[[${p.price}]]VNĐ</p>
 							</div>
 						</div>
 					</div>
-					<div class="col-md-6 col-lg-4 col-xl-3">
-						<div class="card text-center card-product">
-							<div class="card-product__img">
-								<!-- <img class="card-img" src="img/product/product2.png" alt=""> -->
-								<ul class="card-product__imgOverlay">
-									<li><button>
-											<i class="ti-search"></i>
-										</button></li>
-									<li><button>
-											<i class="ti-shopping-cart"></i>
-										</button></li>
-									<li><button>
-											<i class="ti-heart"></i>
-										</button></li>
-								</ul>
-							</div>
-							<div class="card-body">
-								<p>Beauty</p>
-								<h4 class="card-product__title">
-									<a href="single-product.html">Women Freshwash</a>
-								</h4>
-								<p class="card-product__price">$150.00</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-4 col-xl-3">
-						<div class="card text-center card-product">
-							<div class="card-product__img">
-								<!-- <img class="card-img" src="img/product/product3.png" alt=""> -->
-								<ul class="card-product__imgOverlay">
-									<li><button>
-											<i class="ti-search"></i>
-										</button></li>
-									<li><button>
-											<i class="ti-shopping-cart"></i>
-										</button></li>
-									<li><button>
-											<i class="ti-heart"></i>
-										</button></li>
-								</ul>
-							</div>
-							<div class="card-body">
-								<p>Decor</p>
-								<h4 class="card-product__title">
-									<a href="single-product.html">Room Flash Light</a>
-								</h4>
-								<p class="card-product__price">$150.00</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-4 col-xl-3">
-						<div class="card text-center card-product">
-							<div class="card-product__img">
-								<!-- <img class="card-img" src="img/product/product4.png" alt=""> -->
-								<ul class="card-product__imgOverlay">
-									<li><button>
-											<i class="ti-search"></i>
-										</button></li>
-									<li><button>
-											<i class="ti-shopping-cart"></i>
-										</button></li>
-									<li><button>
-											<i class="ti-heart"></i>
-										</button></li>
-								</ul>
-							</div>
-							<div class="card-body">
-								<p>Decor</p>
-								<h4 class="card-product__title">
-									<a href="single-product.html">Room Flash Light</a>
-								</h4>
-								<p class="card-product__price">$150.00</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-4 col-xl-3">
-						<div class="card text-center card-product">
-							<div class="card-product__img">
-								<!-- <img class="card-img" src="img/product/product5.png" alt=""> -->
-								<ul class="card-product__imgOverlay">
-									<li><button>
-											<i class="ti-search"></i>
-										</button></li>
-									<li><button>
-											<i class="ti-shopping-cart"></i>
-										</button></li>
-									<li><button>
-											<i class="ti-heart"></i>
-										</button></li>
-								</ul>
-							</div>
-							<div class="card-body">
-								<p>Accessories</p>
-								<h4 class="card-product__title">
-									<a href="single-product.html">Man Office Bag</a>
-								</h4>
-								<p class="card-product__price">$150.00</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-4 col-xl-3">
-						<div class="card text-center card-product">
-							<div class="card-product__img">
-								<!-- <img class="card-img" src="img/product/product6.png" alt=""> -->
-								<ul class="card-product__imgOverlay">
-									<li><button>
-											<i class="ti-search"></i>
-										</button></li>
-									<li><button>
-											<i class="ti-shopping-cart"></i>
-										</button></li>
-									<li><button>
-											<i class="ti-heart"></i>
-										</button></li>
-								</ul>
-							</div>
-							<div class="card-body">
-								<p>Kids Toy</p>
-								<h4 class="card-product__title">
-									<a href="single-product.html">Charging Car</a>
-								</h4>
-								<p class="card-product__price">$150.00</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-4 col-xl-3">
-						<div class="card text-center card-product">
-							<div class="card-product__img">
-								<!-- <img class="card-img" src="img/product/product7.png" alt=""> -->
-								<ul class="card-product__imgOverlay">
-									<li><button>
-											<i class="ti-search"></i>
-										</button></li>
-									<li><button>
-											<i class="ti-shopping-cart"></i>
-										</button></li>
-									<li><button>
-											<i class="ti-heart"></i>
-										</button></li>
-								</ul>
-							</div>
-							<div class="card-body">
-								<p>Accessories</p>
-								<h4 class="card-product__title">
-									<a href="single-product.html">Blutooth Speaker</a>
-								</h4>
-								<p class="card-product__price">$150.00</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-4 col-xl-3">
-						<div class="card text-center card-product">
-							<div class="card-product__img">
-								<!-- <img class="card-img" src="img/product/product8.png" alt=""> -->
-								<ul class="card-product__imgOverlay">
-									<li><button>
-											<i class="ti-search"></i>
-										</button></li>
-									<li><button>
-											<i class="ti-shopping-cart"></i>
-										</button></li>
-									<li><button>
-											<i class="ti-heart"></i>
-										</button></li>
-								</ul>
-							</div>
-							<div class="card-body">
-								<p>Kids Toy</p>
-								<h4 class="card-product__title">
-									<a href="#">Charging Car</a>
-								</h4>
-								<p class="card-product__price">$150.00</p>
-							</div>
-						</div>
-					</div>
+					
 				</div>
 			</div>
 		</section>
@@ -411,10 +220,10 @@
 						Best <span class="section-intro__style">Sellers</span>
 					</h2>
 				</div>
-				<div class="owl-carousel owl-theme" id="bestSellerCarousel">
+				<div class="owl-theme d-flex" id="bestSellerCarousel">
 					<div class="card text-center card-product">
 						<div class="card-product__img">
-							<!-- <img class="img-fluid" src="img/product/product1.png" alt=""> -->
+							 <img class="img-fluid" alt=""> 
 							<ul class="card-product__imgOverlay">
 								<li><button>
 										<i class="ti-search"></i>
@@ -427,181 +236,13 @@
 									</button></li>
 							</ul>
 						</div>
-						<div class="card-body">
+						<!-- <div class="card-body">
 							<p>Accessories</p>
 							<h4 class="card-product__title">
 								<a href="single-product.html">Quartz Belt Watch</a>
 							</h4>
 							<p class="card-product__price">$150.00</p>
-						</div>
-					</div>
-
-					<div class="card text-center card-product">
-						<div class="card-product__img">
-							<!-- <img class="img-fluid" src="img/product/product2.png" alt=""> -->
-							<ul class="card-product__imgOverlay">
-								<li><button>
-										<i class="ti-search"></i>
-									</button></li>
-								<li><button>
-										<i class="ti-shopping-cart"></i>
-									</button></li>
-								<li><button>
-										<i class="ti-heart"></i>
-									</button></li>
-							</ul>
-						</div>
-						<div class="card-body">
-							<p>Beauty</p>
-							<h4 class="card-product__title">
-								<a href="single-product.html">Women Freshwash</a>
-							</h4>
-							<p class="card-product__price">$150.00</p>
-						</div>
-					</div>
-
-					<div class="card text-center card-product">
-						<div class="card-product__img">
-							<!-- <img class="img-fluid" src="img/product/product3.png" alt=""> -->
-							<ul class="card-product__imgOverlay">
-								<li><button>
-										<i class="ti-search"></i>
-									</button></li>
-								<li><button>
-										<i class="ti-shopping-cart"></i>
-									</button></li>
-								<li><button>
-										<i class="ti-heart"></i>
-									</button></li>
-							</ul>
-						</div>
-						<div class="card-body">
-							<p>Decor</p>
-							<h4 class="card-product__title">
-								<a href="single-product.html">Room Flash Light</a>
-							</h4>
-							<p class="card-product__price">$150.00</p>
-						</div>
-					</div>
-
-					<div class="card text-center card-product">
-						<div class="card-product__img">
-							<!-- <img class="img-fluid" src="img/product/product4.png" alt=""> -->
-							<ul class="card-product__imgOverlay">
-								<li><button>
-										<i class="ti-search"></i>
-									</button></li>
-								<li><button>
-										<i class="ti-shopping-cart"></i>
-									</button></li>
-								<li><button>
-										<i class="ti-heart"></i>
-									</button></li>
-							</ul>
-						</div>
-						<div class="card-body">
-							<p>Decor</p>
-							<h4 class="card-product__title">
-								<a href="single-product.html">Room Flash Light</a>
-							</h4>
-							<p class="card-product__price">$150.00</p>
-						</div>
-					</div>
-
-					<div class="card text-center card-product">
-						<div class="card-product__img">
-							<!-- <img class="img-fluid" src="img/product/product1.png" alt=""> -->
-							<ul class="card-product__imgOverlay">
-								<li><button>
-										<i class="ti-search"></i>
-									</button></li>
-								<li><button>
-										<i class="ti-shopping-cart"></i>
-									</button></li>
-								<li><button>
-										<i class="ti-heart"></i>
-									</button></li>
-							</ul>
-						</div>
-						<div class="card-body">
-							<p>Accessories</p>
-							<h4 class="card-product__title">
-								<a href="single-product.html">Quartz Belt Watch</a>
-							</h4>
-							<p class="card-product__price">$150.00</p>
-						</div>
-					</div>
-
-					<div class="card text-center card-product">
-						<div class="card-product__img">
-							<!-- <img class="img-fluid" src="img/product/product2.png" alt=""> -->
-							<ul class="card-product__imgOverlay">
-								<li><button>
-										<i class="ti-search"></i>
-									</button></li>
-								<li><button>
-										<i class="ti-shopping-cart"></i>
-									</button></li>
-								<li><button>
-										<i class="ti-heart"></i>
-									</button></li>
-							</ul>
-						</div>
-						<div class="card-body">
-							<p>Beauty</p>
-							<h4 class="card-product__title">
-								<a href="single-product.html">Women Freshwash</a>
-							</h4>
-							<p class="card-product__price">$150.00</p>
-						</div>
-					</div>
-
-					<div class="card text-center card-product">
-						<div class="card-product__img">
-							<!-- <img class="img-fluid" src="img/product/product3.png" alt=""> -->
-							<ul class="card-product__imgOverlay">
-								<li><button>
-										<i class="ti-search"></i>
-									</button></li>
-								<li><button>
-										<i class="ti-shopping-cart"></i>
-									</button></li>
-								<li><button>
-										<i class="ti-heart"></i>
-									</button></li>
-							</ul>
-						</div>
-						<div class="card-body">
-							<p>Decor</p>
-							<h4 class="card-product__title">
-								<a href="single-product.html">Room Flash Light</a>
-							</h4>
-							<p class="card-product__price">$150.00</p>
-						</div>
-					</div>
-
-					<div class="card text-center card-product">
-						<div class="card-product__img">
-							<!-- <img class="img-fluid" src="img/product/product4.png" alt=""> -->
-							<ul class="card-product__imgOverlay">
-								<li><button>
-										<i class="ti-search"></i>
-									</button></li>
-								<li><button>
-										<i class="ti-shopping-cart"></i>
-									</button></li>
-								<li><button>
-										<i class="ti-heart"></i>
-									</button></li>
-							</ul>
-						</div>
-						<div class="card-body">
-							<p>Decor</p>
-							<h4 class="card-product__title">
-								<a href="single-product.html">Room Flash Light</a>
-							</h4>
-							<p class="card-product__price">$150.00</p>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>
@@ -618,11 +259,11 @@
 					</h2>
 				</div>
 
-				<div class="row">
+				<!-- <div class="row">
 					<div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
 						<div class="card card-blog">
 							<div class="card-blog__img">
-								<!-- <img class="card-img rounded-0" src="img/blog/blog1.png" alt=""> -->
+								<img class="card-img rounded-0" src="img/blog/blog1.png" alt="">
 							</div>
 							<div class="card-body">
 								<ul class="card-blog__info">
@@ -645,7 +286,7 @@
 					<div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
 						<div class="card card-blog">
 							<div class="card-blog__img">
-								<!-- <img class="card-img rounded-0" src="img/blog/blog2.png" alt=""> -->
+								<img class="card-img rounded-0" src="img/blog/blog2.png" alt="">
 							</div>
 							<div class="card-body">
 								<ul class="card-blog__info">
@@ -668,7 +309,7 @@
 					<div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
 						<div class="card card-blog">
 							<div class="card-blog__img">
-								<!-- <img class="card-img rounded-0" src="img/blog/blog3.png" alt=""> -->
+								<img class="card-img rounded-0" src="img/blog/blog3.png" alt="">
 							</div>
 							<div class="card-body">
 								<ul class="card-blog__info">
@@ -686,14 +327,14 @@
 									class="ti-arrow-right"></i></a>
 							</div>
 						</div>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</section>
 		<!-- ================ Blog section end ================= -->
 
 		<!-- ================ Subscribe section start ================= -->
-		<section class="subscribe-position">
+		<!-- <section class="subscribe-position">
 			<div class="container">
 				<div class="subscribe text-center">
 					<h3 class="subscribe__title">Get Update From Anywhere</h3>
@@ -721,7 +362,7 @@
 
 				</div>
 			</div>
-		</section>
+		</section> -->
 		<!-- ================ Subscribe section end ================= -->
 
 
@@ -730,93 +371,77 @@
 
 
 	<!--================ Start footer Area  =================-->
-	<footer class="footer">
-		<div class="footer-area">
-			<div class="container">
-				<div class="row section_gap">
-					<div class="col-lg-3 col-md-6 col-sm-6">
-						<div class="single-footer-widget tp_widgets">
-							<h4 class="footer_title large_title">Our Mission</h4>
-							<p>So seed seed green that winged cattle in. Gathering thing
-								made fly you're no divided deep moved us lan Gathering thing us
-								land years living.</p>
-							<p>So seed seed green that winged cattle in. Gathering thing
-								made fly you're no divided deep moved</p>
-						</div>
-					</div>
-					<div class="offset-lg-1 col-lg-2 col-md-6 col-sm-6">
-						<div class="single-footer-widget tp_widgets">
-							<h4 class="footer_title">Quick Links</h4>
-							<ul class="list">
-								<li><a href="#">Home</a></li>
-								<li><a href="#">Shop</a></li>
-								<li><a href="#">Blog</a></li>
-								<li><a href="#">Product</a></li>
-								<li><a href="#">Brand</a></li>
-								<li><a href="#">Contact</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-lg-2 col-md-6 col-sm-6">
-						<div class="single-footer-widget instafeed">
-							<h4 class="footer_title">Gallery</h4>
-							<ul class="list instafeed d-flex flex-wrap">
-								<!-- <li><img src="img/gallery/r1.jpg" alt=""></li>
-								<li><img src="img/gallery/r2.jpg" alt=""></li>
-								<li><img src="img/gallery/r3.jpg" alt=""></li>
-								<li><img src="img/gallery/r5.jpg" alt=""></li>
-								<li><img src="img/gallery/r7.jpg" alt=""></li>
-								<li><img src="img/gallery/r8.jpg" alt=""></li> -->
-							</ul>
-						</div>
-					</div>
-					<div class="offset-lg-1 col-lg-3 col-md-6 col-sm-6">
-						<div class="single-footer-widget tp_widgets">
-							<h4 class="footer_title">Contact Us</h4>
-							<div class="ml-40">
-								<p class="sm-head">
-									<span class="fa fa-location-arrow"></span> Head Office
-								</p>
-								<p>123, Main Street, Your City</p>
+	<footer>
+<div class="footer-area footer-only">
+    <div class="container">
+        <div class="row section_gap">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="single-footer-widget tp_widgets">
+                    <h2 class="footer_title" style="font-size: 25px;">Sứ mệnh của chúng tôi</h2>
+                    <p>
+                        Sứ mệnh của chúng tôi là mang đến những sản phẩm và dịch vụ mang lại lợi ích cho khách hàng.
+                    </p>
+                    <p>
+                        Chúng tôi hướng đến việc xây dựng một môi trường sống và làm việc tốt hơn, mang lại giá trị và
+                        cơ hội
+                        phát triển cho cả cộng đồng và khách hàng của chúng tôi.
+                    </p>
+                </div>
+            </div>
+            <div class="offset-lg-1 col-lg-4 col-md-12 col-sm-12">
+                <div class="single-footer-widget tp_widgets" style="text-align: center;">
+                    <h4 class="footer_title">Team</h4>
+                    <ul class="list">
+                        <li>Trịnh Duy Bảo</li>
+                        <li>Lưu Đức Bình</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="offset-lg-1 col-lg-3 col-md-6 col-sm-6">
+                <div class="single-footer-widget tp_widgets">
+                    <h4 class="footer_title">Liên Hệ Với Chúng Tôi</h4>
+                    <div class="ml-40">
+                        <p class="sm-head">
+                            <span class="fa fa-location-arrow"></span>
+                            Trụ sở chính
+                        </p>
+                        <p>Cao Đẳng Thực Hành FPT Polytechnic</p>
 
-								<p class="sm-head">
-									<span class="fa fa-phone"></span> Phone Number
-								</p>
-								<p>
-									+123 456 7890 <br> +123 456 7890
-								</p>
+                        <p class="sm-head">
+                            <span class="fa fa-phone"></span>
+                            Điện Thoại
+                        </p>
+                        <p>
+                            0986 699 392
+                        </p>
 
-								<p class="sm-head">
-									<span class="fa fa-envelope"></span> Email
-								</p>
-								<p>
-									free@infoexample.com <br> www.infoexample.com
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+                        <p class="sm-head">
+                            <span class="fa fa-envelope"></span>
+                            Email
+                        </p>
+                        <p>
+                            baotdps24392@fpt.edu.vn
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-		<div class="footer-bottom">
-			<div class="container">
-				<div class="row d-flex">
-					<p class="col-lg-12 footer-text text-center">
-						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-						Copyright &copy;
-						<script>
-							document.write(new Date().getFullYear());
-						</script>
-						All rights reserved | This template is made with <i
-							class="fa fa-heart" aria-hidden="true"></i> by <a
-							href="https://colorlib.com" target="_blank">Colorlib</a>
-						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-					</p>
-				</div>
-			</div>
-		</div>
-	</footer>
+<div class="footer-bottom">
+    <div class="container">
+        <div class="row d-flex">
+            <p class="col-lg-12 footer-text text-center">
+                Copyright &copy;
+                <script>document.write(new Date().getFullYear());</script>
+                All rights reserved | This website is made with
+                <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://www.facebook.com/profile.php?id=100034754954878"
+                                                                     target="_blank">Trịnh Duy Bảo</a>
+            </p>
+        </div>
+    </div>
+</div>
 	<!--================ End footer Area  =================-->
 
 
