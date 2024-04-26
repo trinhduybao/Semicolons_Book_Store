@@ -118,6 +118,42 @@ app.controller("shopping-cart-ctrl", function ($scope, $http) {
       });
   };
 
+   $scope.fetchOrderDetails = function(event) {
+    var orderId = event.currentTarget.getAttribute('value');
+
+    $http.get('http://localhost:8080/rest/orderDetail/order/' + orderId)
+        .then(function(response) {
+          console.log("Order ID:", orderId);
+
+            var orderDetails = response.data;
+            var orderDetailsHtml = '';
+
+            console.log(orderDetails);
+
+            orderDetails.forEach(function(orderDetail, index) {
+              orderDetailsHtml += `
+                  <div class="order-detail">
+                      <p><strong>ID:</strong> ${orderDetail.id}</p>
+                      <p><strong>Sản phẩm ${index + 1}:</strong> ${orderDetail.product.name}</p>
+                      <p><strong>Số lượng:</strong> ${orderDetail.quantity}</p>
+                      <p><strong>Giá:</strong> ${orderDetail.price}</p>
+                      <!-- Thêm các thông tin khác của sản phẩm nếu cần -->
+                  </div>
+              `;
+          });
+
+            $('#orderDetailsModal .modal-body').html(orderDetailsHtml);
+            $('#orderDetailsModal').modal('show');
+        })
+        .catch(function(error) {
+            console.error('Error fetching order details:', error);
+        });
+};
+
+
+
+
+
 
   function clearCart() {
     localStorage.removeItem("cart");
@@ -126,51 +162,7 @@ app.controller("shopping-cart-ctrl", function ($scope, $http) {
   $scope.cart.loadFromLocalStorage();
 });
 
-// Add click event listener to view-details buttons
-document.querySelectorAll('.view-details-btn').forEach(button => {
-  button.addEventListener('click', function() {
-      const orderId = this.getAttribute('data-order-id');
-      // Fetch order details based on orderId and display in modal
-      fetchOrderDetails(orderId);
-  });
-});
 
-// Function to fetch order details and display in modal
-function fetchOrderDetails(orderId) {
-  // Make AJAX request to fetch order details
-  // Replace 'your-api-endpoint' with your actual API endpoint
-  fetch(`/api/orders/${orderId}`)
-      .then(response => {
-          if (!response.ok) {
-              throw new Error('Network response was not ok');
-          }
-          return response.json();
-      })
-      .then(orderDetails => {
-          // Construct HTML for displaying order details
-          const orderDetailsHtml = `
-              <p><strong>Mã đơn hàng:</strong> ${orderDetails.id}</p>
-              <p><strong>Ngày:</strong> ${orderDetails.orderDate}</p>
-              <p><strong>Tổng tiền:</strong> ${orderDetails.totalAmount}</p>
-              <!-- Add more order details as needed -->
-          `;
-          // Set order details HTML in modal body
-          const modalBody = document.querySelector('#orderDetailsModal .modal-body');
-          modalBody.innerHTML = orderDetailsHtml;
-          // Show modal
-          $('#orderDetailsModal').modal('show');
-      })
-      .catch(error => {
-          console.error('Error fetching order details:', error);
-          // Display error message to the user
-          alert('Failed to fetch order details. Please try again later.');
-      });
-}
 
-// Clear modal content when it's closed
-$('#orderDetailsModal').on('hidden.bs.modal', function() {
-  const modalBody = document.querySelector('#orderDetailsModal .modal-body');
-  modalBody.innerHTML = '';
-});
 
 

@@ -15,6 +15,8 @@ public class AccountDTO {
     private String username;
     private String password;
     private AddressDTO address;
+
+
     // Các trường thông tin khác của tài khoản
 	public int getId() {
 		return id;
