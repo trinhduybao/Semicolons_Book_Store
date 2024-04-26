@@ -1,24 +1,44 @@
-<header class="header_area" xmlns:th="http://www.thymeleaf.org"
-        xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<header class="header_area">
+		<div class="main_menu">
+			<nav class="navbar navbar-expand-lg navbar-light">
+				<div class="container">
+					<a class="navbar-brand logo_h" th:href="@{/}"><img
+						src="/customer/img/logo.png" alt=""></a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse"
+						data-target="#navbarSupportedContent"
+						aria-controls="navbarSupportedContent" aria-expanded="false"
+						aria-label="Toggle navigation">
+						<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<div class="collapse navbar-collapse offset"
+						id="navbarSupportedContent">
+						<ul class="nav navbar-nav menu_nav ml-auto mr-auto">
+							<li class="nav-item active"><a class="nav-link"
+								th:href="@{/}">Home</a></li>
+								<li class="nav-item submenu dropdown"><a
+								th:href="@{/product/list}" class="nav-link dropdown-toggle"
+								data-toggle="" role="button" aria-haspopup="true"
+								aria-expanded="false">Shop</a>
+								<!-- <ul class="dropdown-menu">
+									<li class="nav-item"><a class="nav-link"
+										href="checkout.html">Product Checkout</a></li>
+									<li class="nav-item"><a class="nav-link"
+										th:href="@{/confirmation/view}">Confirmation</a></li>
+									<li class="nav-item"><a class="nav-link" href="cart.html">Shopping
+											Cart</a></li>
+								</ul> --></li>
+								<li class="nav-item"><a class="nav-link" href="contact">Contact</a></li>
+							<th:block th:if="${#request.remoteUser}">
+							
+							<li th:if="${#request.isUserInRole('director') or #request.isUserInRole('staff')}" class="nav-item"><a class="nav-link" href="contact.html">Administration</a></li>
+						</ul>
 
-    <div class="main_menu">
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <div class="container">
-                <a class="navbar-brand logo_h" th:href="@{/home/index}"><img src="/customer/img/logo.png" alt=""></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-                    <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-                        <li class="nav-item"><a class="nav-link" th:href="@{/home/index}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" th:href="@{/shop}">Shop</a></li>
-                        <li class="nav-item"><a class="nav-link" th:href="@{/contact}">Contact</a></li>
-                    </ul>
-                    <ul class="nav-shop">
-                        <li class="nav-item">
+						<ul class="nav-shop">
+							<!-- <li class="nav-item"><button>
+									<i class="ti-search"></i>
+								</button></li> -->
+							<li class="nav-item">
                                 <a sec:authorize="isAuthenticated()" th:href="@{/profile/view}">
                                     <i class="ti-user"></i>
                                 </a>
@@ -26,13 +46,19 @@
                                     <i class="ti-user"></i>
                                 </a>
                         </li>
-                       <!-- <li class="nav-item"><button><a th:href="@{/login}"><i class="ti-user"></i></a></button></li>-->
-                        <li class="nav-item"><a th:href="@{/cart/view}"><button><i class="ti-shopping-cart"></i><span
-                                class="nav-shop__circle">{{cart.count}}</span></button> </a></li>
-                        <li class="nav-item"><a class="button button-header" th:href="@{/shop}">Mua Ngay</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </div>
-</header>
+                        <li><a class="">Welcome [[${#request.remoteUser}]]</a></li>
+							<li class="nav-item"><button>
+									<a th:href="@{/cart/view}" class="ti-shopping-cart text-dark ms-3"></a><span
+										class="nav-shop__circle">{{cart.count}}</span>
+								</button></li>
+						</th:block>
+						<th:block th:unless="${#request.remoteUser}">
+							<li class="nav-item"><a class="button button-header"
+								th:href="@{/login/view}">Login</a></li>
+						</th:block>
+						</ul>			
+					</div>
+				</div>
+			</nav>
+		</div>
+	</header>

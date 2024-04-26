@@ -51,55 +51,49 @@
 					<div class="collapse navbar-collapse offset"
 						id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-							<li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
-							<li class="nav-item active submenu dropdown"><a
+							<li class="nav-item active"><a class="nav-link"
+								th:href="@{/}">Home</a></li>
+								<li class="nav-item submenu dropdown"><a
 								th:href="@{/product/list}" class="nav-link dropdown-toggle"
-								data-toggle="dropdown" role="button" aria-haspopup="true"
+								data-toggle="" role="button" aria-haspopup="true"
 								aria-expanded="false">Shop</a>
-								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link"
-										href="category.html">Shop Category</a></li>
-									<li class="nav-item"><a class="nav-link"
-										href="single-product.html">Product Details</a></li>
+								<!-- <ul class="dropdown-menu">
 									<li class="nav-item"><a class="nav-link"
 										href="checkout.html">Product Checkout</a></li>
 									<li class="nav-item"><a class="nav-link"
-										href="confirmation.html">Confirmation</a></li>
+										th:href="@{/confirmation/view}">Confirmation</a></li>
 									<li class="nav-item"><a class="nav-link" href="cart.html">Shopping
 											Cart</a></li>
-								</ul></li>
-							<li class="nav-item submenu dropdown"><a href="#"
-								class="nav-link dropdown-toggle" data-toggle="dropdown"
-								role="button" aria-haspopup="true" aria-expanded="false">Blog</a>
-								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-									<li class="nav-item"><a class="nav-link"
-										href="register.html">Register</a></li>
-									<li class="nav-item"><a class="nav-link"
-										href="single-blog.html">Blog Details</a></li>
-								</ul></li>
-							<li class="nav-item submenu dropdown"><a href="#"
-								class="nav-link dropdown-toggle" data-toggle="dropdown"
-								role="button" aria-haspopup="true" aria-expanded="false">Pages</a>
-								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
-									<li class="nav-item"><a class="nav-link"
-										href="tracking-order.html">Tracking</a></li>
-								</ul></li>
-							<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+								</ul> --></li>
+								<li class="nav-item"><a class="nav-link" href="contact">Contact</a></li>
+							<th:block th:if="${#request.remoteUser}">
+							
+							<li th:if="${#request.isUserInRole('director') or #request.isUserInRole('staff')}" class="nav-item"><a class="nav-link" href="contact.html">Administration</a></li>
 						</ul>
 
 						<ul class="nav-shop">
-							<li class="nav-item"><button>
+							<!-- <li class="nav-item"><button>
 									<i class="ti-search"></i>
-								</button></li>
+								</button></li> -->
+							<li class="nav-item">
+                                <a sec:authorize="isAuthenticated()" th:href="@{/profile/view}">
+                                    <i class="ti-user"></i>
+                                </a>
+                                <a sec:authorize="!isAuthenticated()" th:href="@{/security/login/form}">
+                                    <i class="ti-user"></i>
+                                </a>
+                        </li>
+                        <li><a class="">Welcome [[${#request.remoteUser}]]</a></li>
 							<li class="nav-item"><button>
-									<a th:href="@{/cart/view}" class="ti-shopping-cart text-dark"></a><span
+									<a th:href="@{/cart/view}" class="ti-shopping-cart text-dark ms-3"></a><span
 										class="nav-shop__circle">{{cart.count}}</span>
 								</button></li>
+						</th:block>
+						<th:block th:unless="${#request.remoteUser}">
 							<li class="nav-item"><a class="button button-header"
-								href="#">Buy Now</a></li>
-						</ul>
+								th:href="@{/login/view}">Login</a></li>
+						</th:block>
+						</ul>			
 					</div>
 				</div>
 			</nav>
@@ -253,92 +247,77 @@
 
 	<!--================ Start footer Area  =================-->
 	<footer>
-		<div class="footer-area footer-only">
-			<div class="container">
-				<div class="row section_gap">
-					<div class="col-lg-3 col-md-6 col-sm-6">
-						<div class="single-footer-widget tp_widgets ">
-							<h4 class="footer_title large_title">Our Mission</h4>
-							<p>So seed seed green that winged cattle in. Gathering thing
-								made fly you're no divided deep moved us lan Gathering thing us
-								land years living.</p>
-							<p>So seed seed green that winged cattle in. Gathering thing
-								made fly you're no divided deep moved</p>
-						</div>
-					</div>
-					<div class="offset-lg-1 col-lg-2 col-md-6 col-sm-6">
-						<div class="single-footer-widget tp_widgets">
-							<h4 class="footer_title">Quick Links</h4>
-							<ul class="list">
-								<li><a href="#">Home</a></li>
-								<li><a href="#">Shop</a></li>
-								<li><a href="#">Blog</a></li>
-								<li><a href="#">Product</a></li>
-								<li><a href="#">Brand</a></li>
-								<li><a href="#">Contact</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-lg-2 col-md-6 col-sm-6">
-						<div class="single-footer-widget instafeed">
-							<h4 class="footer_title">Gallery</h4>
-							<ul class="list instafeed d-flex flex-wrap">
-								<!-- <li><img src="img/gallery/r1.jpg" alt=""></li>
-								<li><img src="img/gallery/r2.jpg" alt=""></li>
-								<li><img src="img/gallery/r3.jpg" alt=""></li>
-								<li><img src="img/gallery/r5.jpg" alt=""></li>
-								<li><img src="img/gallery/r7.jpg" alt=""></li>
-								<li><img src="img/gallery/r8.jpg" alt=""></li> -->
-							</ul>
-						</div>
-					</div>
-					<div class="offset-lg-1 col-lg-3 col-md-6 col-sm-6">
-						<div class="single-footer-widget tp_widgets">
-							<h4 class="footer_title">Contact Us</h4>
-							<div class="ml-40">
-								<p class="sm-head">
-									<span class="fa fa-location-arrow"></span> Head Office
-								</p>
-								<p>123, Main Street, Your City</p>
+<div class="footer-area footer-only">
+    <div class="container">
+        <div class="row section_gap">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="single-footer-widget tp_widgets">
+                    <h2 class="footer_title" style="font-size: 25px;">Sứ mệnh của chúng tôi</h2>
+                    <p>
+                        Sứ mệnh của chúng tôi là mang đến những sản phẩm và dịch vụ mang lại lợi ích cho khách hàng.
+                    </p>
+                    <p>
+                        Chúng tôi hướng đến việc xây dựng một môi trường sống và làm việc tốt hơn, mang lại giá trị và
+                        cơ hội
+                        phát triển cho cả cộng đồng và khách hàng của chúng tôi.
+                    </p>
+                </div>
+            </div>
+            <div class="offset-lg-1 col-lg-4 col-md-12 col-sm-12">
+                <div class="single-footer-widget tp_widgets" style="text-align: center;">
+                    <h4 class="footer_title">Team</h4>
+                    <ul class="list">
+                        <li>Trịnh Duy Bảo</li>
+                        <li>Lưu Đức Bình</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="offset-lg-1 col-lg-3 col-md-6 col-sm-6">
+                <div class="single-footer-widget tp_widgets">
+                    <h4 class="footer_title">Liên Hệ Với Chúng Tôi</h4>
+                    <div class="ml-40">
+                        <p class="sm-head">
+                            <span class="fa fa-location-arrow"></span>
+                            Trụ sở chính
+                        </p>
+                        <p>Cao Đẳng Thực Hành FPT Polytechnic</p>
 
-								<p class="sm-head">
-									<span class="fa fa-phone"></span> Phone Number
-								</p>
-								<p>
-									+123 456 7890 <br> +123 456 7890
-								</p>
+                        <p class="sm-head">
+                            <span class="fa fa-phone"></span>
+                            Điện Thoại
+                        </p>
+                        <p>
+                            0986 699 392
+                        </p>
 
-								<p class="sm-head">
-									<span class="fa fa-envelope"></span> Email
-								</p>
-								<p>
-									free@infoexample.com <br> www.infoexample.com
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+                        <p class="sm-head">
+                            <span class="fa fa-envelope"></span>
+                            Email
+                        </p>
+                        <p>
+                            baotdps24392@fpt.edu.vn
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-		<div class="footer-bottom">
-			<div class="container">
-				<div class="row d-flex">
-					<p class="col-lg-12 footer-text text-center">
-						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-						Copyright &copy;
-						<script>
-							document.write(new Date().getFullYear());
-						</script>
-						All rights reserved | This template is made with <i
-							class="fa fa-heart" aria-hidden="true"></i> by <a
-							href="https://colorlib.com" target="_blank">Colorlib</a>
-						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-					</p>
-				</div>
-			</div>
-		</div>
-	</footer>
+<div class="footer-bottom">
+    <div class="container">
+        <div class="row d-flex">
+            <p class="col-lg-12 footer-text text-center">
+                Copyright &copy;
+                <script>document.write(new Date().getFullYear());</script>
+                All rights reserved | This website is made with
+                <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://www.facebook.com/profile.php?id=100034754954878"
+                                                                     target="_blank">Trịnh Duy Bảo</a>
+            </p>
+        </div>
+    </div>
+</div>
+</footer>
 	<!--================ End footer Area  =================-->
 
 
