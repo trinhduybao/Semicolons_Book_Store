@@ -33,10 +33,10 @@ public class IndexController {
 		return"customer/page/login2";
 	}
 	
-	@RequestMapping("/register/view")
-	public String register(Model model) {
-		return"customer/register";
-	}
+//	@RequestMapping("/register/view")
+//	public String register(Model model) {
+//		return"customer/register";
+//	}
 	
 	@RequestMapping("/profile/view")
 	public String profile(Model model) {

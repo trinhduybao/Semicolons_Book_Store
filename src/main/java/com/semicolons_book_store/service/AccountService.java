@@ -8,4 +8,7 @@ public interface AccountService {
 	/*Account findByUser(String username);*/
 	
 	Account findByUsername(String username);
+
+	Account registerAccount(String username, String password, String firstName, String lastName, String email, String address);
+	
 }

@@ -32,7 +32,7 @@ public class SecurityController {
 
     @RequestMapping("/security/login/error")
     public String loginError(Model model){
-        model.addAttribute("message", "Chưa có thông tin tài khoản hoặc mật khẩu !");
+        model.addAttribute("message", "Kiểm tra lại thông tin tài khoản mật khẩu !");
         return "customer/page/login2";
     }
 

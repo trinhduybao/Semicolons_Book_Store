@@ -41,7 +41,7 @@ create table products(
 create table accounts(
                          id int identity(1,1),
                          username varchar(50) not null unique,
-    [password] varchar(50) not null,
+    [password] varchar(255) not null,
     email varchar(100) not null,
     first_name nvarchar(100),
     last_name nvarchar(100),
@@ -659,17 +659,9 @@ update accounts set ban = 1 where id = 15
 update feedbacks set ban = 1 where id = 1
 update feedbacks set ban = 1 where id = 3
 
-select * from items
-select * from categories
-select * from products
 select * from accounts
-select * from feedbacks
-select * from vouchers
-select * from orders
-select * from authorities
-select * from roles
 
-
+delete from accounts where id = 16
 
 
 

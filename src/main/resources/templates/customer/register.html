@@ -119,38 +119,45 @@
 				<div class="col-lg-6">
 					<div class="login_box_img">
 						<div class="hover">
-							<h4>Already have an account?</h4>
-							<p>There are advances being made in science and technology everyday, and a good example of this is the</p>
-							<a class="button button-account" href="/login/view">Login Now</a>
+							<h4>Bạn đã sẵn sàng đăng ký tài khoản?</h4>
+<						<p>Đăng ký tài khoản để có thể sử dụng dịch vụ của sản phẩm sách</p>
+ 							<a class="button button-account" href="/login/view">Login Now</a>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-6">
 					<div class="login_form_inner register_form_inner">
 						<h3>Create an account</h3>
-						<form class="row login_form" action="#/" id="register_form">
+						<form class="row login_form" action="/register" method="post" id="register_form" th:object="${account}">
 							<div class="col-md-6 form-group"> <!-- Chia cột thành 6 phần, tức là nửa của 12 phần -->
-								<input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'firstName'">
+								<input type="text" th:field="*{firstName}" class="form-control" id="firstName" name="firstName" placeholder="First Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'firstName'">
 							</div>
 							<div class="col-md-6 form-group"> <!-- Chia cột còn lại thành 6 phần -->
-								<input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'lastName'">
+								<input type="text" th:field="*{lastName}" class="form-control" id="lastName" name="lastName" placeholder="Last Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'lastName'">
 							</div>
 							<div class="col-md-12 form-group">
-								<input type="email" class="form-control" id="email" name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'">
+								<input type="email" th:field="*{email}" class="form-control" id="email" name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'">
 							</div>
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+								<input type="text" th:field="*{address}" class="form-control" id="address" name="adđress" placeholder="Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address'">
 							</div>
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Confirm Password'">
+								<input type="text" th:field="*{username}" class="form-control" id="username" name="username" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
 							</div>
 							<div class="col-md-12 form-group">
+								<input type="text" th:field="*{password}" class="form-control" id="password" name="password" placeholder="Password">
+							</div>
+							<div class="col-md-12 form-group">
+								<input type="text" class="form-control" name="confirmPassword" placeholder="Confirm Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Confirm Password'">
+							</div>
+			<!-- 				<div class="col-md-12 form-group">
 								<div class="creat_account">
 									<input type="checkbox" id="f-option2" name="selector">
 									<label for="f-option2">Keep me logged in</label>
 								</div>
-							</div>
+							</div> -->
 							<div class="col-md-12 form-group">
+								<span class="text-center message-error text-danger" th:text="${message}"></span>
 								<button type="submit" value="submit" class="button button-register w-100">Register</button>
 							</div>
 						</form>
