@@ -1,14 +1,19 @@
 package com.semicolons_book_store.controller;
 
+import com.semicolons_book_store.model.Order;
+import com.semicolons_book_store.repository.OrderRepository;
+import com.semicolons_book_store.service.serviceimpl.OrderSeverviceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.semicolons_book_store.model.Account;
 import com.semicolons_book_store.service.AccountService;
 import com.semicolons_book_store.service.SessionService;
+
+import java.util.List;
 
 @Controller
 public class SecurityController {
@@ -18,6 +23,14 @@ public class SecurityController {
     @Autowired
     SessionService sessionService;
 
+    @Autowired
+    OrderRepository orderRepository;
+
+    @Autowired
+    OrderSeverviceImpl orderSevervice;
+
+
+
     @RequestMapping("/security/login/form")
     public String loginForm(Model model){
     	model.addAttribute("message", "Vui lòng đăng nhập");
@@ -25,7 +38,7 @@ public class SecurityController {
     }
 
     @RequestMapping("/security/login/success")
-    public String loginSuccess(Model model){    	
+    public String loginSuccess(Model model){
     	model.addAttribute("message", "Đăng nhập thành công");
         return "redirect:/home";
     }

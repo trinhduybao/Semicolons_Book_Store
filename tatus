@@ -1,0 +1,277 @@
+[33mcommit cffc41480d46418bcdd78220720cec67b2dd8be0[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Merge: 11b6c9f 0841181
+Author: Lưu Đức Bình <binhldps25658@fot.edu.vn>
+Date:   Fri Apr 26 11:13:28 2024 +0700
+
+    Merge branch 'main' of https://github.com/tranvannhan77c1/Semicolons_Book_Store
+    
+    # Conflicts:
+    #       src/main/resources/templates/customer/profile.html
+
+[33mcommit 11b6c9f4c535254a1131598cbd5dd755d8c64573[m
+Author: Lưu Đức Bình <binhldps25658@fot.edu.vn>
+Date:   Thu Apr 25 20:21:07 2024 +0700
+
+    m
+
+[33mcommit 0841181362e4fb5619d14c374ab221b37e4eded8[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: trinhduybao <tbao60170@gmail.com>
+Date:   Thu Apr 25 20:19:34 2024 +0700
+
+    chỉnh lại giao diện
+
+[33mcommit d43b1f7c56a6eaa5524f8049cb1c96abca221e6e[m
+Author: trinhduybao <tbao60170@gmail.com>
+Date:   Wed Apr 24 23:04:48 2024 +0700
+
+    security login
+
+[33mcommit 5c39ab01d107a76cd23418089d1c5ff9bba0ffed[m
+Author: Lưu Đức Bình <binhldps25658@fot.edu.vn>
+Date:   Wed Apr 24 01:58:02 2024 +0700
+
+    feedback
+
+[33mcommit 41a2696da347294c972def4a82652382f8b3d562[m
+Author: Lưu Đức Bình <binhldps25658@fot.edu.vn>
+Date:   Mon Apr 22 18:38:05 2024 +0700
+
+    feedback
+
+[33mcommit 242b769699c6d662e78706a0eafd000acfeeae95[m
+Author: Lưu Đức Bình <binhldps25658@fot.edu.vn>
+Date:   Wed Apr 17 02:32:05 2024 +0700
+
+    fix image
+
+[33mcommit 93ead9a7d83099187483a896e7d48632b2007ad7[m
+Author: Lưu Đức Bình <binhldps25658@fot.edu.vn>
+Date:   Wed Apr 17 02:27:43 2024 +0700
+
+    fix image
+
+[33mcommit 0c113a0aaeb5a88140ac10234697d19934b4b213[m
+Author: trinhduybao <tbao60170@gmail.com>
+Date:   Tue Apr 16 19:51:02 2024 +0700
+
+    profile.html
+
+[33mcommit 8435f08dc04eb0d9c84a319a1c092108984f4968[m
+Author: trinhduybao <tbao60170@gmail.com>
+Date:   Mon Apr 15 21:35:27 2024 +0700
+
+    fix lỗi
+
+[33mcommit 16c2d794c4d6779676ff21d919f3909613f16b9e[m
+Merge: 01ce176 67771be
+Author: trinhduybao <tbao60170@gmail.com>
+Date:   Mon Apr 15 19:20:18 2024 +0700
+
+    Merge branch 'main' of https://github.com/tranvannhan77c1/Semicolons_Book_Store
+
+[33mcommit 01ce176649003e3d1c4a2d49840201c7fb30e967[m
+Author: trinhduybao <tbao60170@gmail.com>
+Date:   Mon Apr 15 19:20:07 2024 +0700
+
+    bao cao
+
+[33mcommit 67771be72718a5c98484815740b5b20a66c41246[m
+Author: Lưu Đức Bình <binhldps25658@fot.edu.vn>
+Date:   Mon Apr 15 00:32:58 2024 +0700
+
+    order
+
+[33mcommit f73554187a7a1a8c398bfbc0f5dd18cd1a91f829[m
+Author: Lưu Đức Bình <binhldps25658@fot.edu.vn>
+Date:   Fri Apr 12 10:32:54 2024 +0700
+
+    new
+
+[33mcommit 0a67c92fab452e6a10de6a8a1b94e27332bb80e9[m
+Author: Lưu Đức Bình <binhldps25658@fot.edu.vn>
+Date:   Fri Apr 12 05:33:46 2024 +0700
+
+    new
+
+[33mcommit ee9fb3eb1646783f2981c3105fc98185fed161cc[m
+Author: trinhduybao <tbao60170@gmail.com>
+Date:   Thu Apr 11 09:39:31 2024 +0700
+
+    checkout
+
+[33mcommit 28f0c19e371c3599eaf95fc8393371c6efa96904[m
+Author: Lưu Đức Bình <binhldps25658@fot.edu.vn>
+Date:   Sat Mar 23 10:34:13 2024 +0700
+
+    new
+
+[33mcommit 8efa53fa350262dd47ff3fc054ca5ab17c84ba78[m
+Author: Lưu Đức Bình <binhldps25658@fot.edu.vn>
+Date:   Sat Mar 23 03:41:16 2024 +0700
+
+    vouchehr
+
+[33mcommit 4ddefed5f3b032d6225d615b18b02b83e021e49e[m
+Author: Lưu Đức Bình <binhldps25658@fot.edu.vn>
+Date:   Sat Mar 23 03:00:40 2024 +0700
+
+    vouchehr
+
+[33mcommit cc7bcc855354de43a66e034c88d93bcf00e20f67[m
+Author: trinhduybao <tbao60170@gmail.com>
+Date:   Fri Mar 22 19:47:49 2024 +0700
+
+    slide
+
+[33mcommit 44c6d3cbd6ae0a3803cb583daf9a16c2c6261352[m
+Author: Tran Van Nhan <ads.tranvannhan@gmail.com>
+Date:   Wed Mar 20 14:15:16 2024 +0700
+
+    Update DB, Insert Security Login, Form Login new
+
+[33mcommit f563c941df72fd78bd0776fffc854a6df87cf9f1[m
+Merge: 282780d 2893eeb
+Author: Lưu Đức Bình <binhldps25658@fot.edu.vn>
+Date:   Mon Mar 18 09:43:34 2024 +0700
+
+    Merge branch 'main' of https://github.com/tranvannhan77c1/Semicolons_Book_Store
+
+[33mcommit 282780d0a73720070d7d5e96830b6b950ed10dcf[m
+Author: Lưu Đức Bình <binhldps25658@fot.edu.vn>
+Date:   Mon Mar 18 09:43:06 2024 +0700
+
+    new
+
+[33mcommit 2893eeb6f5ac48f700422ac8a69573bd18199193[m
+Author: trinhduybao <tbao60170@gmail.com>
+Date:   Mon Mar 18 09:08:41 2024 +0700
+
+    coi sửa lại database
+
+[33mcommit 31af774f3a1ff194bff872d15312d80e9f8ad3a3[m
+Author: Lưu Đức Bình <binhldps25658@fot.edu.vn>
+Date:   Tue Mar 12 21:58:32 2024 +0700
+
+    validate
+
+[33mcommit d0e2a2cbe0e0afcb82494c63093abdaea6d09fb3[m
+Author: trinhduybao <tbao60170@gmail.com>
+Date:   Tue Mar 12 20:59:39 2024 +0700
+
+    xong phần giỏ hàng
+
+[33mcommit b23c2cc6a43957bbf45c0d68688837b12eff7d70[m
+Author: Lưu Đức Bình <binhldps25658@fot.edu.vn>
+Date:   Wed Mar 6 00:13:54 2024 +0700
+
+    voucher
+
+[33mcommit 5e00b5948883d83a4650b0685473d0084e094927[m
+Author: Lưu Đức Bình <binhldps25658@fot.edu.vn>
+Date:   Mon Mar 4 16:14:25 2024 +0700
+
+    feedback
+
+[33mcommit 5e53752fdfc62de305dc3000048419fc393ae5af[m
+Merge: fcfe9ea 06c08b3
+Author: Lưu Đức Bình <binhldps25658@fot.edu.vn>
+Date:   Mon Mar 4 16:01:00 2024 +0700
+
+    Merge remote-tracking branch 'origin/main'
+    
+    # Conflicts:
+    #       src/main/java/com/semicolons_book_store/model/Feedback.java
+
+[33mcommit 06c08b3bd30411740c82d34a4c8d4067de97f4c0[m
+Merge: 5f37ecd b6e9891
+Author: trinhduybao <tbao60170@gmail.com>
+Date:   Mon Mar 4 14:58:33 2024 +0700
+
+    Merge branch 'main' of https://github.com/tranvannhan77c1/Semicolons_Book_Store
+
+[33mcommit 5f37ecdd42bcb7f9ef22d3f6cae6ff725c2157a5[m
+Author: trinhduybao <tbao60170@gmail.com>
+Date:   Mon Mar 4 14:58:21 2024 +0700
+
+    sửa được load sản phẩm theo category
+
+[33mcommit fcfe9ea14520da2a5d22d6a9f5fb624f98ff7190[m
+Author: Lưu Đức Bình <binhldps25658@fot.edu.vn>
+Date:   Mon Mar 4 12:33:31 2024 +0700
+
+    feedback
+
+[33mcommit b6e98918ff0af0f5fdb7b99667f62da1970eec1c[m
+Author: Tran Van Nhan <ads.tranvannhan@gmail.com>
+Date:   Mon Mar 4 11:47:07 2024 +0700
+
+    Update DB, Add Model And Repository
+
+[33mcommit 4c02125347e2712774d7b09e8e8eebe96b06a32e[m
+Author: trinhduybao <tbao60170@gmail.com>
+Date:   Mon Mar 4 08:14:43 2024 +0700
+
+    giao diện feedbacks và voucher
+
+[33mcommit d490bf2fb5ac58e74dc97cd50062f087d41624df[m
+Author: trinhduybao <tbao60170@gmail.com>
+Date:   Fri Mar 1 19:18:35 2024 +0700
+
+    dữ liệu mẫu bảng voucher, order, feedback
+
+[33mcommit d28ead2f16c9e471618325d0ab2a0c96794c4a4d[m
+Author: trinhduybao <tbao60170@gmail.com>
+Date:   Tue Feb 27 10:54:06 2024 +0700
+
+    xong phần products
+
+[33mcommit 0c12fbef87c188dfa2221db29e13f2ffdeadf93a[m
+Merge: 57d36da 5d22b74
+Author: Lưu Đức Bình <binhldps25658@fot.edu.vn>
+Date:   Tue Feb 27 10:01:44 2024 +0700
+
+    Merge branch 'main' of https://github.com/tranvannhan77c1/Semicolons_Book_Store
+
+[33mcommit 57d36dab0b5c5d5b2f2e4e364587c095efb9626f[m
+Author: Lưu Đức Bình <binhldps25658@fot.edu.vn>
+Date:   Tue Feb 27 10:01:19 2024 +0700
+
+    new
+
+[33mcommit 5d22b7448f2fe4934925a28b73ecafe77725fde2[m
+Author: trinhduybao <tbao60170@gmail.com>
+Date:   Tue Feb 27 08:51:40 2024 +0700
+
+    sửa giúp Bình lỗi rồi nha
+
+[33mcommit f8cc2417e127e30020c7f18dae4ae4edcc3d3892[m
+Merge: 3c2f50a d12a8fc
+Author: Lưu Đức Bình <binhldps25658@fot.edu.vn>
+Date:   Tue Feb 27 03:40:06 2024 +0700
+
+    Merge branch 'main' of https://github.com/tranvannhan77c1/Semicolons_Book_Store
+    
+    # Conflicts:
+    #       src/main/java/com/semicolons_book_store/service/CategoryService.java
+    #       src/main/resources/templates/admin/pages/product/product.html
+
+[33mcommit 3c2f50a6182ac43bdde56b2496d956733cb228d6[m
+Author: Lưu Đức Bình <binhldps25658@fot.edu.vn>
+Date:   Tue Feb 27 03:38:04 2024 +0700
+
+    done quan ly san pham
+
+[33mcommit d12a8fcfe3cd721b4822860df50879d5a5854bfb[m
+Merge: 051520a b3f0466
+Author: trinhduybao <tbao60170@gmail.com>
+Date:   Sat Feb 24 20:12:04 2024 +0700
+
+    ko dc
+
+[33mcommit 051520a485f58d4fb4d0860691079c59cb84cd3c[m
+Author: trinhduybao <tbao60170@gmail.com>
+Date:   Sat Feb 24 16:01:21 2024 +0700
+
+    chỉnh lại giao diện
+
+[33mcommit b3f046

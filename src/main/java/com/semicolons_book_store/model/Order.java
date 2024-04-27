@@ -118,6 +118,17 @@ public class Order {
 	public void setOrderDetails(List<OrderDetail> orderDetails) {
 		this.orderDetails = orderDetails;
 	}
-    
-    
+
+	@Override
+	public String toString() {
+		return "Order{" +
+				"id=" + id +
+				", orderDate=" + orderDate +
+				", totalAmount=" + totalAmount +
+				", status='" + status + '\'' +
+				", address='" + address + '\'' +
+				", voucher=" + voucher +
+				", account=" + account +
+				'}';
+	}
 }

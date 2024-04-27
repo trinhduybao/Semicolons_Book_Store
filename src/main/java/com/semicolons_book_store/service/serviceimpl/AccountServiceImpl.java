@@ -6,6 +6,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.semicolons_book_store.model.Account;
 import com.semicolons_book_store.repository.AccountRepository;
@@ -65,5 +66,29 @@ public class AccountServiceImpl implements AccountService{
 		account.setAddress(address);
 		return accountRepository.save(account);
 	}
+
+
+
+	@Override
+	public String changePassword(String username, String oldPassword, String newPassword, String confirmPassword) {
+		Account account = accountRepository.findByUsername(username);
+        // Kiểm tra xem tài khoản có tồn tại không
+        if (account == null) {
+            //throw new RuntimeException("Tài khoản không tồn tại");
+        	 return "Tài khoản không tồn tại";
+        }
+        // Kiểm tra mật khẩu cũ có đúng không
+        if (!account.getPassword().equals(oldPassword)) {
+            //throw new RuntimeException("Mật khẩu cũ không đúng");
+        	return "Mật khẩu cũ không đúng";
+        }
+        
+        // Cập nhật mật khẩu mới cho tài khoản
+        account.setPassword(newPassword);
+        accountRepository.save(account);
+        return "Đổi mật khẩu thành công";
+	}
+	
+	
 
 }

@@ -118,69 +118,42 @@ app.controller("shopping-cart-ctrl", function ($scope, $http) {
       });
   };
 
+   $scope.fetchOrderDetails = function(event) {
+    var orderId = event.currentTarget.getAttribute('value');
 
-  // var productIdfb = 1;
+    $http.get('http://localhost:8080/rest/orderDetail/order/' + orderId)
+        .then(function(response) {
+          console.log("Order ID:", orderId);
 
-  // $http
-  //   .get("http://localhost:8080/rest/feedbacks/" + productIdfb)
-  //   .then(function (response) {
-  //     // Gán dữ liệu phản hồi cho $scope.feedbacks
-  //     $scope.feedbacks = response.data;
-  //     console.log("Data received:", $scope.feedbacks);
-  //   })
-  //   .catch(function (error) {
-  //     // Xử lý lỗi nếu có
-  //     console.error("Error fetching feedbacks:", error);
-  //   });
+            var orderDetails = response.data;
+            var orderDetailsHtml = '';
 
-    // $http.get('http://localhost:8080/rest/feedbacks')
-    // .then(function (response) {
-    //     // Gán dữ liệu phản hồi cho $scope.feedbacks
-    //     $scope.feedbacks = response.data;
-    //     console.log("Data received:", $scope.feedbacks);
+            console.log(orderDetails);
 
-    //     // Tính toán số lượng đánh giá cho mỗi số sao
-    //     var ratings = {};
-    //     $scope.feedbacks.forEach(function(feedback) {
-    //         if (ratings[feedback.rate]) {
-    //             ratings[feedback.rate]++;
-    //         } else {
-    //             ratings[feedback.rate] = 1;
-    //         }
-    //     }); 
+            orderDetails.forEach(function(orderDetail, index) {
+              orderDetailsHtml += `
+                  <div class="order-detail">
+                      <p><strong>ID:</strong> ${orderDetail.id}</p>
+                      <p><strong>Sản phẩm ${index + 1}:</strong> ${orderDetail.product.name}</p>
+                      <p><strong>Số lượng:</strong> ${orderDetail.quantity}</p>
+                      <p><strong>Giá:</strong> ${orderDetail.price}</p>
+                      <!-- Thêm các thông tin khác của sản phẩm nếu cần -->
+                  </div>
+              `;
+          });
 
-    //     // Hiển thị số lượng đánh giá cho mỗi số sao trên giao diện
-    //     $scope.ratings = [];
-    //     for (var i = 5; i >= 1; i--) {
-    //         var ratingCount = ratings[i] || 0;
-    //         $scope.ratings.push({
-    //             stars: i,
-    //             count: ratingCount
-    //         });
-    //     }
-    // })
-    // .catch(function (error) {
-    //     // Xử lý lỗi nếu có
-    //     console.error('Error fetching feedbacks:', error);
-    // });
-    // $http.get('http://localhost:8080/rest/feedbacks')
-    //     .then(function (response) {
-    //         // Gán dữ liệu phản hồi cho $scope.feedbacks
-    //         $scope.feedbacks = response.data;
-    //         console.log("Data received:", $scope.feedbacks);
+            $('#orderDetailsModal .modal-body').html(orderDetailsHtml);
+            $('#orderDetailsModal').modal('show');
+        })
+        .catch(function(error) {
+            console.error('Error fetching order details:', error);
+        });
+};
 
-    //         // Tính tổng số điểm đánh giá
-    //         var totalRating = $scope.feedbacks.reduce(function(total, feedback) {
-    //             return total + feedback.rate;
-    //         }, 0);
 
-    //         // Tính điểm đánh giá trung bình
-    //         $scope.averageRating = totalRating / $scope.feedbacks.length;
-    //     })
-    //     .catch(function (error) {
-    //         // Xử lý lỗi nếu có
-    //         console.error('Error fetching feedbacks:', error);
-    //     });
+
+
+
 
   function clearCart() {
     localStorage.removeItem("cart");
@@ -189,8 +162,7 @@ app.controller("shopping-cart-ctrl", function ($scope, $http) {
   $scope.cart.loadFromLocalStorage();
 });
 
-// async function getFeedbacks() {
-//     const response = await fetch('http://localhost:8080/rest/feedbacks');
-//     const dataItems = await response.json();
-//     console.log(dataItems);
-// }
+
+
+
+

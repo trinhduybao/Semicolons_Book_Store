@@ -660,8 +660,11 @@ update feedbacks set ban = 1 where id = 1
 update feedbacks set ban = 1 where id = 3
 
 select * from accounts
+select * from orders
+select * from order_details
 
 delete from accounts where id = 16
+delete from orders
 
 
 
