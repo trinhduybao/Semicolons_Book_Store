@@ -35,14 +35,14 @@ public class AccountRestController {
         return ResponseEntity.ok(managerAccountRepository.findById(id).get());
     }
 
-    @PostMapping("/rest/accounts")
-    public ResponseEntity<Account> post(@RequestBody Account account) {
-        if (managerAccountRepository.existsById(account.getId())) {
-            return ResponseEntity.badRequest().build();
+        @PostMapping("/rest/accounts")
+        public ResponseEntity<Account> post(@RequestBody Account account) {
+            if (managerAccountRepository.existsById(account.getId())) {
+                return ResponseEntity.badRequest().build();
+            }
+            managerAccountRepository.save(account);
+            return ResponseEntity.ok(account);
         }
-        managerAccountRepository.save(account);
-        return ResponseEntity.ok(account);
-    }
 
     @PutMapping("/rest/accounts/{id}")
     public ResponseEntity<Account> put(@PathVariable("id") Integer id, @RequestBody Account account) {

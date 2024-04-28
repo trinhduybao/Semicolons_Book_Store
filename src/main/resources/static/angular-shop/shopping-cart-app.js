@@ -133,8 +133,8 @@ app.controller("shopping-cart-ctrl", function ($scope, $http) {
             orderDetails.forEach(function(orderDetail, index) {
               orderDetailsHtml += `
                   <div class="order-detail">
-                      <p><strong>ID:</strong> ${orderDetail.id}</p>
                       <p><strong>Sản phẩm ${index + 1}:</strong> ${orderDetail.product.name}</p>
+                      <img src="/customer/img/books/${orderDetail.product.thumbnailImage}" alt="Thumbnail Image" style="width: 100px; height: auto;" />
                       <p><strong>Số lượng:</strong> ${orderDetail.quantity}</p>
                       <p><strong>Giá:</strong> ${orderDetail.price}</p>
                       <!-- Thêm các thông tin khác của sản phẩm nếu cần -->

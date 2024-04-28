@@ -8,171 +8,306 @@ app.controller("ctrl", function ($scope, $http, $timeout) {
 
   $scope.reset = function () {
     $scope.form = {};
-    $scope.key = null;  
+    $scope.key = null;
   };
-  
-
-
-
-
 
   async function getDataAccounts() {
-    const response = await fetch('http://localhost:8080/rest/accounts');
+    const response = await fetch("http://localhost:8080/rest/accounts");
+
     const data = await response.json();
     console.log(data);
 
-    // Thêm cột fullname vào dữ liệu
     data.forEach((account) => {
-        account.fullname = account.firstName + ' ' + account.lastName;
+      account.fullname = account.firstName + " " + account.lastName;
     });
 
-    if (!$.fn.DataTable.isDataTable('#accountTable')) {
-        $('#accountTable').DataTable({
-            "data": data,
-            "columns": [
-                {"data": "id"},
-                {"data": "username"},
-                {"data": "email"},
-                {"data": "fullname"}, 
-                {"data": "address"},
-                {
-                    "data": "ban",
-                    "render": function (data, type, row, meta) {
-                        var id = row.id; // Lấy giá trị ID từ hàng
-                        var checkedAttribute = data ? 'checked' : ''; // Nếu data là true, checkbox sẽ được check
-                
-                        // Thêm sự kiện onclick và gọi hàm confirmChange
-                        return '<label class="toggleBtn">' +
-                                '<input type="checkbox" id="checkbox_' + id + '" ' + checkedAttribute + ' >' +
-                                '<span class="slider">' +
-                                '<i class="fas fa-power-off toggle-text"></i>' +
-                                '</span>' +
-                                '</label>';
-                    }
-                }
-                 
-                
-            ],
-            "pageLength": 10,
-            "language": {
-                "info": "Hiển thị _START_ đến _END_ trong _TOTAL_ mục",
-                "infoEmpty": "Không có sản phẩm nào",
-                "infoFiltered": "(được lọc từ tổng số _MAX_ sản phẩm )",
-                "lengthMenu": "Hiện _MENU_ sản phẩm" ,
-                "search": "Tìm kiếm:", 
-                "zeroRecords": "Không tìm thấy kết quả",
-                "paginate": {
-                    "previous": "Trước",
-                    "next": "Sau",
-                }
-                
-            }
-        });
+    if (!$.fn.DataTable.isDataTable("#accountTable")) {
+      $("#accountTable").DataTable({
+        data: data,
+        columns: [
+          { data: "id" },
+          { data: "username" },
+          { data: "email" },
+          { data: "fullname" },
+          { data: "address" },
+          {
+            data: "ban",
+            render: function (data, type, row, meta) {
+              var id = row.id;
+              var checkedAttribute = data ? "checked" : "";
+
+              return (
+                '<label class="toggleBtn">' +
+                '<input type="checkbox" id="checkbox_' +
+                id +
+                '" ' +
+                checkedAttribute +
+                " >" +
+                '<span class="slider">' +
+                '<i class="fas fa-power-off toggle-text"></i>' +
+                "</span>" +
+                "</label>"
+              );
+            },
+          },
+          {
+            render: function (data, type, row, meta) {
+              return `<div id="editButton" th:value="${row.id}" class="btn btn-success" >Chỉnh Sửa</div>
+                    <div id="deleteButton" onclick="deleteAccount(${row.id})" class="btn btn-danger">Xoá</div>
+                    `;
+            },
+          },
+        ],
+        pageLength: 10,
+        language: {
+          info: "Hiển thị _START_ đến _END_ trong _TOTAL_ mục",
+          infoEmpty: "Không có sản phẩm nào",
+          infoFiltered: "(được lọc từ tổng số _MAX_ sản phẩm )",
+          lengthMenu: "Hiện _MENU_ sản phẩm",
+          search: "Tìm kiếm:",
+          zeroRecords: "Không tìm thấy kết quả",
+          paginate: {
+            previous: "Trước",
+            next: "Sau",
+          },
+        },
+      });
     } else {
-        $('#accountTable').DataTable().clear().rows.add(data).draw();
+      $("#accountTable").DataTable().clear().rows.add(data).draw();
     }
+  }
+
+  getDataAccounts();
+});
+
+// update trạng thai ban của account
+$(document).ready(function () {
+  var modalOpen = false;
+
+  $("#accountTable").on("click", 'input[type="checkbox"]', function () {
+    var checkbox = $(this);
+    var previousState = checkbox.prop("checked");
+    var id = checkbox.attr("id").replace("checkbox_", "");
+
+    $("#confirmationModal").modal("show");
+    modalOpen = true;
+
+    var message = previousState
+      ? "Bạn có chắc chắn muốn khóa tài khoản này không?"
+      : "Bạn có chắc chắn muốn mở tài khoản này không?";
+    $("#confirmMessage").text(message);
+
+    $("#confirmYes").click(function () {
+      checkbox.prop("disabled", true);
+
+      var isChecked = checkbox.prop("checked");
+
+      $.ajax({
+        url: "http://localhost:8080/rest/updateBanAccount/" + id,
+        method: "put",
+        data: { id: id, ban: isChecked },
+        success: function (response) {
+          console.log("Dữ liệu đã được cập nhật thành công!");
+          checkbox.prop("disabled", false);
+          $("#confirmationModal").modal("hide");
+          modalOpen = false;
+        },
+        error: function (xhr, status, error) {
+          console.error("Lỗi: " + error);
+          checkbox.prop("disabled", false);
+          $("#confirmationModal").modal("hide");
+          modalOpen = false;
+        },
+      });
+    });
+
+    // Hủy bỏ việc cập nhật và đóng modal
+    $("#confirmNo, .close").click(function () {
+      $("#confirmationModal").modal("hide");
+      modalOpen = false;
+    });
+  });
+
+  // Xử lý sự kiện khi modal được mở hoặc đóng
+  $("#confirmationModal").on("shown.bs.modal", function () {
+    modalOpen = true;
+  });
+
+  $("#confirmationModal").on("hidden.bs.modal", function () {
+    modalOpen = false;
+  });
+
+  $(window).on("beforeunload", function () {
+    if (modalOpen) {
+      return "Modal đang mở. Bạn có chắc chắn muốn rời khỏi trang này không?";
+    }
+  });
+});
+
+// Xử lý sự kiện chỉnh sửa
+$(document).ready(function () {
+  $("body").on("click", "#editButton", function () {
+    var accountId = $(this).attr("th:value");
+    $.ajax({
+      url: "http://localhost:8080/rest/accounts/" + accountId,
+      method: "GET",
+      success: function (response) {
+        $("#accountId").val(response.id);
+        $("#username").val(response.username);
+        $("#email").val(response.email);
+        $("#password").val(response.password);
+        $("#firstName").val(response.firstName);
+        $("#lastName").val(response.lastName);
+        $("#address").val(response.address);
+
+        $("#accountModal").modal("show");
+      },
+      error: function (xhr, status, error) {
+        console.error("Lỗi khi lấy thông tin tài khoản:", error);
+      },
+    });
+  });
+});
+
+document.getElementById("addUserBtn").addEventListener("click", function () {
+  var modal = new bootstrap.Modal(document.getElementById("addUserModal"));
+  modal.show();
+});
+
+function deleteAccount(id) {
+  $.ajax({
+    url: "http://localhost:8080/rest/deleteAccounts/" + id,
+    method: "DELETE",
+    success: function (response) {
+      console.log("Đã xoá tài khoản thành công!");
+      getDataAccounts();
+    },
+    error: function (xhr, status, error) {
+      console.error("Lỗi khi xoá tài khoản:", error);
+    },
+  });
+}
+async function updateAccount(id) {
+  var id = document.getElementById("accountId").value;
+  var username = document.getElementById("username").value;
+  var email = document.getElementById("email").value;
+  var firstName = document.getElementById("firstName").value;
+  var lastName = document.getElementById("lastName").value;
+  var address = document.getElementById("address").value;
+  var password = document.getElementById("password").value;
+
+  if (!username || !email || !firstName || !lastName || !address) {
+    alert("Vui lòng điền đầy đủ thông tin vào các trường!");
+    return;
+  }
+
+  try {
+    let requestBody = {
+      id: id,
+      username: username,
+      email: email,
+      password: password,
+      firstName: firstName,
+      lastName: lastName,
+      address: address,
+    };
+
+    if (confirm("Bạn có chắc chắn muốn cập nhật tài khoản không?")) {
+      const responseAccount = await fetch(
+        `http://localhost:8080/rest/accounts/` + id,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestBody),
+        }
+      );
+
+      if (responseAccount.ok) {
+        console.log("Account updated successfully");
+        window.location.reload();
+      } else {
+        console.error("Failed to update account", responseAccount);
+        alert("Đã xảy ra lỗi khi cập nhật tài khoản");
+      }
+    }
+  } catch (error) {
+    console.error("Error during update request:", error);
+  }
 }
 
+async function addNewUser() {
+  try {
+    const username = document.getElementById("newUsername").value;
+    const email = document.getElementById("newEmail").value;
+    const password = document.getElementById("newPassword").value;
+    const firstName = document.getElementById("newFirstName").value;
+    const lastName = document.getElementById("newLastName").value;
+    const address = document.getElementById("newAddress").value;
 
-getDataAccounts();
 
+    if (
+      !username ||
+      !email ||
+      !password ||
+      !firstName ||
+      !lastName ||
+      !address
+    ) {
+      alert("Vui lòng điền đầy đủ thông tin vào các trường!");
+      return;
+    }
 
-});
+    if (!isValidEmail(email)) {
+        alert("Địa chỉ email không hợp lệ. Vui lòng nhập đúng định dạng.");
+        return;
+    }
 
-$(document).ready(function() {
-    var modalOpen = false; // Biến để theo dõi trạng thái của modal
-
-    $('#accountTable').on('click', 'input[type="checkbox"]', function() {
-        var checkbox = $(this);
-        var previousState = checkbox.prop('checked');
-        var id = checkbox.attr('id').replace('checkbox_', ''); // Lấy id của checkbox
-
-        $('#confirmationModal').css('display', 'block');
-        modalOpen = true; // Đặt trạng thái modal là đang mở
-
-        var message = previousState ? "Bạn có chắc chắn muốn mở tài khoản này không?" : "Bạn có chắc chắn muốn khóa tài khoản này không?";
-        $('#confirmMessage').text(message);
-
-        $('#confirmYes').click(function() {
-            // Tạm thời vô hiệu hóa checkbox
-            checkbox.prop('disabled', true);
-
-            var isChecked = checkbox.prop('checked');
-            $.ajax({
-                url: 'http://localhost:8080/rest/updateBanAccount/' + id,
-                method: 'put',
-                data: {id: id, ban: isChecked},
-                success: function(response) {
-                    console.log('Dữ liệu đã được cập nhật thành công!');
-                    checkbox.prop('disabled', false); // Kích hoạt lại checkbox sau khi cập nhật thành công
-                    $('#confirmationModal').css('display', 'none');
-                    modalOpen = false; // Đặt trạng thái modal là đã đóng
-                },
-                error: function(xhr, status, error) {
-                    console.error('Lỗi: ' + error);
-                    checkbox.prop('disabled', false); // Kích hoạt lại checkbox nếu có lỗi
-                    $('#confirmationModal').css('display', 'none');
-                    modalOpen = false; // Đặt trạng thái modal là đã đóng
-                }
-            });
-        });
-
-        $('#confirmNo, .close').click(function() {
-            $('#confirmationModal').css('display', 'none');
-            modalOpen = false; // Đặt trạng thái modal là đã đóng
-        });
+    const response = await fetch("http://localhost:8080/rest/accounts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: username,
+        email: email,
+        password: password,
+        firstName: firstName,
+        lastName: lastName,
+        address: address,
+      }),
     });
 
-    // Ngăn chặn sự kiện click trên checkbox khi modal đang hiển thị
-    $('#confirmationModal').on('shown.bs.modal', function() {
-        modalOpen = true;
-    });
+    if (response.ok) {
+      const responseData = await response.json();
+      const addedUsername = responseData.username; 
 
-    $('#confirmationModal').on('hidden.bs.modal', function() {
-        modalOpen = false;
-    });
-});
+      console.log("User created successfully:", addedUsername);
+      
+      
+      Swal.fire({
+        title: "Người dùng mới được thêm thành công!",
+        html: `Tên người dùng <strong>${addedUsername}</strong> đã được thêm mới thành công!`,
+        icon: "success",
+      });
 
-// $(document).ready(function() {
-//     $('#accountTable').on('click', 'input[type="checkbox"]', function() {
-//         var isChecked = $(this).prop('checked');
-//         var rowData = $('#accountTable').DataTable().row($(this).closest('tr')).data();
-//         var id = rowData.id; 
-//         var checkbox = $(this);
-//         var previousState = checkbox.prop('checked');
-        
-//         // Hiển thị modal
-//         $('#confirmationModal').css('display', 'block');
-        
-//         // Thiết lập nội dung thông báo
-//         var message = isChecked ? "Bạn có chắc chắn muốn khóa tài khoản này không?" : "Bạn có chắc chắn muốn mở tài khoản này không?";
-//         $('#confirmMessage').text(message);
-        
-//         // Xác nhận khi nhấn Yes
-//         $('#confirmYes').click(function() {
-//             // Gửi yêu cầu AJAX để cập nhật cơ sở dữ liệu
-//             $.ajax({
-//                 url: 'http://localhost:8080/rest/updateBan/' + id,
-//                 method: 'put',
-//                 data: {id: id, ban: isChecked},
-//                 success: function(response) {
-//                     console.log('Dữ liệu đã được cập nhật thành công!');
-//                 },
-//                 error: function(xhr, status, error) {
-//                     console.error('Lỗi: ' + error);
-//                 }
-//             });
-            
-//             // Ẩn modal sau khi xác nhận
-//             $('#confirmationModal').css('display', 'none');
-//         });
-        
-//         // Từ chối khi nhấn No
-//         $('#confirmNo, .close').click(function() {
-//             // Ẩn modal
-//             $('#confirmationModal').css('display', 'none');
-            
-//         });
-//     });
-// });
+      document.getElementById("newUsername").value = "";
+      document.getElementById("newEmail").value = "";
+      document.getElementById("newPassword").value = "";
+      document.getElementById("newFirstName").value = "";
+      document.getElementById("newLastName").value = "";
+      document.getElementById("newAddress").value = "";
+      
+    } else {
+      console.error("Failed to create user");
+    }
+  } catch (error) {
+    console.error("Error during user creation:", error);
+  }
+}
 
+function isValidEmail(newEmail) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(newEmail);
+}
