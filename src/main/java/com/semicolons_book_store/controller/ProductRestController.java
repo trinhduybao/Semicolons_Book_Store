@@ -2,6 +2,7 @@ package com.semicolons_book_store.controller;
 
 import com.semicolons_book_store.model.Product;
 import com.semicolons_book_store.repository.ManagerProductRepository;
+import com.semicolons_book_store.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
@@ -15,6 +16,10 @@ public class ProductRestController {
 
     @Autowired
     ManagerProductRepository managerProductRepository;
+
+    @Autowired
+    private ProductService productService;
+
 
     @RequestMapping("/rest/productManager")
     public ResponseEntity<List<Product>> getAll(Model model){
@@ -57,5 +62,9 @@ public class ProductRestController {
         return ResponseEntity.ok().build();
     }
 
-
+    @GetMapping("/rest/productManager/check")
+    public ResponseEntity<Boolean> checkProductNameExist(@RequestParam String name) {
+        boolean isExist = managerProductRepository.existsByName(name);
+        return ResponseEntity.ok(isExist);
+    }
 }

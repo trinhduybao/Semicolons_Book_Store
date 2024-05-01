@@ -43,6 +43,12 @@ public class SecurityController {
         return "redirect:/home";
     }
 
+    @RequestMapping("/security/login")
+    public String login(Model model){
+        model.addAttribute("message", "Đăng nhập thành công");
+        return "redirect:/home";
+    }
+
     @RequestMapping("/security/login/error")
     public String loginError(Model model){
         model.addAttribute("message", "Kiểm tra lại thông tin tài khoản mật khẩu !");
@@ -68,6 +74,13 @@ public class SecurityController {
         model.addAttribute("message", "Đăng Xuất Thành Công");
         return "customer/page/login2";
     }
+    @RequestMapping("/security/logoff")
+    public String logoff(Model model) {
+        model.addAttribute("message",   "Đăng Xuất Thành Công");
+        return "customer/page/login2";
+    }
+
+
 
 //    @RequestMapping("/logout")
 //    public String logout() {

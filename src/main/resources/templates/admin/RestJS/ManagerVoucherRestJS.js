@@ -103,10 +103,8 @@ $(document).ready(function() {
     });
 });
 
-
 async function createOrUpdateVoucher() {
     try {
-        
         const responseVoucher = await fetch(`http://localhost:8080/rest/voucherManager`, {
             method: 'POST',
             headers: {
@@ -119,13 +117,18 @@ async function createOrUpdateVoucher() {
                 validFrom: document.getElementById("validFrom").value,
                 validTo: document.getElementById("validTo").value,
                 createDate: document.getElementById("createDate").value
-              
             })
         });
 
         if (responseVoucher.ok) {
             console.log("Voucher created or updated successfully");
-            window.location.reload();
+            Swal.fire({
+                title: "Thành công!",
+                text: "Voucher đã được tạo hoặc cập nhật thành công.",
+                icon: "success"
+            }).then(() => {
+                window.location.reload();
+            });
         } else {
             console.error("Failed to create or update voucher", responseVoucher);
             alert("Đã xảy ra lỗi khi tạo hoặc cập nhật voucher");
@@ -134,14 +137,11 @@ async function createOrUpdateVoucher() {
         console.error('Error during create or update request:', error);
     }
 }
-
-
-
 async function updateVoucher(id) {
     var id = document.getElementById("id").value;
-    try {
 
-        const responseVoucher = await fetch(`http://localhost:8080/rest/voucherManager/` + id , {
+    try {
+        const responseVoucher = await fetch(`http://localhost:8080/rest/voucherManager/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -154,57 +154,79 @@ async function updateVoucher(id) {
                 validFrom: document.getElementById("validFrom").value,
                 validTo: document.getElementById("validTo").value,
                 createDate: document.getElementById("createDate").value
-              
             })
         });
-        console.log(responseVoucher);
 
-        if (responseVoucher.ok) {   
+        if (responseVoucher.ok) {
             console.log("Voucher updated successfully");
-            window.location.reload();
+            Swal.fire({
+                title: "Thành công!",
+                text: "Voucher đã được cập nhật thành công.",
+                icon: "success"
+            }).then(() => {
+                window.location.reload();
+            });
         } else {
             console.error("Failed to update voucher", responseVoucher);
             alert("Đã xảy ra lỗi khi cập nhật voucher");
         }
     } catch (error) {
         console.error('Error during update request:', error);
+        Swal.fire({
+            title: "Lỗi!",
+            text: "Đã xảy ra lỗi khi cập nhật voucher. Vui lòng thử lại sau.",
+            icon: "error"
+        });
     }
 }
 
 
-
 async function deleteVoucherManager(id) {
-   
     try {
-        const response = await fetch(`http://localhost:8080/rest/deletevoucherManager/${id}`, {
-            method: 'DELETE'
+        const shouldDelete = await Swal.fire({
+            title: "Xác nhận xoá",
+            text: "Bạn có chắc muốn xoá voucher này?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Xoá",
+            cancelButtonText: "Hủy",
         });
-  
-        if (response.ok) {
-            console.log(`Voucher with ID ${id} deleted successfully`);
 
-      window.location.reload();
-  
-        } else {
-            console.error(`Failed to delete vourcher with ID ${id}`);
+        if (shouldDelete.isConfirmed) {
+            const response = await fetch(`http://localhost:8080/rest/deletevoucherManager/${id}`, {
+                method: 'DELETE'
+            });
+
+            if (response.ok) {
+                console.log(`Voucher with ID ${id} deleted successfully`);
+                Swal.fire({
+                    title: "Thành công!",
+                    text: "Voucher đã được xoá thành công.",
+                    icon: "success"
+                }).then(() => {
+                    window.location.reload();
+                });
+            } else {
+                console.error(`Failed to delete vourcher with ID ${id}`);
+            }
         }
     } catch (error) {
         console.error('Error during delete request:', error);
     }
-  }
-  async function deleteVoucherManagerFormForm(id) {
-      
+}
+
+async function deleteVoucherManagerFormForm(id) {
     var id = document.getElementById("id").value;
 
-  
     if (id) {
         deleteVoucherManager(id);
-      window.location.reload();
-  
-  } else {
-      console.error('ID is undefined or empty.');
-  }
-  };
+    } else {
+        console.error('ID is undefined or empty.');
+    }
+};
+
 
   function validateForm() {
     var code = document.getElementById("code").value;

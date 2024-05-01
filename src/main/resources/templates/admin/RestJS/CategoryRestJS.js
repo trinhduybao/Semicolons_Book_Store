@@ -27,21 +27,21 @@ app.controller("ctrl", function ($scope, $http, $timeout) {
 //   };
 
   
-
 $scope.updateCategory = function (event) {
     event.preventDefault();
     var id = document.getElementById("id").value;
 
     if (!id) {
-      document.getElementById("errorMessageName").innerText = "Vui lòng chọn một mục để sửa.";
-      return false; 
-  } else {
-      document.getElementById("errorMessageName").innerText = "";
-  }
+        document.getElementById("errorMessageName").innerText = "Vui lòng chọn một mục để sửa.";
+        return false; 
+    } else {
+        document.getElementById("errorMessageName").innerText = "";
+    }
 
     if (!validateForm()) {
         return;
     }
+
     var id = document.getElementById("id").value;
     var name = document.getElementById("nameCategory").value;
     var item = document.getElementById("idCategory").value;
@@ -55,20 +55,44 @@ $scope.updateCategory = function (event) {
     };
     var jsonData = JSON.stringify(data);
     
-    var url = `${host}category/${id}`;
-    $http.put(url, jsonData, {
-        headers: {
-            'Content-Type': 'application/json'
+    Swal.fire({
+        title: "Bạn có chắc chắn muốn cập nhật danh mục này không?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Cập nhật",
+        cancelButtonText: "Hủy"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            var url = `${host}category/${id}`;
+            $http.put(url, jsonData, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(function (response) {
+                console.log('Update successful:', response.data);
+                Swal.fire(
+                    'Cập nhật thành công!',
+                    '',
+                    'success'
+                ).then(() => {
+                    window.location.reload();
+                });
+            })
+            .catch(function (error) {
+                console.error('Update failed:', error);
+                Swal.fire(
+                    'Cập nhật thất bại!',
+                    '',
+                    'error'
+                );
+            });
         }
-    })
-    .then(function (response) {
-        console.log('Update successful:', response.data);
-        window.location.reload();
-    })
-    .catch(function (error) {
-        console.error('Update failed:', error);
     });
 };
+
 
 
 //   // Load initial data
@@ -144,47 +168,68 @@ async function getDataCategories() {
 }
 
 async function deleteCategory(id) {
-   
-  try {
-      const response = await fetch(`http://localhost:8080/rest/delete/${id}`, {
-          method: 'DELETE'
-      });
+    try {
+        const result = await Swal.fire({
+            title: 'Bạn chắc chắn muốn xoá danh mục này?',
+            text: 'Hành động này sẽ không thể hoàn tác!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Xoá',
+            cancelButtonText: 'Hủy'
+        });
 
-      if (response.ok) {
-          console.log(`Category with ID ${id} deleted successfully`);
-          // Refresh or update your data after successful deletion
-        //   updateDataCategories();
-    window.location.reload();
+        if (result.isConfirmed) {
+            const response = await fetch(`http://localhost:8080/rest/delete/${id}`, {
+                method: 'DELETE'
+            });
 
-          //   getDataCategories();
-      } else {
-          console.error(`Failed to delete category with ID ${id}`);
-      }
-  } catch (error) {
-      console.error('Error during delete request:', error);
-  }
+            if (response.ok) {
+                console.log(`Category with ID ${id} deleted successfully`);
+                await Swal.fire({
+                    title: 'Xoá thành công!',
+                    text: 'Danh mục đã được xoá thành công.',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+                window.location.reload();
+            } else {
+                await Swal.fire({
+                    title: 'Xoá thất bại!',
+                    text: 'Danh mục này không được xoá.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+                console.error(`Failed to delete category with ID ${id}`);
+            }
+        }
+    } catch (error) {
+        console.error('Error during delete request:', error);
+    }
 }
+
+
 async function deleteCategoryFromForm(id) {
-    
-  var id = document.getElementById("id").value;
+    var id = document.getElementById("id").value;
 
-  if (!id) {
-    document.getElementById("errorMessageName").innerText = "Vui lòng chọn một mục để xoá.";
-    return false; 
-} else {
-    document.getElementById("errorMessageName").innerText = "";
+    if (!id) {
+        document.getElementById("errorMessageName").innerText = "Vui lòng chọn một mục để xoá.";
+        return false;
+    } else {
+        document.getElementById("errorMessageName").innerText = "";
+    }
+
+    try {
+        if (id) {
+            await deleteCategory(id);
+            window.location.reload();
+        } else {
+            console.error('ID is undefined or empty.');
+        }
+    } catch (error) {
+        console.error('Error during delete request:', error);
+    }
 }
 
-  if (id) {
-    // Gọi hàm deleteCategory để xóa dữ liệu
-    deleteCategory(id);
-    window.location.reload();
-
-} else {
-    // Hiển thị thông báo hoặc xử lý khác nếu id không có giá trị
-    console.error('ID is undefined or empty.');
-}
-};
 
 async function editCategory(id) {
     
@@ -236,9 +281,19 @@ async function createCategory() {
                 })
             });
             if (response.ok) {
+                const responseData = await response.json();
+                const addCategory = responseData.name; 
                 console.log("Category created successfully");
-                window.location.reload();
-                // Refresh or update your data after successful creation
+                Swal.fire({
+                    title: "Danh mục mới được thêm thành công!",
+                    html: `Danh mục <strong>${addCategory}</strong> đã được thêm mới thành công!`,
+                    icon: "success",
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      window.location.reload();
+                    }
+                  });
+
             } else {
                 console.error("Failed to create category");
                 alert("Đã có item này!");
@@ -250,35 +305,7 @@ async function createCategory() {
   
 }
 
-// async function updateCategory() {
-//   try {
-//       const response = await fetch(`http://localhost:8080/rest/category/${id}`, {
-//           method: 'PUT',
-//           headers: {
-//               'Content-Type': 'application/json'
-//           },
-//           body: JSON.stringify({
-//               name: document.getElementById("nameCategory").value,
-//               item: {
-//                   id: document.getElementById("idCategory").value
-//               }
-//           }),
-//           mode: 'no-cors',
 
-          
-//       });
-      
-//       if (response.ok) {
-//           console.log("Category updated successfully");
-//           window.location.reload();
-//           // Refresh or update your data after successful creation
-//       } else {
-//           console.error("Failed to update category");
-//       }
-//   } catch (error) {
-//       console.error('Error during update request:', error);
-//   }
-// }
 
 function validateForm() {
     var name = document.getElementById("id").value;

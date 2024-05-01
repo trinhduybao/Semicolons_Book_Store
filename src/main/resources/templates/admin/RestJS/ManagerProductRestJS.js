@@ -185,10 +185,9 @@ $(document).ready(function() {
     });
 });
 
-
 async function createOrUpdateProduct() {
-    
     try {
+        const productName = document.getElementById("nameProduct").value;
         const categoryId = document.getElementById("idCategories").value;
         const imageFile = document.getElementById("imageProduct").files[0];
         const imageName = imageFile.name;
@@ -198,10 +197,23 @@ async function createOrUpdateProduct() {
             return;
         }
 
+        // Kiểm tra xem tên sản phẩm đã tồn tại chưa
+        const responseCheck = await fetch(`http://localhost:8080/rest/productManager/check?name=${productName}`);
+        if (!responseCheck.ok) {
+            console.error("Failed to check product name", responseCheck);
+            alert("Đã xảy ra lỗi khi kiểm tra tên sản phẩm");
+            return;
+        }
+        const isNameExist = await responseCheck.json();
+
+        if (isNameExist) {
+            alert("Tên sản phẩm đã tồn tại. Vui lòng chọn tên khác.");
+            return;
+        }
+
         const formData = new FormData();
         formData.append("file", imageFile);
         
-
         const responseUpload = await fetch(`http://localhost:8080/api/upload`, {
             method: 'POST',
             body: formData,
@@ -219,7 +231,7 @@ async function createOrUpdateProduct() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                name: document.getElementById("nameProduct").value,
+                name: productName,
                 price: document.getElementById("priceProduct").value,
                 supplier: document.getElementById("supplier").value,
                 publisher: document.getElementById("inputPublisher").value,
@@ -239,14 +251,12 @@ async function createOrUpdateProduct() {
                     id : categoryId
                 },
                 thumbnailImage: imageName
-              
             })
         });
 
         if (responseProduct.ok) {
             console.log("Product created or updated successfully");
-            alert("Thêm sản phẩm thành công");
-            window.location.reload();
+            alert("Sản phẩm đã được thêm mới thành công!");
         } else {
             console.error("Failed to create or update product", responseProduct);
             alert("Đã xảy ra lỗi khi tạo hoặc cập nhật sản phẩm");
@@ -256,13 +266,10 @@ async function createOrUpdateProduct() {
     }
 }
 
-
-
 async function updateProduct(id) {
     try {
         const categoryId = document.getElementById("idCategories").value;
         const imageFile = document.getElementById("imageProduct").files[0];
-       
         const imageName = imageFile ? imageFile.name : document.getElementById("currentImageName").value;
         var id = document.getElementById("id").value;
 
@@ -270,58 +277,77 @@ async function updateProduct(id) {
         if (imageFile) {
             formData.append("file", imageFile);
         }
-       
 
-        const responseProduct = await fetch(`http://localhost:8080/rest/productManager/` + id , {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                id: id,
-                name: document.getElementById("nameProduct").value,
-                price: document.getElementById("priceProduct").value,
-                supplier: document.getElementById("supplier").value,
-                publisher: document.getElementById("inputPublisher").value,
-                author: document.getElementById("author").value,
-                publishedDate: document.getElementById("inputPublishedDate").value,
-                pageCount: document.getElementById("page-count").value,
-                description: document.getElementById("description").value,
-                weight: document.getElementById("weight").value,
-                size: document.getElementById("size").value,
-                quantity: document.getElementById("quantity").value,
-                brand: document.getElementById("brand").value,
-                madeIn: document.getElementById("madeIn").value,
-                origin: document.getElementById("Origin").value,
-                color: document.getElementById("color").value,
-                material: document.getElementById("material").value,
-                category: {
-                    id : categoryId
-                },
-                thumbnailImage: imageName 
-              
-            })
+        const shouldUpdate = await Swal.fire({
+            title: "Xác nhận cập nhật",
+            text: "Bạn có chắc muốn cập nhật sản phẩm này?",
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Cập nhật",
+            cancelButtonText: "Hủy",
         });
-        console.log(responseProduct);
 
-        if (responseProduct.ok) {   
-            console.log("Product updated successfully");
-            if (imageFile) {
-                const responseUpload = await fetch(`http://localhost:8080/api/upload`, {
-                    method: 'POST',
-                    body: formData,
+        if (shouldUpdate.isConfirmed) {
+            const responseProduct = await fetch(`http://localhost:8080/rest/productManager/` + id , {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    id: id,
+                    name: document.getElementById("nameProduct").value,
+                    price: document.getElementById("priceProduct").value,
+                    supplier: document.getElementById("supplier").value,
+                    publisher: document.getElementById("inputPublisher").value,
+                    author: document.getElementById("author").value,
+                    publishedDate: document.getElementById("inputPublishedDate").value,
+                    pageCount: document.getElementById("page-count").value,
+                    description: document.getElementById("description").value,
+                    weight: document.getElementById("weight").value,
+                    size: document.getElementById("size").value,
+                    quantity: document.getElementById("quantity").value,
+                    brand: document.getElementById("brand").value,
+                    madeIn: document.getElementById("madeIn").value,
+                    origin: document.getElementById("Origin").value,
+                    color: document.getElementById("color").value,
+                    material: document.getElementById("material").value,
+                    category: {
+                        id : categoryId
+                    },
+                    thumbnailImage: imageName 
+                })
+            });
+
+            if (responseProduct.ok) {   
+                console.log("Product updated successfully");
+                if (imageFile) {
+                    const responseUpload = await fetch(`http://localhost:8080/api/upload`, {
+                        method: 'POST',
+                        body: formData,
+                    });
+                }
+                Swal.fire({
+                    title: "Sản phẩm đã được cập nhật thành công!",
+                    icon: "success",
+                    showCancelButton: false,
+                    confirmButtonColor: "#3085d6",
+                    confirmButtonText: "OK",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.reload();
+                    }
                 });
+            } else {
+                console.error("Failed to update product", responseProduct);
+                alert("Đã xảy ra lỗi khi cập nhật sản phẩm");
             }
-            window.location.reload();
-        } else {
-            console.error("Failed to update product", responseProduct);
-            alert("Đã xảy ra lỗi khi cập nhật sản phẩm");
         }
     } catch (error) {
         console.error('Error during update request:', error);
     }
 }
-
 
 
 
@@ -344,38 +370,57 @@ function handleFileSelect(event) {
     }
 }
 
-    async function deleteProductManager(id) {
-   
-    try {
-        const response = await fetch(`http://localhost:8080/rest/deleteProductManager/${id}`, {
-            method: 'DELETE'
-        });
-  
-        if (response.ok) {
-            console.log(`Product with ID ${id} deleted successfully`);
 
-      window.location.reload();
-  
-        } else {
-            console.error(`Failed to delete product with ID ${id}`);
+async function deleteProductManager(id) {
+    try {
+        const shouldDelete = await Swal.fire({
+            title: "Xác nhận xoá",
+            text: "Bạn có chắc muốn xoá sản phẩm này?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Xoá",
+            cancelButtonText: "Hủy",
+        });
+
+        if (shouldDelete.isConfirmed) {
+            const response = await fetch(`http://localhost:8080/rest/deleteProductManager/${id}`, {
+                method: 'DELETE'
+            });
+
+            if (response.ok) {
+                console.log(`Product with ID ${id} deleted successfully`);
+                Swal.fire({
+                    title: "Sản phẩm đã được xoá thành công!",
+                    icon: "success",
+                    showCancelButton: false,
+                    confirmButtonColor: "#3085d6",
+                    confirmButtonText: "OK",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.reload();
+                    }
+                });
+            } else {
+                console.error(`Failed to delete product with ID ${id}`);
+            }
         }
     } catch (error) {
         console.error('Error during delete request:', error);
     }
-  }
-  async function deleteProductManagerFormForm(id) {
-      
-    var id = document.getElementById("id").value;
-  
-    if (id) {
-      deleteProductManager(id);
-      window.location.reload();
-  
-  } else {
-      console.error('ID is undefined or empty.');
-  }
+}
 
-  };
+async function deleteProductManagerFormForm(id) {
+    var id = document.getElementById("id").value;
+
+    if (id) {
+        deleteProductManager(id);
+    } else {
+        console.error('ID is undefined or empty.');
+    }
+};
+
 
 
   async function validateForm() {

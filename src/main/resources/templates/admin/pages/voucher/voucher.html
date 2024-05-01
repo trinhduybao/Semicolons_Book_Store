@@ -9,6 +9,8 @@
     />
 
     <title>Semicolons | Admin</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- base:css -->
     <link rel="stylesheet" href="../../vendors/typicons/typicons.css" />
 
@@ -667,36 +669,36 @@
                 <input type="text" class="form-control" id="id" hidden>
                 <label for="code" class="form-label">Mã Khuyến Mãi</label>
                 <input type="text" class="form-control" id="code" placeholder="Mã khuyến mãi" required>
-                <span id="codeError" class="text-danger error-message"></span> <!-- Thẻ span hiển thị thông báo lỗi -->
+                <span id="codeError" class="text-danger error-message"></span>  
             </div>
             <div class="col-sm-6">
                 <label for="condition" class="form-label">Điều Kiện Giảm Giá (theo giá tiền)</label>
-                <input type="text" class="form-control" id="condition" placeholder="Số tiền đủ điều kiện khuyến mãi" required>
-                <span id="conditionError" class="text-danger error-message"></span> <!-- Thẻ span hiển thị thông báo lỗi -->
+                <input type="number" class="form-control" id="condition" placeholder="Số tiền đủ điều kiện khuyến mãi" required>
+                <span id="conditionError" class="text-danger error-message"></span> 
             </div>
         </div>
           <div class="row mb-3">
             <div class="col-sm-6">
               <label for="supplier" class="form-label">Phần Trăm Khuyến Mãi</label>
-              <input type="text" class="form-control" id="discountAmount" placeholder="phần trăm khuyến mãi" required>
-              <span id="discountAmountError" class="text-danger error-message"></span> <!-- Thẻ span hiển thị thông báo lỗi -->
+              <input type="number" class="form-control" id="discountAmount" placeholder="phần trăm khuyến mãi" required>
+              <span id="discountAmountError" class="text-danger error-message"></span> 
             </div>
             <div class="col-sm-6">
               <label for="inputPublisher" class="form-label">Từ Ngày</label>
               <input type="datetime-local" class="form-control" id="validFrom" placeholder="ngày bắt đầu" required>
-              <span id="validFromError" class="text-danger error-message"></span> <!-- Thẻ span hiển thị thông báo lỗi -->
+              <span id="validFromError" class="text-danger error-message"></span> 
             </div>
           </div>
           <div class="row mb-3">
             <div class="col-sm-6">
               <label for="author" class="form-label">Đến Ngày</label>
               <input type="datetime-local" class="form-control" id="validTo" placeholder="ngày kết thúc" required>
-              <span id="validToError" class="text-danger error-message"></span> <!-- Thẻ span hiển thị thông báo lỗi -->
+              <span id="validToError" class="text-danger error-message"></span> 
             </div>
             <div class="col-sm-6">
               <label for="published-date" class="form-label">Ngày Tạo Mã</label>
               <input type="datetime-local" class="form-control" id="createDate" placeholder="ngày nhập mã" required>
-              <span id="createDateError" class="text-danger error-message"></span> <!-- Thẻ span hiển thị thông báo lỗi -->
+              <span id="createDateError" class="text-danger error-message"></span> 
             </div>
           </div>
         </div>

@@ -1,7 +1,11 @@
 package com.semicolons_book_store.service;
 
 import com.semicolons_book_store.model.Account;
+import com.semicolons_book_store.model.Authority;
+import com.semicolons_book_store.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -9,9 +13,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
+import java.util.Set;
 
 @Service
-public class SecurityService implements UserDetailsService {
+public class SecurityService
+        implements UserDetailsService {
 
     @Autowired
     private AccountService accountService;
@@ -19,44 +26,34 @@ public class SecurityService implements UserDetailsService {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-    @Autowired
-    SessionService sessionService;
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         try {
             Account account = accountService.findByUsername(username);
-            System.out.println(account.getUsername());
-            System.out.println(account.getPassword());
-            System.out.println(account.getAddress());
-            System.out.println(account.getAuthorities().size());
-            //sessionService.set("account", account);
-            // Tạo UserDetail từ Account
-            String password = account.getPassword();
-            String[] roles = account.getAuthorities().stream()
-                    .map(au -> au.getRole().getName())
-                    .toArray(String[]::new);
-                    /* collect(Collectors.toList()).toArray(new String[0]*/
-            return User.withUsername(username)
-                    .password(passwordEncoder.encode(password))
-                    .roles(roles)
-                    .build();
+            if (account == null) {
+                throw new UsernameNotFoundException("User not found with username: " + username);
+            }
 
+            Set<String> roles = new HashSet<>();
+            for (Authority authority : account.getAuthorities()) {
+                roles.add(authority.getRole().getName());
+            }
+
+            return User.withUsername(username)
+                    .password(passwordEncoder.encode(account.getPassword()))
+                    .roles(roles.toArray(new String[0]))
+                    .build();
         } catch (Exception e) {
-            throw new UsernameNotFoundException(username + " not found !");
+            throw new UsernameNotFoundException("User not found with username: " + username);
         }
     }
-    /*public void loginFromOAuth2(OAuth2AuthenticationToken oauth2){
-        String email = oauth2.getPrincipal().getAttribute("email");
-        String password = Long.toHexString(System.currentTimeMillis());
 
-        UserDetails user = User.withUsername(email)
-                .password(passwordEncoder.encode(password))
-                .roles("GUEST").build();
-        Authentication auth = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
-        SecurityContextHolder.getContext().setAuthentication(auth);
-    }*/
     public Account findAccountByUsername(String username) {
         return accountService.findByUsername(username);
+    }
+
+    public boolean isNotAdmin() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return authentication == null || !authentication.isAuthenticated() || !authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_admin"));
     }
 }
