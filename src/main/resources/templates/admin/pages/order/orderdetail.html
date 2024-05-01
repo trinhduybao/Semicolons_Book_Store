@@ -10,20 +10,20 @@
   <!-- base:css -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-  <link rel="stylesheet" href="../../vendors/typicons/typicons.css" />
+  <link rel="stylesheet" href="/admin/vendors/typicons/typicons.css" />
 
-  <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css" />
+  <link rel="stylesheet" href="/admin/vendors/css/vendor.bundle.base.css" />
   <!-- endinject -->
   <!-- plugin css for this page -->
-  <link rel="stylesheet" href="../../vendors/select2/select2.min.css" />
+  <link rel="stylesheet" href="/admin/vendors/select2/select2.min.css" />
 
-  <!-- <link rel="stylesheet" href="../../vendors/select2-bootstrap-theme/select2-bootstrap.min.css" /> -->
+  <!-- <link rel="stylesheet" href="/admin/vendors/select2-bootstrap-theme/select2-bootstrap.min.css" /> -->
 
   <!-- End plugin css for this page -->
   <!-- inject:css -->
-  <link rel="stylesheet" href="../../css/vertical-layout-light/style.css" />
+  <link rel="stylesheet" href="/admin/css/vertical-layout-light/style.css" />
   <!-- endinject -->
-  <link rel="shortcut icon" href="../../images/favicon.png" />
+  <link rel="shortcut icon" href="/admin/images/favicon.png" />
 
   <!-- page -->
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
@@ -32,13 +32,13 @@
 
 <body ng-app="app" ng-controller="ctrl">
   <div class="container-scroller">
-    <!-- partial:../../partials/_navbar.html -->
+    <!-- partial:/admin/partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="navbar-brand-wrapper d-flex justify-content-center">
         <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
-          <!-- <a class="navbar-brand brand-logo" href="../../index.html"><img src="../../images/logo.svg" alt="logo" /></a>
-          <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="../../images/logo-mini.svg"
-              alt="logo" /></a> -->
+          <a class="navbar-brand brand-logo" href="/home"><img src="/admin/images/logo.svg" alt="logo" /></a>
+          <a class="navbar-brand brand-logo-mini" href="/home"><img src="/admin/images/logo-mini.svg"
+              alt="logo" /></a>
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="typcn typcn-th-menu"></span>
           </button>
@@ -48,7 +48,7 @@
         <!-- <ul class="navbar-nav mr-lg-2">
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="../../images/faces/face5.jpg" alt="profile" />
+              <img src="/admin/images/faces/face5.jpg" alt="profile" />
               <span class="nav-profile-name">Eugenia Mullins</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
@@ -86,7 +86,7 @@
               </p>
               <a class="dropdown-item preview-item">
                 <div class="preview-thumbnail">
-                  <img src="../../images/faces/face4.jpg" alt="image" class="profile-pic" />
+                  <img src="/admin/images/faces/face4.jpg" alt="image" class="profile-pic" />
                 </div>
                 <div class="preview-item-content flex-grow">
                   <h6 class="preview-subject ellipsis font-weight-normal">
@@ -99,7 +99,7 @@
               </a>
               <a class="dropdown-item preview-item">
                 <div class="preview-thumbnail">
-                  <img src="../../images/faces/face2.jpg" alt="image" class="profile-pic" />
+                  <img src="/admin/images/faces/face2.jpg" alt="image" class="profile-pic" />
                 </div>
                 <div class="preview-item-content flex-grow">
                   <h6 class="preview-subject ellipsis font-weight-normal">
@@ -112,7 +112,7 @@
               </a>
               <a class="dropdown-item preview-item">
                 <div class="preview-thumbnail">
-                  <img src="../../images/faces/face3.jpg" alt="image" class="profile-pic" />
+                  <img src="/admin/images/faces/face3.jpg" alt="image" class="profile-pic" />
                 </div>
                 <div class="preview-item-content flex-grow">
                   <h6 class="preview-subject ellipsis font-weight-normal">
@@ -190,7 +190,7 @@
     </nav>
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
-      <!-- partial:../../partials/_settings-panel.html -->
+      <!-- partial:/admin/partials/_settings-panel.html -->
       <div class="theme-setting-wrapper">
         <div id="settings-trigger">
           <i class="typcn typcn-cog-outline"></i>
@@ -324,7 +324,7 @@
             <ul class="chat-list">
               <li class="list active">
                 <div class="profile">
-                  <img src="../../images/faces/face1.jpg" alt="image" /><span class="online"></span>
+                  <img src="/admin/images/faces/face1.jpg" alt="image" /><span class="online"></span>
                 </div>
                 <div class="info">
                   <p>Thomas Douglas</p>
@@ -334,7 +334,7 @@
               </li>
               <li class="list">
                 <div class="profile">
-                  <img src="../../images/faces/face2.jpg" alt="image" /><span class="offline"></span>
+                  <img src="/admin/images/faces/face2.jpg" alt="image" /><span class="offline"></span>
                 </div>
                 <div class="info">
                   <div class="wrapper d-flex">
@@ -349,7 +349,7 @@
               </li>
               <li class="list">
                 <div class="profile">
-                  <img src="../../images/faces/face3.jpg" alt="image" /><span class="online"></span>
+                  <img src="/admin/images/faces/face3.jpg" alt="image" /><span class="online"></span>
                 </div>
                 <div class="info">
                   <p>Daniel Russell</p>
@@ -359,7 +359,7 @@
               </li>
               <li class="list">
                 <div class="profile">
-                  <img src="../../images/faces/face4.jpg" alt="image" /><span class="offline"></span>
+                  <img src="/admin/images/faces/face4.jpg" alt="image" /><span class="offline"></span>
                 </div>
                 <div class="info">
                   <p>James Richardson</p>
@@ -369,7 +369,7 @@
               </li>
               <li class="list">
                 <div class="profile">
-                  <img src="../../images/faces/face5.jpg" alt="image" /><span class="online"></span>
+                  <img src="/admin/images/faces/face5.jpg" alt="image" /><span class="online"></span>
                 </div>
                 <div class="info">
                   <p>Madeline Kennedy</p>
@@ -379,7 +379,7 @@
               </li>
               <li class="list">
                 <div class="profile">
-                  <img src="../../images/faces/face6.jpg" alt="image" /><span class="online"></span>
+                  <img src="/admin/images/faces/face6.jpg" alt="image" /><span class="online"></span>
                 </div>
                 <div class="info">
                   <p>Sarah Graves</p>
@@ -393,24 +393,60 @@
         </div>
       </div>
       <!-- partial -->
-      <!-- partial:../../partials/_sidebar.html -->
+      <!-- partial:/admin/partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
-          <!-- <li class="nav-item">
-            <a class="nav-link" href="/index.html">
+          <li class="nav-item">
+            <a class="nav-link" href="/admin">
               <i class="typcn typcn-device-desktop menu-icon"></i>
               <span class="menu-title">Dashboard</span>
               <div class="badge badge-danger">new</div>
             </a>
-          </li> -->
+          </li>
           <li class="nav-item">
-            <a class="nav-link" href="category.html">
+            <a class="nav-link" href="/admin/category">
               <i class="typcn typcn-document-text menu-icon"></i>
-              <span class="menu-title">Đơn Hàng Chi Tiết</span>
+              <span class="menu-title">Quản Lý Chủng Loại</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/product">
+              <i class="typcn typcn-document-text menu-icon"></i>
+              <span class="menu-title">Quản Lý Sản Phẩm</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/account">
+              <i class="typcn typcn-document-text menu-icon"></i>
+              <span class="menu-title">Quản Lý Người Dùng</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/order">
+              <i class="typcn typcn-document-text menu-icon"></i>
+              <span class="menu-title">Quản Lý Đơn Hàng</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/feedback">
+              <i class="typcn typcn-document-text menu-icon"></i>
+              <span class="menu-title">Ý Kiến Và Phản Hồi</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/voucher">
+              <i class="typcn typcn-document-text menu-icon"></i>
+              <span class="menu-title">Khuyến Mãi</span>
             </a>
           </li>
           <!-- <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <a
+              class="nav-link"
+              data-toggle="collapse"
+              href="#ui-basic"
+              aria-expanded="false"
+              aria-controls="ui-basic"
+            >
               <i class="typcn typcn-document-text menu-icon"></i>
               <span class="menu-title">UI Elements</span>
               <i class="menu-arrow"></i>
@@ -418,20 +454,31 @@
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
-                  <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a>
+                  <a class="nav-link" href="pages/ui-features/buttons.html"
+                    >Buttons</a
+                  >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a>
+                  <a class="nav-link" href="pages/ui-features/dropdowns.html"
+                    >Dropdowns</a
+                  >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="pages/ui-features/typography.html">Typography</a>
+                  <a class="nav-link" href="pages/ui-features/typography.html"
+                    >Typography</a
+                  >
                 </li>
               </ul>
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false"
-              aria-controls="form-elements">
+            <a
+              class="nav-link"
+              data-toggle="collapse"
+              href="#form-elements"
+              aria-expanded="false"
+              aria-controls="form-elements"
+            >
               <i class="typcn typcn-film menu-icon"></i>
               <span class="menu-title">Form elements</span>
               <i class="menu-arrow"></i>
@@ -439,13 +486,21 @@
             <div class="collapse" id="form-elements">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
-                  <a class="nav-link" href="pages/forms/basic_elements.html">Basic Elements</a>
+                  <a class="nav-link" href="pages/forms/basic_elements.html"
+                    >Basic Elements</a
+                  >
                 </li>
               </ul>
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
+            <a
+              class="nav-link"
+              data-toggle="collapse"
+              href="#charts"
+              aria-expanded="false"
+              aria-controls="charts"
+            >
               <i class="typcn typcn-chart-pie-outline menu-icon"></i>
               <span class="menu-title">Charts</span>
               <i class="menu-arrow"></i>
@@ -453,13 +508,21 @@
             <div class="collapse" id="charts">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
-                  <a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a>
+                  <a class="nav-link" href="pages/charts/chartjs.html"
+                    >ChartJs</a
+                  >
                 </li>
               </ul>
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
+            <a
+              class="nav-link"
+              data-toggle="collapse"
+              href="#tables"
+              aria-expanded="false"
+              aria-controls="tables"
+            >
               <i class="typcn typcn-th-small-outline menu-icon"></i>
               <span class="menu-title">Tables</span>
               <i class="menu-arrow"></i>
@@ -467,13 +530,21 @@
             <div class="collapse" id="tables">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
-                  <a class="nav-link" href="pages/tables/basic-table.html">Basic table</a>
+                  <a class="nav-link" href="pages/tables/basic-table.html"
+                    >Basic table</a
+                  >
                 </li>
               </ul>
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
+            <a
+              class="nav-link"
+              data-toggle="collapse"
+              href="#icons"
+              aria-expanded="false"
+              aria-controls="icons"
+            >
               <i class="typcn typcn-compass menu-icon"></i>
               <span class="menu-title">Icons</span>
               <i class="menu-arrow"></i>
@@ -481,13 +552,21 @@
             <div class="collapse" id="icons">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
-                  <a class="nav-link" href="pages/icons/mdi.html">Mdi icons</a>
+                  <a class="nav-link" href="pages/icons/mdi.html"
+                    >Mdi icons</a
+                  >
                 </li>
               </ul>
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+            <a
+              class="nav-link"
+              data-toggle="collapse"
+              href="#auth"
+              aria-expanded="false"
+              aria-controls="auth"
+            >
               <i class="typcn typcn-user-add-outline menu-icon"></i>
               <span class="menu-title">User Pages</span>
               <i class="menu-arrow"></i>
@@ -508,7 +587,13 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#error" aria-expanded="false" aria-controls="error">
+            <a
+              class="nav-link"
+              data-toggle="collapse"
+              href="#error"
+              aria-expanded="false"
+              aria-controls="error"
+            >
               <i class="typcn typcn-globe-outline menu-icon"></i>
               <span class="menu-title">Error pages</span>
               <i class="menu-arrow"></i>
@@ -529,7 +614,10 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="https://bootstrapdash.com/demo/polluxui-free/docs/documentation.html">
+            <a
+              class="nav-link"
+              href="https://bootstrapdash.com/demo/polluxui-free/docs/documentation.html"
+            >
               <i class="typcn typcn-mortar-board menu-icon"></i>
               <span class="menu-title">Documentation</span>
             </a>
@@ -571,7 +659,7 @@
           <!--end table category-->
         </div>
         <!-- content-wrapper ends -->
-        <!-- partial:../../partials/_footer.html -->
+        <!-- partial:/admin/partials/_footer.html -->
         <footer class="footer">
           <div class="card">
             <div class="card-body">
@@ -594,24 +682,24 @@
   </div>
   <!-- container-scroller -->
   <!-- base:js -->
-  <script src="../../vendors/js/vendor.bundle.base.js"></script>
+  <script src="/admin/vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->
   <!-- inject:js -->
-  <script src="../../js/off-canvas.js"></script>
-  <script src="../../js/hoverable-collapse.js"></script>
-  <script src="../../js/template.js"></script>
-  <script src="../../js/settings.js"></script>
-  <script src="../../js/todolist.js"></script>
+  <script src="/admin/js/off-canvas.js"></script>
+  <script src="/admin/js/hoverable-collapse.js"></script>
+  <script src="/admin/js/template.js"></script>
+  <script src="/admin/js/settings.js"></script>
+  <script src="/admin/js/todolist.js"></script>
   <!-- endinject -->
   <!-- plugin js for this page -->
-  <script src="../../vendors/typeahead.js/typeahead.bundle.min.js"></script>
-  <script src="../../vendors/select2/select2.min.js"></script>
+  <script src="/admin/vendors/typeahead.js/typeahead.bundle.min.js"></script>
+  <script src="/admin/vendors/select2/select2.min.js"></script>
 
   <!-- End plugin js for this page -->
   <!-- Custom js for this page-->
-  <script src="../../js/file-upload.js"></script>
-  <script src="../../js/typeahead.js"></script>
-  <script src="../../js/select2.js"></script>
+  <script src="/admin/js/file-upload.js"></script>
+  <script src="/admin/js/typeahead.js"></script>
+  <script src="/admin/js/select2.js"></script>
   <!-- End custom js for this page-->
 
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
@@ -622,7 +710,7 @@
   <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
 
-  <script src="../../RestJS/AccountRestJS.js"></script>
+  <script src="/admin/RestJS/AccountRestJS.js"></script>
 </body>
 
 </html>

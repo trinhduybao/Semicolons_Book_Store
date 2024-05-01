@@ -184,23 +184,23 @@ async function deleteCategory(id) {
             });
 
             if (response.ok) {
-                console.log(`Category with ID ${id} deleted successfully`);
-                await Swal.fire({
-                    title: 'Xoá thành công!',
-                    text: 'Danh mục đã được xoá thành công.',
-                    icon: 'success',
-                    confirmButtonText: 'OK'
-                });
-                window.location.reload();
-            } else {
-                await Swal.fire({
-                    title: 'Xoá thất bại!',
-                    text: 'Danh mục này không được xoá.',
-                    icon: 'error',
-                    confirmButtonText: 'OK'
-                });
-                console.error(`Failed to delete category with ID ${id}`);
-            }
+                    console.log(`Category with ID ${id} deleted successfully`);
+                    await Swal.fire({
+                        title: 'Xoá thành công!',
+                        text: 'Danh mục đã được xoá thành công.',
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    });
+                    window.location.reload();
+                } else {
+                    await Swal.fire({
+                        title: 'Xoá thất bại!',
+                        text: 'Danh mục này không được xoá.',
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
+                    console.error(`Failed to delete category with ID ${id}`);
+                }
         }
     } catch (error) {
         console.error('Error during delete request:', error);

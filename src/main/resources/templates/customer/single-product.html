@@ -67,7 +67,7 @@
 								<li class="nav-item"><a class="nav-link" href="contact">Contact</a></li>
 							<th:block th:if="${#request.remoteUser}">
 							
-							<li th:if="${#request.isUserInRole('director') or #request.isUserInRole('staff')}" class="nav-item"><a class="nav-link" href="contact.html">Administration</a></li>
+							<li th:if="${#request.isUserInRole('director') or #request.isUserInRole('staff')}" class="nav-item"><a class="nav-link" href="/admin">Administration</a></li>
 						</ul>
 
 						<ul class="nav-shop">
@@ -75,7 +75,7 @@
 									<i class="ti-search"></i>
 								</button></li> -->
 							<li class="nav-item">
-                                <a sec:authorize="isAuthenticated()" th:href="@{/profile/view}">
+                                <a sec:authorize="isAuthenticated()" th:href="@{/profile/view}">	
                                     <i class="ti-user"></i>
                                 </a>
                                 <a sec:authorize="!isAuthenticated()" th:href="@{/security/login/form}">

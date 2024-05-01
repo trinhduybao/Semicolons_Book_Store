@@ -201,15 +201,21 @@ async function deleteVoucherManager(id) {
 
             if (response.ok) {
                 console.log(`Voucher with ID ${id} deleted successfully`);
-                Swal.fire({
-                    title: "Thành công!",
-                    text: "Voucher đã được xoá thành công.",
-                    icon: "success"
-                }).then(() => {
-                    window.location.reload();
+                await Swal.fire({
+                    title: 'Xoá thành công!',
+                    text: 'Voucher đã được xoá thành công.',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
                 });
+                window.location.reload();
             } else {
-                console.error(`Failed to delete vourcher with ID ${id}`);
+                await Swal.fire({
+                    title: 'Xoá thất bại!',
+                    text: 'Voucher này không được xoá.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+                console.error(`Failed to delete category with ID ${id}`);
             }
         }
     } catch (error) {

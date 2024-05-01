@@ -391,18 +391,21 @@ async function deleteProductManager(id) {
 
             if (response.ok) {
                 console.log(`Product with ID ${id} deleted successfully`);
-                Swal.fire({
-                    title: "Sản phẩm đã được xoá thành công!",
-                    icon: "success",
-                    showCancelButton: false,
-                    confirmButtonColor: "#3085d6",
-                    confirmButtonText: "OK",
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.reload();
-                    }
+                console.log(`Category with ID ${id} deleted successfully`);
+                await Swal.fire({
+                    title: 'Xoá thành công!',
+                    text: 'Sản phẩm đã được xoá thành công.',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
                 });
+                window.location.reload();
             } else {
+                await Swal.fire({
+                    title: 'Xoá thất bại!',
+                    text: 'Sản phẩm này không được xoá.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
                 console.error(`Failed to delete product with ID ${id}`);
             }
         }

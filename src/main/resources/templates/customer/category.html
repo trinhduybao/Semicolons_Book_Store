@@ -61,10 +61,10 @@
 									<li class="nav-item"><a class="nav-link" href="cart.html">Shopping
 											Cart</a></li>
 								</ul> --></li>
-								<li class="nav-item"><a class="nav-link" href="contact">Contact</a></li>
+								<li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
 							<th:block th:if="${#request.remoteUser}">
 							
-							<li th:if="${#request.isUserInRole('director') or #request.isUserInRole('staff')}" class="nav-item"><a class="nav-link" href="contact.html">Administration</a></li>
+							<li th:if="${#request.isUserInRole('director') or #request.isUserInRole('staff')}" class="nav-item"><a class="nav-link" href="/admin">Administration</a></li>
 						</ul>
 
 						<ul class="nav-shop">

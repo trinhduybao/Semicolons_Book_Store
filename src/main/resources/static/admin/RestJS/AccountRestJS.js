@@ -169,10 +169,6 @@ $(document).ready(function () {
   });
 });
 
-document.getElementById("addUserBtn").addEventListener("click", function () {
-  var modal = new bootstrap.Modal(document.getElementById("addUserModal"));
-  modal.show();
-});
 
 function deleteAccount(id) {
   $.ajax({
