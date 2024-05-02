@@ -1,5 +1,6 @@
 package com.semicolons_book_store.controller;
 
+import com.semicolons_book_store.model.Order;
 import com.semicolons_book_store.model.Product;
 import com.semicolons_book_store.repository.ManagerProductRepository;
 import com.semicolons_book_store.service.ProductService;
@@ -9,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
@@ -67,4 +69,22 @@ public class ProductRestController {
         boolean isExist = managerProductRepository.existsByName(name);
         return ResponseEntity.ok(isExist);
     }
+
+    @PutMapping("/rest/update-stock/{id}")
+    public ResponseEntity<Product> updateStock(@PathVariable("id") Integer id, @RequestParam("newQuantity") Integer newQuantity) {
+        Optional<Product> optionalProduct = managerProductRepository.findById(id);
+        if (!optionalProduct.isPresent()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        Product product = optionalProduct.get();
+        product.setQuantity(newQuantity);
+
+        managerProductRepository.save(product);
+
+        return ResponseEntity.ok(product);
+    }
+
+
+
 }

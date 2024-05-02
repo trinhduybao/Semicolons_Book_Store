@@ -28,6 +28,10 @@
   <!-- page -->
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
   <!-- end page -->
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
 </head>
 
 <!-- <body ng-app="app" ng-controller="ctrl-orders"> -->
@@ -636,37 +640,39 @@
                 <div class="card-body">
                   <h4 class="card-title">Orders Form</h4>
                   <form class="forms-sample myForm">
+                    <input type="number" name="orderId" id="orderId" hidden >  
+                    <input type="text" name="statusOrder" id="statusOrder" hidden>
                     <div class="form-group">
                       <label>Ngày Đặt Hàng</label>
-                      <input type="datetime" class="form-control"
+                      <input type="datetime" class="form-control" id="ngayDatHang"
                       placeholder="ngày đặt hàng" required minlength="3" maxlength="50" disabled>
                     </div>
                     <div class="form-group">
                       <label>Tổng Tiền</label>
-                      <input type="text" class="form-control"
+                      <input type="text" class="form-control" id="tongTien"
                              placeholder="tổng tiền" required minlength="3" maxlength="50" disabled>
                     </div>
                     <div class="form-group">
                       <label>Địa Chỉ Giao Hàng</label>
-                      <input type="text" class="form-control"
+                      <input type="text" class="form-control" id="diaChi"
                              placeholder="địa chỉ" required minlength="3" maxlength="50" disabled>
                     </div>
                     <div>
                     <div class="form-group">
                       <label>Giảm Giá</label>
-                      <input type="text" class="form-control"
+                      <input type="text" class="form-control" id="giamGia"
                              placeholder="giảm giá" required minlength="3" maxlength="50" disabled>
                     </div>
 
                     <div class="form-group">
                         <label>Người Mua Hàng</label>
-                        <input type="text" class="form-control"
+                        <input type="text" class="form-control" id="nguoiMua"
                                placeholder="người mua" required minlength="3" maxlength="50" disabled>
                       </div>
 
                     </div>
-                    <button class="btn btn-success mr-2">Nhận</button>
-                    <button class="btn btn-danger mr-2">Xóa</button>
+                    <button class="btn btn-success mr-2" id="nhanButton">Nhận</button>
+                    <button class="btn btn-danger mr-2" id="huyButton">Huỷ</button>
                     <button class="btn btn-info mr-2">Làm mới</button>
                   </form>
                 </div>

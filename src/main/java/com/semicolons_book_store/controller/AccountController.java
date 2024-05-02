@@ -60,4 +60,7 @@ public class AccountController {
         return "redirect:/security/login/form";
 		
     }
+
+
+
 }

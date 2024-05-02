@@ -1,5 +1,7 @@
 const app = angular.module("shopping-cart-app", []);
 app.controller("shopping-cart-ctrl", function ($scope, $http) {
+ 
+  
   $scope.cart = {
     items: [],
     add(id) {
@@ -45,7 +47,6 @@ app.controller("shopping-cart-ctrl", function ($scope, $http) {
       this.items = json ? JSON.parse(json) : [];
     },
   };
-
   $scope.placeOrder = function () {
     // Sử dụng fetch API để lấy thông tin tài khoản và địa chỉ từ máy chủ
     fetch("/current")
@@ -54,17 +55,16 @@ app.controller("shopping-cart-ctrl", function ($scope, $http) {
         // Lấy thông tin tài khoản và địa chỉ từ dữ liệu user
         var accountId = user.id;
         var address = user.address.address;
-
-
+  
         // Tạo dữ liệu đơn hàng
         var currentDate = new Date();
         var formattedDate = currentDate
           .toISOString()
           .slice(0, 19)
           .replace("T", " ");
-
+  
         var cartItems = JSON.parse(localStorage.getItem("cart"));
-
+  
         var productList = cartItems.map(function (item) {
           return {
             count: item.count,
@@ -73,9 +73,9 @@ app.controller("shopping-cart-ctrl", function ($scope, $http) {
             count: item.price,
           };
         });
-
+  
         console.log(productList);
-
+  
         var orderData = {
           orderDate: formattedDate,
           totalAmount: $scope.cart.mount,
@@ -85,8 +85,7 @@ app.controller("shopping-cart-ctrl", function ($scope, $http) {
           accountId: accountId,
           items: productList,
         };
-
-        // Gửi yêu cầu đặt hàng lên server
+  
         $http
           .post(
             "http://localhost:8080/rest/place-order",
@@ -99,17 +98,38 @@ app.controller("shopping-cart-ctrl", function ($scope, $http) {
           )
           .then(function (response) {
             console.log("Đặt hàng thành công:", response.data);
-            alert("Đặt hàng thành công!");
 
-            // Xóa dữ liệu trong giỏ hàng
-            clearCart();
+            cartItems.forEach(function (item) {
+              var productId = item.id;
+              var newQuantity = item.quantity - item.qty;
+              console.log("newQuantity: ", newQuantity);
+              $http.put("http://localhost:8080/rest/update-stock/" + productId + "?newQuantity=" + newQuantity)
+              .then(function (response) {
+                console.log("Cập nhật trạng thái đơn hàng thành công");
+              })
+              .catch(function (error) {
+                console.error("Lỗi khi cập nhật trạng thái đơn hàng:", error);
+              });          
+            });
+              
 
-            // Chuyển hướng người dùng về trang mua sắm
-            window.location.href = "/product/list";
+            Swal.fire({
+              icon: "success",
+              title: "Đặt hàng thành công",
+              text: "Cảm ơn bạn đã đặt hàng!",
+            }).then(() => {
+              clearCart();
+  
+              window.location.href = "/product/list";
+            });
           })
           .catch(function (error) {
             console.error("Đã xảy ra lỗi khi đặt hàng:", error);
-            alert("Đã xảy ra lỗi khi đặt hàng!");
+            Swal.fire({
+              icon: "error",
+              title: "Đã xảy ra lỗi",
+              text: "Có lỗi xảy ra khi đặt hàng. Vui lòng thử lại sau.",
+            });
             console.log("Data to be sent:", JSON.stringify(orderData));
           });
       })
@@ -117,6 +137,7 @@ app.controller("shopping-cart-ctrl", function ($scope, $http) {
         console.error("Error:", error);
       });
   };
+  
 
    $scope.fetchOrderDetails = function(event) {
     var orderId = event.currentTarget.getAttribute('value');
@@ -148,6 +169,8 @@ app.controller("shopping-cart-ctrl", function ($scope, $http) {
         .catch(function(error) {
             console.error('Error fetching order details:', error);
         });
+
+        
 };
 
 
@@ -164,5 +187,52 @@ app.controller("shopping-cart-ctrl", function ($scope, $http) {
 
 
 
+async function updateAccountt(id) {
+  var id = document.getElementById("id").value;
+  var email = document.getElementById("email").value;
+  var username = document.getElementById("username").value;
+  var password = document.getElementById("password").value;
+  var firstName = document.getElementById("firstName").value;
+  var lastName = document.getElementById("lastName").value;
+  var address = document.getElementById("address").value;
 
+  if (!email || !firstName || !lastName || !address) {
+    alert("Vui lòng điền đầy đủ thông tin vào các trường!");
+    return;
+  }
 
+  try {
+    let requestBody = {
+      id: id,
+      email: email,
+      username: username,
+      password: password,
+      firstName: firstName,
+      lastName: lastName,
+      address: address,
+    };
+
+    if (confirm("Bạn có chắc chắn muốn cập nhật tài khoản không?")) {
+      const responseAccount = await fetch(
+        `http://localhost:8080/rest/accounts/` + id,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestBody),
+        }
+      );
+
+      if (responseAccount.ok) {
+        console.log("Account updated successfully");
+        window.location.reload();
+      } else {
+        console.error("Failed to update account", responseAccount);
+        alert("Đã xảy ra lỗi khi cập nhật tài khoản");
+      }
+    }
+  } catch (error) {
+    console.error("Error during update request:", error);
+  }
+}

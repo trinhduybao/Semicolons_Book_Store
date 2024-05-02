@@ -23,6 +23,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
@@ -126,5 +127,21 @@ public class OrderRestController {
         // Trả về thông báo đặt hàng thành công
         return ResponseEntity.ok().body("{\"message\": \"Đặt hàng thành công!\"}");
     }
+
+    @PutMapping("/rest/orderStatus/{id}")
+    public ResponseEntity<Order> updateOrderStatus(@PathVariable("id") Integer id, @RequestParam("status") String newStatus) {
+        Optional<Order> optionalOrder = orderRepository.findById(id);
+        if (!optionalOrder.isPresent()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        Order order = optionalOrder.get();
+        order.setStatus(newStatus); // Cập nhật trạng thái mới của đơn hàng
+
+        orderRepository.save(order); // Lưu thay đổi vào cơ sở dữ liệu
+
+        return ResponseEntity.ok(order);
+    }
+
 
 }

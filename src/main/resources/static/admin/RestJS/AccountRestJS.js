@@ -242,6 +242,8 @@ async function addNewUser() {
     const lastName = document.getElementById("newLastName").value;
     const address = document.getElementById("newAddress").value;
 
+    // const roles = document.getElementById("roles").value;
+
 
     if (
       !username ||
@@ -277,7 +279,14 @@ async function addNewUser() {
 
     if (response.ok) {
       const responseData = await response.json();
-      const addedUsername = responseData.username; 
+      // const addedUserId = responseData.id; 
+
+      // const setRole = await fetch(`http://localhost:8080/rest/authority`, {
+      //   method: 'POST',
+      //   body: Json.stringify({
+      //     roleID: roles,
+      //     authority: "ROLE_USER"
+      //   })
 
       console.log("User created successfully:", addedUsername);
       
